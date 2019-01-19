@@ -1,0 +1,9 @@
+- fix config on big PC
+- Fix volume applet
+- Give urxvt copy/paste functionality
+- Try to make specific programs floating automatically (GitKraken, Keepass2/X, Discord)
+- Check wether Syncthing actually works
+- write a symlink generator script
+- Assign workspace 2 to second monitor and workspace 1 to main
+- add git tree alias
+- Learn Ranger/find a decent file manager
