@@ -1,0 +1,57 @@
+# THIS FILE CONTAINS SETTING FOR COLORED LS OUTPUT
+
+# ---General---
+DIR 01;34	#(blue)
+EXEC 01;35  	#(magenta)
+# LINK 01;37    #(bright white [DISABLED])
+
+# ---Packages--- (red)
+.tar 1;31 
+.zip 1;31
+.tar.gz 1;31
+.rar 1;31
+.deb 1;31
+.rpm 1;31
+.tgz 1;31
+
+# ---Audio--- (light yellow)
+.mp3 1;93
+.wav 1;93
+.ogg 1;93
+.m4a 1;93
+
+# ---Video--- (Color not supported, gives back yellow [to change])
+.mkv 0;33
+.mp4 0;33
+.wmv 0;33
+.flv 0;33
+.avi 0;33
+
+# ---Documents--- (cyan)
+.doc 1;36
+.docx 1;36
+.pages 1;36
+.pdf 1;36
+.PDF 1;36
+.odt 1;36
+.ppt 1;36
+.pptx 1;36
+.odp 1;36
+.ods 1;36
+.txt 1;36
+.html 1;36
+
+# ---Images--- (bright white [to change])
+.jpg 1;37
+.gif 1;37
+.png 1;37
+
+# ---Programming--- (white with blue background)
+.java 1;44
+.class 1;44
+.sh 1;44
+.c 1;44
+.h 1;44
+.cc 1;44
+.cpp 1;44
+.py 1;44

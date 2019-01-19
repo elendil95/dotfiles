@@ -2,10 +2,11 @@
 
 ## HOME
 
-- .bashrc
+- .bashrc (from laptop)
 - .profile (for Bash)
 - .zshrc (Where plugins are set)
 - .Xresources
+- .vimrc
 
 ## Oh my zshell folder (~/.oh-my-zshell/) **Not synced, just backed up**
 
@@ -25,3 +26,6 @@
 - config.py
 - autostart.sh (for startup programs) 
 
+**texstudio** (~/.config/texstudio)
+
+- eu.txsprofile

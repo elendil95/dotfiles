@@ -1,0 +1,7 @@
+alias vpns='expressvpn status'
+alias vpnc='expressvpn connect'
+alias vpnd='expressvpn disconnect'
+alias cp='cp -v'
+alias mv='mv -v'
+alias rm='rm -iv'
+alias timezones='tzwatch'
