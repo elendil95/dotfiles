@@ -16,7 +16,7 @@
 
 ## Conky
 
-- conkyrc (source with 'conky -c /home/elendil/.conkycolors/conkyrc')
+- .conkyrc (source with 'conky -c /home/elendil/.conkycolors/.conkyrc')
 
 ## ~/.config/
 
