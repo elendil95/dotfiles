@@ -141,10 +141,13 @@ screens = [
                 widget.sep.Sep(padding=2),
                 widget.BatteryIcon(theme_path='/home/elendil/.icons/AwOkenWhite/clear/24x24/status'),
                 widget.Battery(foreground='#0cdb63', low_percentage=0.20, low_foreground='fa5e5b', update_delay=10, format='{percent:.0%}'),
+                widget.sep.Sep(padding=2),
                 widget.Volume(theme_path='/home/elendil/.icons/AwOkenWhite/clear/24x24/status'),
+                # mute_command='amixer -D pulse -q sset Master toggle'
                 widget.sep.Sep(padding=2),
                 widget.Systray(),
                 #widget.Volume(),
+                widget.sep.Sep(padding=2),
                 widget.Clock(format='%A %d-%m-%Y -- %I:%M %p'),
             ],
             24,
