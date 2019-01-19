@@ -7,6 +7,12 @@ alias rm='rm -iv'
 alias timezones='tzwatch'
 alias du='du -sh'
 alias df='df -hT -x tmpfs'
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit -m'
+alias gca='git commit -a -m'
+alias gpl='git pull'
+alias gps='git push'
 
 binary(){
 echo "obase=2; $1"|bc
