@@ -65,7 +65,7 @@ keys = [
     Key([mod, "control"], "r", lazy.restart()),
     Key([mod, "control"], "q", lazy.shutdown()),
     Key([mod], "r", lazy.spawncmd()),
-    Key([mod, "shift"], 'r', lazy.spawn("dmenu_run -fn 'Monospace:size=10' -nb '#000000' -nf '#fefefe'")),
+    Key([mod, "shift"], 'r', lazy.spawn("dmenu_run -b -fn 'Monospace:size=10' -nb '#000000' -nf '#fefefe'")),
     
     #Audio Controls
     Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -c 0 -q set Master 2dB+")),
