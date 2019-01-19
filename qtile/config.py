@@ -70,7 +70,7 @@ keys = [
     #Audio Controls
     Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -c 0 -q set Master 2dB+")),
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -c 0 -q set Master 2dB-")),
-    Key([], "XF86AudioMute", lazy.spawn("amixer -c 0 -q set Master toggle")),
+    Key([], "XF86AudioMute", lazy.spawn("amixer -D pulse sset Master toggle -q")),
     
     #Monad Default Bindings
     Key([mod], "h", lazy.layout.left()),
@@ -89,8 +89,8 @@ keys = [
 
     #Programs
     Key([mod], "g", lazy.spawn("google-chrome")),
-    Key([mod], "f", lazy.spawn("ranger")),
-    #Key([mod], "m", lazy.spawn("urxvt -e cmus")),
+    Key([mod], "f", lazy.spawn("urxvt -e ranger")),
+    Key([mod], "m", lazy.spawn("urxvt -e cmus")),
 ]
 
 groups = [Group(i) for i in "12345678"]
@@ -139,7 +139,9 @@ screens = [
                 #widget.sep.Sep(padding=2),
                 #widget.TextBox("C", foreground='#00ff38', name="custom"),
                 widget.sep.Sep(padding=2),
-                widget.BatteryIcon(theme_path='/usr/local/src/qtile/qtile/libqtile/resources/battery-icons'),
+                widget.BatteryIcon(theme_path='/home/elendil/.icons/AwOkenWhite/clear/24x24/status'),
+                widget.Battery(foreground='#0cdb63', low_percentage=0.20, low_foreground='fa5e5b', update_delay=10, format='{percent:.0%}'),
+                widget.Volume(theme_path='/home/elendil/.icons/AwOkenWhite/clear/24x24/status'),
                 widget.sep.Sep(padding=2),
                 widget.Systray(),
                 #widget.Volume(),
