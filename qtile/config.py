@@ -65,6 +65,13 @@ keys = [
     Key([mod, "control"], "r", lazy.restart()),
     Key([mod, "control"], "q", lazy.shutdown()),
     Key([mod], "r", lazy.spawncmd()),
+    Key([mod, "shift"], 'r', lazy.spawn("dmenu_run -fn 'Monospace:size=10' -nb '#000000' -nf '#fefefe'")),
+    
+    #Audio Controls
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -c 0 -q set Master 2dB+")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -c 0 -q set Master 2dB-")),
+    Key([], "XF86AudioMute", lazy.spawn("amixer -c 0 -q set Master toggle")),
+    
     #Monad Default Bindings
     Key([mod], "h", lazy.layout.left()),
     Key([mod], "l", lazy.layout.right()),
@@ -98,8 +105,8 @@ for i in groups:
     ])
 
 layouts = [
-    layout.Max(),
     layout.MonadTall(align='MonadTail._right', border_focus='#ff0000', border_normal='#0000ff', single_border_width=2, margin=10),
+    layout.Max(),
     #layout.Tile(ratio=0.5, masterWindows=2),
     layout.TreeTab(margin=10),
     #layout.Stack(num_stacks=2)
@@ -122,7 +129,7 @@ screens = [
         top=bar.Bar(
             [
                 widget.GroupBox(),
-                widget.Prompt(foreground='#00d2ff'),
+                widget.Prompt(foreground='#00d2ff', prompt="Run: "),
                 widget.WindowName(),
                 widget.Notify(),
                 widget.CPUGraph(fill_color='#fff400', graph_color='#ce0202', line_width=2),
@@ -141,7 +148,7 @@ screens = [
     ),
 ]
 
-# Drag floating layouts.
+# Drag floating layouts. #                widget.BatteryIcon(theme_path='/usr/local/scr/qtile/qtile/libqtile/resources/battery-icons'),
 mouse = [
     Drag([mod], "Button1", lazy.window.set_position_floating(),
          start=lazy.window.get_position()),
@@ -151,7 +158,6 @@ mouse = [
 ]
 
 dgroups_key_binder = None
-#dgroups_app_rules: List = []
 dgroups_app_rules = []
 main = None
 follow_mouse_focus = True
