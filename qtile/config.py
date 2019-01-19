@@ -138,6 +138,7 @@ screens = [
                 widget.CurrentLayout(foreground='#199a3c'),
                 widget.sep.Sep(padding=2),
                 widget.TextBox("C", foreground='#00ff38', name="custom"),
+                widget.BatteryIcon(theme_path='/usr/local/src/qtile/qtile/libqtile/resources/battery-icons'),
                 widget.sep.Sep(padding=2),
                 widget.Systray(),
                 #widget.Volume(),
@@ -148,7 +149,7 @@ screens = [
     ),
 ]
 
-# Drag floating layouts. #                widget.BatteryIcon(theme_path='/usr/local/scr/qtile/qtile/libqtile/resources/battery-icons'),
+# Drag floating layouts. #                widget.BatteryIcon(theme_path='/usr/local/src/qtile/qtile/libqtile/resources/battery-icons'),
 mouse = [
     Drag([mod], "Button1", lazy.window.set_position_floating(),
          start=lazy.window.get_position()),
