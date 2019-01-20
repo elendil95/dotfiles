@@ -81,10 +81,10 @@ keys = [
     Key([mod, "shift"], "l", lazy.layout.swap_right()),
     Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
     Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
-    Key([mod], "i", lazy.layout.grow()),
-    Key([mod], "m", lazy.layout.shrink()),
-    Key([mod], "n", lazy.layout.normalize()),
-    Key([mod], "o", lazy.layout.maximize()),
+    Key([mod, "shift"], "plus", lazy.layout.grow()),
+    Key([mod, "shift"], "minus", lazy.layout.shrink()),
+    Key([mod, "shift"], "n", lazy.layout.normalize()),
+    Key([mod, "shift"], "m", lazy.layout.maximize()),
     Key([mod, "shift"], "space", lazy.layout.flip()),
 
     #Programs
