@@ -1,5 +1,10 @@
 URxvt.font: xft:monospace:pixelsize=12
 URxvt.scrollBar: false
+URxvt.perl-ext.common: default,matcher,url-select,selection-to clipboard
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+URxvt.iso14755: false
+URxvt.iso14755_52: false
 
 ! special
 *.foreground:   #dedede
