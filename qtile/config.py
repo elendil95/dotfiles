@@ -93,7 +93,7 @@ keys = [
 
     #Programs
     Key([mod], "g", lazy.spawn("chromium-browser")),
-    Key([mod], "f", lazy.spawn("urxvt -e ranger")),
+    Key([mod], "f", lazy.spawn("pcmanfm")),
     Key([mod], "m", lazy.spawn("urxvt -e cmus")),
 ]
 
