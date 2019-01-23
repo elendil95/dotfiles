@@ -71,6 +71,10 @@ keys = [
     Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -c 0 -q set Master 2dB+")),
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -c 0 -q set Master 2dB-")),
     Key([], "XF86AudioMute", lazy.spawn("amixer -D pulse sset Master toggle -q")),
+
+    #Screenshots
+    #Key([], 'Print', lazy.spawn("~/bin/screenshot.sh")),
+    #Key([mod], 'Print', lazy.spawn("~/bin/screenshot_select.sh")),
     
     #Monad Default Bindings
     Key([mod], "h", lazy.layout.left()),
@@ -88,7 +92,7 @@ keys = [
     Key([mod, "shift"], "space", lazy.layout.flip()),
 
     #Programs
-    Key([mod], "g", lazy.spawn("google-chrome")),
+    Key([mod], "g", lazy.spawn("chromium-browser")),
     Key([mod], "f", lazy.spawn("urxvt -e ranger")),
     Key([mod], "m", lazy.spawn("urxvt -e cmus")),
 ]
