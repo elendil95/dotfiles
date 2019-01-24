@@ -72,6 +72,9 @@ keys = [
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -c 0 -q set Master 2dB-")),
     Key([], "XF86AudioMute", lazy.spawn("amixer -D pulse sset Master toggle -q")),
 
+    #lock, suspend and such
+    Key([mod, "control"], "l", lazy.spawn("xscreensaver-command -lock")),
+
     #Screenshots
     #Key([], 'Print', lazy.spawn("~/bin/screenshot.sh")),
     #Key([mod], 'Print', lazy.spawn("~/bin/screenshot_select.sh")),
