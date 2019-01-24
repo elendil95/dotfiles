@@ -15,20 +15,22 @@
 - custom/aliases.zsh (all of the aliases)
 - custom/plugins/ (the whole folder)
 
-## Conky
+## .conkycolors
 
 - conkyrc (source with 'conky -c /home/elendil/.conkycolors/conkyrc')
 
-## ~/.config/
+## .config/
 
-**QTile** (~/.config/qtile/)
+**qtile**
 
 - config.py
 - autostart.sh (for startup programs) 
 
-**texstudio** (~/.config/texstudio)
+**texstudio**
 
 - eu.txsprofile
+
+*scripts for screenshots are in /bin, icons required for the bar are in resources/icons. Move to ~/.icons to enable*
 
 # How to setup GTK themes in qtile:
 
