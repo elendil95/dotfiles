@@ -76,8 +76,8 @@ keys = [
     Key([mod, "control"], "l", lazy.spawn("xscreensaver-command -lock")),
 
     #Screenshots
-    #Key([], 'Print', lazy.spawn("~/bin/screenshot.sh")),
-    #Key([mod], 'Print', lazy.spawn("~/bin/screenshot_select.sh")),
+    Key([], 'Print', lazy.spawn("/home/elendil/bin/screenshot.sh")),
+    Key([mod], 'Print', lazy.spawn("/home/elendil/bin/screenshot_select.sh")),
     
     #Monad Default Bindings
     Key([mod], "h", lazy.layout.left()),

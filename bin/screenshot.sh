@@ -17,7 +17,7 @@ fi
 
 # create screenshot
 notify-send -u critical "taking screenshot..." -t 1000
-scrot $filename
+maim $filename
 
 # move to shared folder
 if [ -f "$filename" ]; then

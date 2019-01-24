@@ -17,7 +17,7 @@ fi
 
 # create screenshot
 notify-send -u critical "Select screenshot area" -t 1000
-scrot -s $filename
+maim -s $filename
 
 # move to shared folder
 if [ -f "$filename" ]; then
