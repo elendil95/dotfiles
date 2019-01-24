@@ -112,7 +112,7 @@ for i in groups:
     ])
 
 layouts = [
-    layout.MonadTall(align='MonadTail._right', border_focus='#ff0000', border_normal='#0000ff', single_border_width=2, margin=10),
+    layout.MonadTall(align='MonadTail._right', border_focus='#ff0000', margin=10),
     layout.Max(),
     #layout.Tile(ratio=0.5, masterWindows=2),
     layout.TreeTab(margin=10),
