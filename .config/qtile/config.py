@@ -27,13 +27,32 @@
 
 from libqtile.config import Key, Screen, Group, Drag, Click
 from libqtile.command import lazy
-from libqtile import layout, bar, widget, hook
+from libqtile import layout, bar, widget, hook, extension 
 
 from typing import List
-import os
-import subprocess
+import os, shlex, subprocess, platform
 
 mod = "mod4"
+
+hostname = platform.node()
+num_screens = {
+    'mint-tower': 2,
+    'ThinkPad-E480': 1
+} 
+#def open_current_dir():
+#        subprocess.Popen(['pcmanfm', '$PWD'], shell=True)
+
+# def backlight(action):
+#     def f(qtile):
+#         brightness = int(subprocess.run(['xbacklight', '-get'],
+#                                         stdout=subprocess.PIPE).stdout)
+#         if brightness != 1 or action != 'dec':
+#             if (brightness > 49 and action == 'dec') or (brightness > 39 and action == 'inc'):
+#                 subprocess.run(['xbacklight', f'-{action}', '10', '-fps', '10'])
+#             else:
+#                 subprocess.run(['xbacklight', f'-{action}', '1'])
+#     return f
+    
 
 ##-----KEYBINDS------
 keys = [
@@ -72,6 +91,10 @@ keys = [
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -c 0 -q set Master 2dB-")),
     Key([], "XF86AudioMute", lazy.spawn("amixer -D pulse sset Master toggle -q")),
 
+    #Screen brightness
+    #Key([], 'XF86MonBrightnessUp',   lazy.function(backlight('inc'))),
+    #Key([], 'XF86MonBrightnessDown', lazy.function(backlight('dec'))),
+
     #lock, suspend and such
     Key([mod, "control"], "l", lazy.spawn("xscreensaver-command -lock")),
 
@@ -97,6 +120,9 @@ keys = [
     #Programs
     Key([mod], "g", lazy.spawn("chromium-browser")),
     Key([mod], "f", lazy.spawn("pcmanfm")),
+    #Key([mod, "shift"], "f", lazy.spawn(["python3", "/home/elendil/bin/open_current_dir.py"])),
+    #Key([mod, "shift"], "f", lazy.spawn(["pcmanfm", os.environ["PWD"]])),
+    #Key([mod, "shift"], "f", subprocess.Popen(['pcmanfm', '$PWD'], shell=True)),
     Key([mod], "m", lazy.spawn("urxvt -e cmus")),
 ]
 
@@ -131,36 +157,80 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
-screens = [
-    Screen(
-        top=bar.Bar(
-            [
-                widget.GroupBox(),
-                widget.Prompt(foreground='#00d2ff', prompt="Run: "),
-                widget.WindowName(),
-                widget.Notify(),
-                widget.CPUGraph(fill_color='#fff400', graph_color='#ce0202', line_width=2),
-                widget.Memory(update_interval=30),
-                widget.sep.Sep(padding=2),
-                widget.CurrentLayoutIcon(custom_icon_paths=['/usr/local/src/qtile/qtile/libqtile/resources/layout-icons']),
-                #widget.sep.Sep(padding=2),
-                #widget.TextBox("C", foreground='#00ff38', name="custom"),
-                widget.sep.Sep(padding=2),
-                widget.BatteryIcon(theme_path='/home/elendil/.icons/AwOkenWhite/clear/24x24/status'),
-                widget.Battery(foreground='#0cdb63', low_percentage=0.20, low_foreground='fa5e5b', update_delay=10, format='{percent:.0%}'),
-                widget.sep.Sep(padding=2),
-                widget.Volume(theme_path='/home/elendil/.icons/AwOkenWhite/clear/24x24/status'),
-                # mute_command='amixer -D pulse -q sset Master toggle'
-                widget.sep.Sep(padding=2),
-                widget.Systray(),
-                #widget.Volume(),
-                widget.sep.Sep(padding=2),
-                widget.Clock(format='%A %d-%m-%Y -- %I:%M %p'),
-            ],
-            24,
+if (num_screens[hostname] == 2):
+    screens = [
+        Screen(
+            top=bar.Bar(
+                [
+                    widget.GroupBox(),
+                    widget.Prompt(foreground='#00d2ff', prompt="Run: "),
+                    widget.WindowName(),
+                    widget.Notify(default_timeout=5),
+                    widget.CPUGraph(fill_color='#fff400', graph_color='#ce0202', line_width=2),
+                    widget.Memory(update_interval=30),
+                    widget.sep.Sep(padding=2),
+                    widget.CurrentLayoutIcon(custom_icon_paths=['/usr/local/src/qtile/qtile/libqtile/resources/layout-icons']),
+                    #widget.sep.Sep(padding=2),
+                    #widget.TextBox("C", foreground='#00ff38', name="custom"),
+                    widget.sep.Sep(padding=2),
+                    widget.Volume(theme_path='/home/elendil/.icons/AwOkenWhite/clear/24x24/status'),
+                    # mute_command='amixer -D pulse -q sset Master toggle'
+                    widget.sep.Sep(padding=2),
+                    widget.Systray(),
+                    #widget.Volume(),
+                    widget.sep.Sep(padding=2),
+                    widget.Clock(format='%A %d-%m-%Y -- %I:%M %p'),
+                ],
+                24,
+            ),
         ),
-    ),
-]
+        Screen(
+            top=bar.Bar(
+                [
+                    widget.GroupBox(),
+                    widget.Prompt(foreground='#00d2ff', prompt="Run: "),
+                    widget.WindowName(),
+                    widget.Notify(default_timeout=5),
+                    widget.sep.Sep(padding=2),
+                    widget.Systray(),
+                    widget.sep.Sep(padding=2),
+                    widget.Clock(format='%A %d-%m-%Y -- %I:%M %p'),   
+                ],
+                24,
+            )
+        )
+    ]
+else:
+   screens = [
+        Screen(
+            top=bar.Bar(
+                [
+                    widget.GroupBox(),
+                    widget.Prompt(foreground='#00d2ff', prompt="Run: "),
+                    widget.WindowName(),
+                    widget.Notify(default_timeout=5),
+                    widget.CPUGraph(fill_color='#fff400', graph_color='#ce0202', line_width=2),
+                    widget.Memory(update_interval=30),
+                    widget.sep.Sep(padding=2),
+                    widget.CurrentLayoutIcon(custom_icon_paths=['/usr/local/src/qtile/qtile/libqtile/resources/layout-icons']),
+                    #widget.sep.Sep(padding=2),
+                    #widget.TextBox("C", foreground='#00ff38', name="custom"),
+                    widget.sep.Sep(padding=2),
+                    widget.BatteryIcon(theme_path='/home/elendil/.icons/AwOkenWhite/clear/24x24/status'),
+                    widget.Battery(foreground='#0cdb63', low_percentage=0.20, low_foreground='fa5e5b', update_delay=10, format='{percent:.0%}'),
+                    widget.sep.Sep(padding=2),
+                    widget.Volume(theme_path='/home/elendil/.icons/AwOkenWhite/clear/24x24/status'),
+                    # mute_command='amixer -D pulse -q sset Master toggle'
+                    widget.sep.Sep(padding=2),
+                    widget.Systray(),
+                    #widget.Volume(),
+                    widget.sep.Sep(padding=2),
+                    widget.Clock(format='%A %d-%m-%Y -- %I:%M %p'),
+                ],
+                24,
+            ),
+        ),    
+   ]         
 
 # Drag floating layouts. #                widget.BatteryIcon(theme_path='/usr/local/src/qtile/qtile/libqtile/resources/battery-icons'),
 mouse = [
@@ -209,6 +279,11 @@ def floating_dialogs(window):
     if dialog or transient:
         window.floating = True
 
+#def open_current_dir():
+#    dir=os.getcwd()
+#    command="pcmanfm "+dir 
+#    lazy.spawn(command)
+
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
 # mailing lists, github issues, and other WM documentation that suggest setting
@@ -217,4 +292,5 @@ def floating_dialogs(window):
 #
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
-wmname = "LG3D"
+#wmname = "LG3D"
+wmname = "Qtile"
