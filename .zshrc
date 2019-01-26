@@ -101,4 +101,12 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+export FILE_MANAGER=pcmanfm
 
+function open_fm_here(){
+	$FILE_MANAGER $PWD &
+}
+
+zle -N open_fm_here
+
+bindkey ^f open_fm_here #CTRL-F
