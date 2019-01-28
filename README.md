@@ -51,3 +51,10 @@
 7.5 Use PCManFM as file manager my dude, miss me with that Ranger gay shit
 ## Get Window names to set individual floating layout
 xlsclients -l
+
+##Programs necessary for ranger
+
+-w3m
+-w3m-img
+-trash-cli
+-atools
