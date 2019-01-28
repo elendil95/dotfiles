@@ -116,6 +116,10 @@ keys = [
     Key([mod, "shift"], "n", lazy.layout.normalize()),
     Key([mod, "shift"], "m", lazy.layout.maximize()),
     Key([mod, "shift"], "space", lazy.layout.flip()),
+    
+    #Floating Layout Keybinds
+    Key([mod], "t", lazy.window.disable_floating()),
+    Key([mod, "shift"], "t", lazy.window.enable_floating()),
 
     #Programs
     Key([mod], "g", lazy.spawn("chromium-browser")),
@@ -144,6 +148,7 @@ layouts = [
     layout.TreeTab(margin=10),
     #layout.Stack(num_stacks=2)
 ]
+floating_layout = layout.Floating()
 
 @hook.subscribe.startup_once
 def autostart():
