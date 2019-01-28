@@ -28,7 +28,6 @@
 from libqtile.config import Key, Screen, Group, Drag, Click
 from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook, extension 
-
 from typing import List
 import os, shlex, subprocess, platform
 
@@ -39,74 +38,16 @@ num_screens = {
     'mint-tower': 2,
     'ThinkPad-E480': 1
 } 
-#def open_current_dir():
-#        subprocess.Popen(['pcmanfm', '$PWD'], shell=True)
 
-# def backlight(action):
-#     def f(qtile):
-#         brightness = int(subprocess.run(['xbacklight', '-get'],
-#                                         stdout=subprocess.PIPE).stdout)
-#         if brightness != 1 or action != 'dec':
-#             if (brightness > 49 and action == 'dec') or (brightness > 39 and action == 'inc'):
-#                 subprocess.run(['xbacklight', f'-{action}', '10', '-fps', '10'])
-#             else:
-#                 subprocess.run(['xbacklight', f'-{action}', '1'])
-#     return f
-    
 
 ##-----KEYBINDS------
 keys = [
-    # Switch between windows in current stack pane
-    Key([mod], "k", lazy.layout.down()),
-    Key([mod], "j", lazy.layout.up()),
-
-    # Move windows up or down in current stack
-    Key([mod, "control"], "k", lazy.layout.shuffle_down()),
-    Key([mod, "control"], "j", lazy.layout.shuffle_up()),
-
-    # Switch window focus to other pane(s) of stack
-    Key([mod], "space", lazy.layout.next()),
-
-    # Swap panes of split stack
-    Key([mod, "shift"], "space", lazy.layout.rotate()),
-
-    # Toggle between split and unsplit sides of stack.
-    # Split = all windows displayed
-    # Unsplit = 1 window displayed, like Max layout, but still with
-    # multiple stack panes
-    Key([mod, "shift"], "Return", lazy.layout.toggle_split()),
-    Key([mod], "Return", lazy.spawn("urxvt")),
-
-    # Toggle between different layouts as defined below
-    Key([mod], "Tab", lazy.next_layout()),
-    
-    Key([mod], "w", lazy.window.kill()),
-    Key([mod, "control"], "r", lazy.restart()),
-    Key([mod, "control"], "q", lazy.shutdown()),
-    Key([mod], "r", lazy.spawncmd()),
-    Key([mod, "shift"], 'r', lazy.spawn("dmenu_run -b -fn 'Monospace:size=10' -nb '#000000' -nf '#fefefe'")),
-    
-    #Audio Controls
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -c 0 -q set Master 2dB+")),
-    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -c 0 -q set Master 2dB-")),
-    Key([], "XF86AudioMute", lazy.spawn("amixer -D pulse sset Master toggle -q")),
-
-    #Screen brightness
-    #Key([], 'XF86MonBrightnessUp',   lazy.function(backlight('inc'))),
-    #Key([], 'XF86MonBrightnessDown', lazy.function(backlight('dec'))),
-
-    #lock, suspend and such
-    Key([mod, "control"], "l", lazy.spawn("xscreensaver-command -lock")),
-
-    #Screenshots
-    Key([], 'Print', lazy.spawn("/home/elendil/bin/screenshot.sh")),
-    Key([mod], 'Print', lazy.spawn("/home/elendil/bin/screenshot_select.sh")),
-    
-    #Monad Default Bindings
+    #MonadTall Bindings
     Key([mod], "h", lazy.layout.left()),
     Key([mod], "l", lazy.layout.right()),
     Key([mod], "j", lazy.layout.down()),
     Key([mod], "k", lazy.layout.up()),
+    Key([mod], "space", lazy.layout.next()),
     Key([mod, "shift"], "h", lazy.layout.swap_left()),
     Key([mod, "shift"], "l", lazy.layout.swap_right()),
     Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
@@ -116,18 +57,38 @@ keys = [
     Key([mod, "shift"], "n", lazy.layout.normalize()),
     Key([mod, "shift"], "m", lazy.layout.maximize()),
     Key([mod, "shift"], "space", lazy.layout.flip()),
-    
+
+    # Toggle between different layouts
+    Key([mod], "Tab", lazy.next_layout()),
     #Floating Layout Keybinds
-    Key([mod], "t", lazy.window.disable_floating()),
     Key([mod, "shift"], "t", lazy.window.enable_floating()),
+    Key([mod], "t", lazy.window.disable_floating()),
+    
+    #Window controls (layout agnostic)
+    Key([mod], "w", lazy.window.kill()),
+    Key([mod, "control"], "r", lazy.restart()),
+    Key([mod, "control"], "q", lazy.shutdown()),
+    Key([mod], "r", lazy.spawncmd()),
+    Key([mod, "shift"], 'r', lazy.spawn("dmenu_run -b -fn 'Monospace:size=10' -nb '#000000' -nf '#fefefe'")),
+    Key([mod, "control"], "l", lazy.spawn("xscreensaver-command -lock")),   #lock the screen
 
     #Programs
+    Key([mod], "Return", lazy.spawn("urxvt")),
     Key([mod], "g", lazy.spawn("chromium-browser")),
-    Key([mod], "f", lazy.spawn("pcmanfm")),
-    #Key([mod, "shift"], "f", lazy.spawn(["python3", "/home/elendil/bin/open_current_dir.py"])),
-    #Key([mod, "shift"], "f", lazy.spawn(["pcmanfm", os.environ["PWD"]])),
-    #Key([mod, "shift"], "f", subprocess.Popen(['pcmanfm', '$PWD'], shell=True)),
+    Key([mod], "f", lazy.spawn("urxvt -e ranger")),
     Key([mod], "m", lazy.spawn("urxvt -e cmus")),
+    #Audio Controls
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -c 0 -q set Master 2dB+")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -c 0 -q set Master 2dB-")),
+    Key([], "XF86AudioMute", lazy.spawn("amixer -D pulse sset Master toggle -q")),
+    #Screenshots
+    Key([], 'Print', lazy.spawn("/home/elendil/bin/screenshot.sh")),
+    Key([mod], 'Print', lazy.spawn("/home/elendil/bin/screenshot_select.sh")),
+
+    #Screen brightness (Coming soon)
+    #Key([], 'XF86MonBrightnessUp',   lazy.function(backlight('inc'))),
+    #Key([], 'XF86MonBrightnessDown', lazy.function(backlight('dec'))),
+
 ]
 
 groups = [Group(i) for i in "12345678"]
@@ -162,7 +123,7 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
-if (num_screens[hostname] == 2):
+if (num_screens[hostname] == 2):  #If on desktop pc with dueal screens
     screens = [
         Screen(
             top=bar.Bar(
@@ -175,14 +136,10 @@ if (num_screens[hostname] == 2):
                     widget.Memory(update_interval=30),
                     widget.sep.Sep(padding=2),
                     widget.CurrentLayoutIcon(custom_icon_paths=['/usr/local/src/qtile/qtile/libqtile/resources/layout-icons']),
-                    #widget.sep.Sep(padding=2),
-                    #widget.TextBox("C", foreground='#00ff38', name="custom"),
                     widget.sep.Sep(padding=2),
                     widget.Volume(theme_path='/home/elendil/.icons/AwOkenWhite/clear/24x24/status'),
-                    # mute_command='amixer -D pulse -q sset Master toggle'
                     widget.sep.Sep(padding=2),
                     widget.Systray(),
-                    #widget.Volume(),
                     widget.sep.Sep(padding=2),
                     widget.Clock(format='%A %d-%m-%Y -- %I:%M %p'),
                 ],
@@ -196,8 +153,7 @@ if (num_screens[hostname] == 2):
                     widget.Prompt(foreground='#00d2ff', prompt="Run: "),
                     widget.WindowName(),
                     widget.Notify(default_timeout=5),
-                    widget.sep.Sep(padding=2),
-                    widget.Systray(),
+                    widget.CurrentLayoutIcon(custom_icon_paths=['/usr/local/src/qtile/qtile/libqtile/resources/layout-icons']),
                     widget.sep.Sep(padding=2),
                     widget.Clock(format='%A %d-%m-%Y -- %I:%M %p'),   
                 ],
@@ -206,7 +162,7 @@ if (num_screens[hostname] == 2):
         )
     ]
 else:
-   screens = [
+   screens = [      #If on laptop
         Screen(
             top=bar.Bar(
                 [
@@ -218,17 +174,13 @@ else:
                     widget.Memory(update_interval=30),
                     widget.sep.Sep(padding=2),
                     widget.CurrentLayoutIcon(custom_icon_paths=['/usr/local/src/qtile/qtile/libqtile/resources/layout-icons']),
-                    #widget.sep.Sep(padding=2),
-                    #widget.TextBox("C", foreground='#00ff38', name="custom"),
                     widget.sep.Sep(padding=2),
                     widget.BatteryIcon(theme_path='/home/elendil/.icons/AwOkenWhite/clear/24x24/status'),
                     widget.Battery(foreground='#0cdb63', low_percentage=0.20, low_foreground='fa5e5b', update_delay=10, format='{percent:.0%}'),
                     widget.sep.Sep(padding=2),
                     widget.Volume(theme_path='/home/elendil/.icons/AwOkenWhite/clear/24x24/status'),
-                    # mute_command='amixer -D pulse -q sset Master toggle'
                     widget.sep.Sep(padding=2),
                     widget.Systray(),
-                    #widget.Volume(),
                     widget.sep.Sep(padding=2),
                     widget.Clock(format='%A %d-%m-%Y -- %I:%M %p'),
                 ],
@@ -237,7 +189,7 @@ else:
         ),    
    ]         
 
-# Drag floating layouts. #                widget.BatteryIcon(theme_path='/usr/local/src/qtile/qtile/libqtile/resources/battery-icons'),
+# Drag floating layouts.
 mouse = [
     Drag([mod], "Button1", lazy.window.set_position_floating(),
          start=lazy.window.get_position()),
@@ -283,12 +235,7 @@ def floating_dialogs(window):
     transient = window.window.get_wm_transient_for()
     if dialog or transient:
         window.floating = True
-
-#def open_current_dir():
-#    dir=os.getcwd()
-#    command="pcmanfm "+dir 
-#    lazy.spawn(command)
-
+        
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
 # mailing lists, github issues, and other WM documentation that suggest setting
