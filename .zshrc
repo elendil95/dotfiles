@@ -62,10 +62,7 @@ ZSH_THEME="kafeitu"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
-  pip
-  pyenv
-  python
+ # git
   web-search
   zsh-syntax-highlighting
   history-substring-search
@@ -101,10 +98,10 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export FILE_MANAGER=pcmanfm
+export FILE_MANAGER=ranger
 
 function open_fm_here(){
-	$FILE_MANAGER $PWD &
+	urxvt -e $FILE_MANAGER $PWD &
 }
 
 zle -N open_fm_here
