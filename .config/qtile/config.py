@@ -186,7 +186,8 @@ else:
                 ],
                 24,
             ),
-        ),    
+        ),
+        Screen(),
    ]         
 
 # Drag floating layouts.
