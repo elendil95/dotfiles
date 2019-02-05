@@ -73,11 +73,6 @@
 | 'Brightness Up' Key  | Increase screen brightness by 10  |
 | 'Brightness Down' Key  | Decrease Brightness by 10       |
 
- 
-
-
-
-
 
 [^1]: Place active window on the right side of the screen
 [^2]: Floating is a bit buggy, aso its not in the normal list of layouts so you can't toggle through it.
