@@ -8,7 +8,7 @@
 - .Xresources
 - .vimrc
 
-## Oh my zshell folder (~/.oh-my-zshell/) **Not synced, just backed up**
+## Oh my zshell folder (~/.oh-my-zshell/)
 
 - .oh-my-zshell.sh
 - custom/example.zsh (source custom plugins)
@@ -38,7 +38,7 @@
 
 ## Etc
 
-acpi/ *extra acpi settings for suspening thelaptop once the lid is closed; Also needs XScreensaver to lock the screen*
+acpi/ *extra acpi settings for suspening the laptop once the lid is closed; Also needs XScreensaver to lock the screen*
 
 ## Bin 
 
