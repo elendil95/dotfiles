@@ -52,9 +52,11 @@
 ## Get Window names to set individual floating layout
 xlsclients -l
 
-##Programs necessary for ranger
+## Programs necessary for ranger
 
 -w3m
 -w3m-img
 -trash-cli
 -atools
+
+use rxvt-unicode-256-colors package for Powerline support

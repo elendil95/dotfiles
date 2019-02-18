@@ -1,4 +1,5 @@
-URxvt.font: xft:monospace:pixelsize=12
+!Install fonts-hack and the powerline fonts (from the repo) before using this config
+URxvt.font: xft:Hack:pixelsize
 URxvt.scrollBar: false
 URxvt.perl-ext.common: default,matcher,url-select,selection-to clipboard
 URxvt.keysym.Shift-Control-V: eval:paste_clipboard

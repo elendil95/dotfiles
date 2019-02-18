@@ -170,6 +170,7 @@ else:
                     widget.Prompt(foreground='#00d2ff', prompt="Run: "),
                     widget.WindowName(),
                     widget.Notify(default_timeout=5),
+                    widget.Net(interface='wlp5s0'),
                     widget.CPUGraph(fill_color='#fff400', graph_color='#ce0202', line_width=2),
                     widget.Memory(update_interval=30),
                     widget.sep.Sep(padding=2),
