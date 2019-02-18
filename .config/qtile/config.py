@@ -1,5 +1,5 @@
- # Copyright (c) 2010 Aldo Cortesi
-# Copyright (c) 2010, 2014 dequis
+# Copyright (c) 2010 Aldo Cortesi
+# Copyright (c) 2010 2014 dequis
 # Copyright (c) 2012 Randall Ma
 # Copyright (c) 2012-2014 Tycho Andersen
 # Copyright (c) 2012 Craig Barnes

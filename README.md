@@ -30,7 +30,23 @@
 
 - eu.txsprofile
 
-*scripts for screenshots are in /bin, icons required for the bar are in resources/icons. Move to ~/.icons to enable*
+**Ranger**
+
+- rc.conf
+- rifle.conf
+- scope.sh
+
+## Etc
+
+acpi/ *extra acpi settings for suspening thelaptop once the lid is closed; Also needs XScreensaver to lock the screen*
+
+## Bin 
+
+small miscellaneous scripts to be used with QTile
+
+## Resources
+
+Assets and helper scripts to be used with QTile
 
 # How to setup GTK themes in qtile:
 
