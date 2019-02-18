@@ -59,7 +59,7 @@
 | Mod + g  | Spawn web browser (Chromium)   |
 | Mod + f  | Spawn file manager (Ranger)   |
 | Mod + m  | Spawn music player (Cmus) |
-| Mod + Shift + f  | Spawn file manager in current directory[^5] (**Read footnote**) |
+| Control + Shift + f  | Spawn file manager in current directory[^5] (**Read footnote**) |
 
 
 ## Special keys
