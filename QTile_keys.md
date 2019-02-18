@@ -27,8 +27,8 @@
 | **Keys**  | **Action**  |
 |---|---|
 | Mod + Tab  | Toggle next layout  |
-| Mod + Shift + t  | Enable floating mode [^2]  |
-| Mod + t  | Disable floating mode  |
+| Mod + Shift + t  | Disable floating mode [^2]  |
+| Mod + t  | Enable floating mode  |
 
 ## Floating mode bindings
 
@@ -75,7 +75,7 @@
 
 
 [^1]: Place active window on the right side of the screen
-[^2]: Floating is a bit buggy, aso its not in the normal list of layouts so you can't toggle through it.
+[^2]: Floating is a bit buggy, aso its not in the normal list of layouts so you can't cycle into it with Mod+Tab.
 [^3]: Workspaces are callled 'groups' in QTile. The number of workspaces and their symbols an be changed in the config file, its just a string we iterate through. Currently workspaces are digits 1 through 8.
 [^4]: requires exact name of programs to be entered, but can be tab-completed
 [^5]: Not implemented in Qtile but in zsh, only works when working in a terminal.

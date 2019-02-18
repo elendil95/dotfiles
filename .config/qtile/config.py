@@ -60,9 +60,10 @@ keys = [
 
     # Toggle between different layouts
     Key([mod], "Tab", lazy.next_layout()),
+   
     #Floating Layout Keybinds
-    Key([mod, "shift"], "t", lazy.window.enable_floating()),
-    Key([mod], "t", lazy.window.disable_floating()),
+    Key([mod], "t", lazy.window.enable_floating()),
+    Key([mod, "shift"], "t", lazy.window.disable_floating()),
     
     #Window controls (layout agnostic)
     Key([mod], "w", lazy.window.kill()),
