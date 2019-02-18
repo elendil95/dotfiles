@@ -21,7 +21,7 @@
 
 ## .config/
 
-**qtile**
+**QTile** (see [here](QTile_keys.md) for a list of QTile Keybinds)
 
 - config.py
 - autostart.sh (for startup programs) 
@@ -64,7 +64,6 @@ Assets and helper scripts to be used with QTile
 
 7 Put **xsettingsd &** in the autogen script and profit!  
 
-7.5 Use PCManFM as file manager my dude, miss me with that Ranger gay shit
 ## Get Window names to set individual floating layout
 xlsclients -l
 
