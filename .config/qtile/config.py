@@ -133,6 +133,7 @@ if (num_screens[hostname] == 2):  #If on desktop pc with dueal screens
                     widget.Prompt(foreground='#00d2ff', prompt="Run: "),
                     widget.WindowName(),
                     widget.Notify(default_timeout=5),
+                    widget.Net(interface='enp3s0'),
                     widget.CPUGraph(fill_color='#fff400', graph_color='#ce0202', line_width=2),
                     widget.Memory(update_interval=30),
                     widget.sep.Sep(padding=2),
@@ -144,7 +145,7 @@ if (num_screens[hostname] == 2):  #If on desktop pc with dueal screens
                     widget.sep.Sep(padding=2),
                     widget.Clock(format='%A %d-%m-%Y -- %I:%M %p'),
                 ],
-                24,
+                24, background="#151515"
             ),
         ),
         Screen(
@@ -158,7 +159,7 @@ if (num_screens[hostname] == 2):  #If on desktop pc with dueal screens
                     widget.sep.Sep(padding=2),
                     widget.Clock(format='%A %d-%m-%Y -- %I:%M %p'),   
                 ],
-                24,
+                24, background="#151515"
             )
         )
     ]
@@ -186,7 +187,7 @@ else:
                     widget.sep.Sep(padding=2),
                     widget.Clock(format='%A %d-%m-%Y -- %I:%M %p'),
                 ],
-                24,
+                24, background="#151515"
             ),
         ),
         Screen(),

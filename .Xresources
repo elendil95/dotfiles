@@ -9,7 +9,7 @@ URxvt.iso14755_52: false
 
 ! special
 *.foreground:   #dedede
-*.background:   #2b2b2b
+*.background:   #151515
 *.cursorColor:  #dedede
 
 ! black
