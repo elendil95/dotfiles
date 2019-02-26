@@ -46,8 +46,9 @@ change shell (as superuser) usermod -s /bin/zsh $USERNAME (i don't remeber the c
     - w3m (pac)
     - trash-cli
     - atool
-    - also run "ranger --copy-config=all" to generate the config files   
-
+    - also run "ranger --copy-config=all" to generate the config files
+- light-git (aur) for backlight adjustment
+- light-locker or dm-tool for locking when suspended and xscreensaver for locking via shortcut 
 
 
 

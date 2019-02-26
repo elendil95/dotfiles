@@ -87,8 +87,8 @@ keys = [
     Key([mod], 'Print', lazy.spawn("/home/elendil/bin/screenshot_select.sh")),
 
     #Screen brightness (Coming soon)
-    Key([], 'XF86MonBrightnessUp',   lazy.spawn("/home/elendil/bin/brightness_up.sh")),
-    Key([], 'XF86MonBrightnessDown', lazy.spawn("/home/elendil/bin/brightness_down.sh"))
+    Key([], 'XF86MonBrightnessUp',   lazy.spawn("urxvt -e light -A 10")),
+    Key([], 'XF86MonBrightnessDown', lazy.spawn("urxvt -e light -U 10"))
 
 ]
 
