@@ -23,7 +23,6 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-#TEST
 
 from libqtile.config import Key, Screen, Group, Drag, Click
 from libqtile.command import lazy
@@ -71,8 +70,8 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown()),
     Key([mod], "r", lazy.spawncmd()),
     Key([mod, "shift"], 'r', lazy.spawn("dmenu_run -b -fn 'Monospace:size=10' -nb '#000000' -nf '#fefefe'")),
-    Key([mod, "control"], "l", lazy.spawn("xscreensaver-command -lock")),   #lock the screen
-
+    Key([mod, "control"], "l", lazy.spawn("/home/elendil/bin/lock_screen.sh")),   #lock the screen
+    
     #Programs
     Key([mod], "Return", lazy.spawn("urxvt")),
     Key([mod], "g", lazy.spawn("chromium-browser")),
@@ -82,13 +81,12 @@ keys = [
     Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -c 0 -q set Master 2dB+")),
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -c 0 -q set Master 2dB-")),
     Key([], "XF86AudioMute", lazy.spawn("amixer -D pulse sset Master toggle -q")),
+    #Screen brightness
+    Key([], 'XF86MonBrightnessUp',   lazy.spawn("urxvt -e light -A 10")),
+    Key([], 'XF86MonBrightnessDown', lazy.spawn("urxvt -e light -U 10")),
     #Screenshots
     Key([], 'Print', lazy.spawn("/home/elendil/bin/screenshot.sh")),
-    Key([mod], 'Print', lazy.spawn("/home/elendil/bin/screenshot_select.sh")),
-
-    #Screen brightness (Coming soon)
-    Key([], 'XF86MonBrightnessUp',   lazy.spawn("urxvt -e light -A 10")),
-    Key([], 'XF86MonBrightnessDown', lazy.spawn("urxvt -e light -U 10"))
+    Key([mod], 'Print', lazy.spawn("/home/elendil/bin/screenshot_select.sh"))
 
 ]
 

@@ -32,7 +32,7 @@ change shell (as superuser) usermod -s /bin/zsh $USERNAME (i don't remeber the c
 - feh
 - pywal (pip) 
 
-## Required Packages for screenshot7background
+## Required Packages for screenshot/background
 
 - maim (pac)
 - notify-osd (pac)
@@ -44,11 +44,11 @@ change shell (as superuser) usermod -s /bin/zsh $USERNAME (i don't remeber the c
 - cmus (pac)
 - ranger
     - w3m (pac)
-    - trash-cli
-    - atool
+    - trash-cli (pac)
+    - atool (pac)
     - also run "ranger --copy-config=all" to generate the config files
 - light-git (aur) for backlight adjustment
-- light-locker or dm-tool for locking when suspended and xscreensaver for locking via shortcut 
+- light-locker (pac) and dm-tool(pac, included with lightdm) for locking the screen
 
-
-
+#Misc programs
+- tig (pac) to get 'gt' alias to work
