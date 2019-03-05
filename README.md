@@ -1,4 +1,4 @@
-# DOTFILE LOCATIONS
+# DOTFILE LOCATIONS (maybe a bit outdated)
 
 ## HOME
 
@@ -7,7 +7,7 @@
 - .zshrc (Where plugins are set)
 - .Xresources
 - .vimrc
-
+- .dircolors (to use with .bashrc for more colors in ls)
 ## Oh my zshell folder (~/.oh-my-zshell/)
 
 - .oh-my-zshell.sh
@@ -42,36 +42,10 @@ acpi/ *extra acpi settings for suspening the laptop once the lid is closed; Also
 
 ## Bin 
 
-small miscellaneous scripts to be used with QTile
+small miscellaneous scripts to be used with QTile. Also the update-grub command since its not present in vanilla Arch
 
 ## Resources
 
 Assets and helper scripts to be used with QTile
 
-# How to setup GTK themes in qtile:
-
-1. install **gnome-settings-daemon** if not present.
-
-2. install **xsettingsd** if not present.
-
-3. grab some dank themes and install them in /usr/share/themes/ and /usr/share/icons/ (Using Arc-dark theme + Papirus icon set from the Debian repos atm)
-
-4. run gnome-settings-deamon.
-
-5. While it is running, run **dump\_xsettings > .xsettingsd** to generate a config file.
-
-6. Go into the file and change the theme to whatever using the sub-directory name in /usr/share/whatevs
-
-7 Put **xsettingsd &** in the autogen script and profit!  
-
-## Get Window names to set individual floating layout
-xlsclients -l
-
-## Programs necessary for ranger
-
--w3m
--w3m-img
--trash-cli
--atools
-
-use rxvt-unicode-256-colors package for Powerline support
+## See [here](REQUIREMENTS_NEW.md) for a rambly guide on how to set up QTile using my config.
