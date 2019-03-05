@@ -59,6 +59,7 @@
 | Mod + g  | Spawn web browser (Chromium)   |
 | Mod + f  | Spawn file manager (Ranger)   |
 | Mod + m  | Spawn music player (Cmus) |
+| Mod + c  | Spawn calendar app (Calcurse) |
 | Control + Shift + f  | Spawn file manager in current directory[^5] (**Read footnote**) |
 
 
