@@ -5,12 +5,13 @@
 Before anything you will likely need git and vim.
 
 I have chosen XFCE as a fallback desktop; you can choose to set it up quickly using the Arcolinux XFCE scripts.
-I have included the relevant ones in the resources folder, but its much better to grab the updated ones from [here](https://github.com/arcolinuxd/arco-xfce). 
+I have included the relevant ones in the resources folder, but its much better to grab the updated ones from the official repo [here](https://github.com/arcolinuxd/arco-xfce).
+
 In case you wanna use the my local copy of the arcolinux scripts, read [here](resources/arcolinux/README.md)
 
 Take a look at the shell code before running them in case there are packages you do not want; I reccomend running scripts 000 through 200 and script 700. skip 140 and 150 if you don't want samba. then install an aur helper like yay and run script 300.
 
-You can populate your home folder with directories by installing xdg-user-dirs and running the "install personal folders" script in the arcolinux directory.
+You can populate your home folder with directories by installing xdg-user-dirs and running the "install personal folders" script in the resources/arcolinux/suggested directory.
 
 Before we pull our config files, we need to grab keepass (*sic.* found in arch repos) and setup our git user: you can do that by editing the git_setup_public script found in resources/scripts with the relevant information, and running it.
 After you enter your credentials once on a push/pull they wil be saved.
