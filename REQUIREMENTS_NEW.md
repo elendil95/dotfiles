@@ -1,5 +1,7 @@
 # Setup notes for Arch Linux
 
+**This is a very messy outline of the steps to get qtile working using my config alongside all the other needed programs.**
+
 Before anything you will likely need git and vim.
 
 I have chosen xfce as a fallback desktop; you can choose to set it up quickly using the Arcolinux scripts.

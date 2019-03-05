@@ -38,7 +38,7 @@
 
 ## Etc
 
-acpi/ *extra acpi settings for suspening the laptop once the lid is closed; Also needs XScreensaver to lock the screen*
+acpi/ *extra acpi settings for suspening the laptop once the lid is closed; Also needs XScreensaver to lock the screen* (**NO LONGER NEEDED IN ARCH**)
 
 ## Bin 
 
