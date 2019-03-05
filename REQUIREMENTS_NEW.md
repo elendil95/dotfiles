@@ -45,7 +45,7 @@ change shell (as superuser) usermod -s /bin/zsh $USERNAME (i don't remeber the c
 - maim (pac)
 - notify-osd (pac)
 
-#Programs required by qtile config
+# Programs required by qtile config
 
 - dmenu (pac)
 - chromium (pac)
@@ -59,5 +59,5 @@ change shell (as superuser) usermod -s /bin/zsh $USERNAME (i don't remeber the c
 - light-locker (pac) and dm-tool(pac, included with lightdm) for locking the screen
 - calcurse
 
-#Misc programs
+# Misc programs
 - tig (pac) to get 'gt' alias to work
