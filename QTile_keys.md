@@ -49,7 +49,7 @@
 | Mod + Shift + r  | Invoke D_Menu (program search bar)   |
 | Mod + Control + r  | Restart QTile (reloads config file) |
 | Mod + Control + q  | Log out  |
-| Mod + Control + l  | Lock the screen with xscreensaver  |
+| Mod + Control + l  | Lock the screen  |
 
 ## Programs bindings
 
