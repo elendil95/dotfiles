@@ -1,3 +1,4 @@
+" This is just a very basic Vimrc without plugins. grab the plugins you need depending on the setup.
 set number
 set tabstop=4
 set shiftwidth=4
@@ -15,3 +16,8 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 syntax on
 colorscheme slate
+
+" compile latex from within cwd (change name of file if you need to)
+nnoremap <F2> :up \| :silent !pdflatex -synctex=1 -interaction=nonstopmode main.tex<CR>:redr!<CR>
+" toggle spell-checking.
+nnoremap <F4> :setlocal spell! spelllang=en<CR>

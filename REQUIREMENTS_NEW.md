@@ -9,7 +9,7 @@ You can populate your home folder with directories by installing xdg-user-dirs a
 
 Before we pull our config files, we need to grab keepass and setup our git user: you can do that by using the git_setup script, and entering your credentials once on a push/pull
 
-Next: to **set up urxvt you will need these packages from the official repos**
+Next: to **set up urxvt, you will need these packages from the official repos**
 
 - ttf-dejavu
 - rxvt-unicode
@@ -17,20 +17,21 @@ Next: to **set up urxvt you will need these packages from the official repos**
 - ttf-hack
 - zsh
 
-copying .Xresources to ome folder should work at this point 
+copying .Xresources to the home folder should work at this point 
 
 then clone the oh-my-zsh repo
 
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" 
 
-change shell (as superuser) usermod -s /bin/zsh $USERNAME (i don't remeber the command exactly but that should work)
+change shell (as superuser) usermod -s /bin/zsh $USERNAME (i don't remeber the command exactly but that should work). reboot just in case
 
 ## Required packages from autostart.sh
 
 - network-manager-applet (pac)
 - redshift (pac)
 - feh
-- pywal (pip) 
+- pywal (pip)
+- syncthing-gtk (pac)
 
 ## Required Packages for screenshot/background
 
@@ -42,13 +43,14 @@ change shell (as superuser) usermod -s /bin/zsh $USERNAME (i don't remeber the c
 - dmenu (pac)
 - chromium (pac)
 - cmus (pac)
-- ranger
+- ranger (pac)
     - w3m (pac)
     - trash-cli (pac)
     - atool (pac)
     - also run "ranger --copy-config=all" to generate the config files
 - light-git (aur) for backlight adjustment
 - light-locker (pac) and dm-tool(pac, included with lightdm) for locking the screen
+- calcurse
 
 #Misc programs
 - tig (pac) to get 'gt' alias to work

@@ -77,13 +77,17 @@ keys = [
     Key([mod], "g", lazy.spawn("chromium-browser")),
     Key([mod], "f", lazy.spawn("urxvt -e ranger")),
     Key([mod], "m", lazy.spawn("urxvt -e cmus")),
+    Key([mod], "c", lazy.spawn("urxvt -e calcurse")),
+    
     #Audio Controls
     Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -c 0 -q set Master 2dB+")),
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -c 0 -q set Master 2dB-")),
     Key([], "XF86AudioMute", lazy.spawn("amixer -D pulse sset Master toggle -q")),
+    
     #Screen brightness
     Key([], 'XF86MonBrightnessUp',   lazy.spawn("urxvt -e light -A 10")),
     Key([], 'XF86MonBrightnessDown', lazy.spawn("urxvt -e light -U 10")),
+    
     #Screenshots
     Key([], 'Print', lazy.spawn("/home/elendil/bin/screenshot.sh")),
     Key([mod], 'Print', lazy.spawn("/home/elendil/bin/screenshot_select.sh"))
@@ -104,9 +108,7 @@ for i in groups:
 layouts = [
     layout.MonadTall(align='MonadTail._right', border_focus='#ff0000', margin=10),
     layout.Max(),
-    #layout.Tile(ratio=0.5, masterWindows=2),
     layout.TreeTab(margin=10),
-    #layout.Stack(num_stacks=2)
 ]
 floating_layout = layout.Floating()
 
@@ -153,7 +155,7 @@ if (num_screens[hostname] == 2):  #If on desktop pc with dueal screens
                     widget.Prompt(foreground='#00d2ff', prompt="Run: "),
                     widget.WindowName(),
                     widget.Notify(default_timeout=5),
-                    widget.CurrentLayoutIcon(custom_icon_paths=['/usr/local/src/qtile/qtile/libqtile/resources/layout-icons']),
+                    widget.CurrentLayoutIcon(custom_icon_paths=['/usr/local/src/qtile/qtile/libqtile/resources/layout-icons']), #The path changes with install directory.
                     widget.sep.Sep(padding=2),
                     widget.Clock(format='%A %d-%m-%Y -- %I:%M %p'),   
                 ],
@@ -225,7 +227,7 @@ floating_layout = layout.Floating(float_rules=[
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 
-@hook.subscribe.client_new
+@hook.subscribe.client_new #doesn't work yet
 def set_floating(window):
     if ((window.window.get_name() == 'gitkraken') or
          (window.window.get_name() == 'keepass2')):
