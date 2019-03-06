@@ -1,5 +1,6 @@
 !Install fonts-hack and the powerline fonts (from the repo) before using this config
-URxvt.font: xft:Hack:pixelsize
+!URxvt.font: xft:Hack:pixelsize
+URxvt.font: xft:Hack\ Nerd\ Font\ Mono:pixelsize
 URxvt.scrollBar: false
 URxvt.perl-ext.common: default,matcher,url-select,selection-to clipboard
 URxvt.keysym.Shift-Control-V: eval:paste_clipboard

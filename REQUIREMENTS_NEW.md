@@ -24,6 +24,11 @@ Next: to **set up urxvt, you will need these packages from the official repos**
 - ttf-hack
 - zsh
 
+In order to get Icons in Ranger we need to grab The Nerd font version on Hack from the AUR
+
+- ttf-nerd-fonts-hack-complete-git **or**
+- nerd-fonts-complete (for the whole package, but its like 7GBs of fonts)
+
 copying .Xresources to the home folder should work at this point 
 
 then clone the oh-my-zsh repo
