@@ -59,6 +59,7 @@ change shell (as superuser) usermod -s /bin/zsh $USERNAME (i don't remeber the c
     - w3m (pac)
     - trash-cli (pac)
     - atool (pac)
+    - highlight (pac)
     - also run "ranger --copy-config=all" to generate the config files
 - light-git (aur) for backlight adjustment
 - light-locker (pac) and dm-tool(pac, included with lightdm) for locking the screen

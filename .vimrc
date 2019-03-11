@@ -10,10 +10,18 @@ set expandtab
 " set  rtp+=/usr/local/lib/python3.5/dist-packages/powerline/bindings/vim/
 " set laststatus=2
 " set t_Co=256
+"Switch between splits with Ctrl+vimKeys
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+"remap arrowkeys to move between wrapped lines (a.k.a visual lines)
+imap <silent> <Down> <C-o>gj
+imap <silent> <Up> <C-o>gk
+nmap <silent> <Down> gj
+nmap <silent> <Up> gk
+
 syntax on
 colorscheme slate
 
