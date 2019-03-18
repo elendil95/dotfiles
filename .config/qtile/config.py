@@ -53,7 +53,7 @@ keys = [
     Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
     Key([mod, "shift"], "plus", lazy.layout.grow()),
     Key([mod, "shift"], "minus", lazy.layout.shrink()),
-    Key([mod, "shift"], "n", lazy.layout.normalize()),
+    Key([mod, "shift"], "n", lazy.layout.reset()),
     Key([mod, "shift"], "m", lazy.layout.maximize()),
     Key([mod, "shift"], "space", lazy.layout.flip()),
 
@@ -74,7 +74,7 @@ keys = [
     
     #Programs
     Key([mod], "Return", lazy.spawn("urxvt")),
-    Key([mod], "g", lazy.spawn("chromium-browser")),
+    Key([mod], "g", lazy.spawn("firefox")),
     Key([mod], "f", lazy.spawn("urxvt -e ranger")),
     Key([mod], "m", lazy.spawn("urxvt -e cmus")),
     Key([mod], "c", lazy.spawn("urxvt -e calcurse")),
@@ -173,6 +173,8 @@ else:
                     widget.WindowName(),
                     widget.Notify(default_timeout=5),
                     widget.Net(interface='wlp5s0'),
+                    widget.KeyboardLayout(configured_keyboards=['it']), 
+                    widget.sep.Sep(padding=2),
                     widget.CPUGraph(fill_color='#fff400', graph_color='#ce0202', line_width=2),
                     widget.Memory(update_interval=30),
                     widget.sep.Sep(padding=2),
