@@ -99,6 +99,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export FILE_MANAGER=ranger
+export EDITOR=/usr/bin/vim #Add the same 2 lines to /etc/profile to make this global
+export VISUAL=/usr/bin/vim
 
 function open_fm_here(){
 	urxvt -e $FILE_MANAGER $PWD &
