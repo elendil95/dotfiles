@@ -77,9 +77,9 @@ sudo systemctl enable tlp.service
 sudo systemctl start tlp-sleep.service
 
 #Install fonts (we'll deal later with urxvt specific fonts)
-pacman -S --needed --noconfirm ttf-ubuntu-font-family ttd-droid ttf-dejavu ttf-hack
+sudo pacman -S --needed --noconfirm ttf-ubuntu-font-family ttd-droid ttf-dejavu ttf-hack
 
-eco "Would you like to install extra software for a more out-of-the-box experience? \[y/n\}"
+echo "Would you like to install extra software for a more out-of-the-box experience? \[y/n\}"
 read ANSWER
 if [ANSWER == "y"]
 then 
