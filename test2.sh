@@ -155,7 +155,8 @@ sudo pip install powerline-status
 cd /tmp
 git clone https://github.com/powerline/fonts.git
 cd fonts
-exec ./install.sh
+bash ./install.sh &
+wait
 cd ~
 yay -S --needed --noconfirm ttf-nerd-fonts-hack-complete-git
 
@@ -175,8 +176,8 @@ sudo usermod -s /bin/zsh $(whoami)
 cd ~
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools    /install.sh)"
 cd .oh-my-zsh/
-cp -vf ~/dotfiles/.oh_my_zsh/oh-my-zsh.sh .
-cp -vrf ~/dotfiles/.oh_my_zsh/custom/*.zsh ./custom/
+cp -vf ~/dotfiles/.oh_my_zsh/oh-my-zsh.sh ~/.oh-my-zsh/
+cp -vrf ~/dotfiles/.oh_my_zsh/custom/*.zsh ~/.oh-my-zsh/custom/
 git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
 
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
@@ -188,7 +189,7 @@ echo "######################"
 
 cd ~
 cp -vf ~/dotfiles/.vimrc .
-sed 's/" //g' .vimrc
+sed 's/" //g' ~/.vimrc
 
 #Set up Qtile (finally)
 
