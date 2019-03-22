@@ -108,7 +108,7 @@ sudo pacman -S --needed --noconfirm ttf-ubuntu-font-family ttf-droid ttf-dejavu 
 
 echo "Would you like to install extra software for a more out-of-the-box experience? \[y/n\}"
 read ANSWER
-if [ANSWER == "y"]
+if [$ANSWER == "y"]
 then 
     sudo pacman -S --noconfirm --needed gnome-screenshot gnome-calculator xfburn redshift redshift-gtk gimp gimp-font-viewer pinta ristretto vlc quodlibet firefox thunderbird filezilla hexchat qbittorrent wireshark mpv vlc simplescreenrecorder screenkey quodlibet easytag libreoffice-fresh pyroom gvim retext evince zathura mupdf arc-gtk3-theme baobab curl dconf-editor gnome-disk-utility gnome-system-monitor gnome-terminal gparted grsync gvfs gvfs-mtp htop kvantum-qt5 kvantum-theme-arc lsb-release mlocate net-tools notify-osd noto-fonts numlockx neofetch scrot simple-scan thunar thunar-archive-plugin thunar-volman pcmanfm tumbler wget unace unrar zip unzip sharutils  uudeview  arj cabextract file-roller keepass
 fi
@@ -124,14 +124,14 @@ cd ~
 
 echo "Would you like to install some proprietary software? \[y/n\]"
 read ANSWER2
-if [ANSWER2=="Y"]
+if [$ANSWER2=="Y"]
 then
     yay --noconfirm --needed -S discord visual-studio-code-bin gitkraken
 fi 
 
 echo "Would you like to install Latex and related software? \[y/n\]"
 read ANSWER3
-if [ANSWER3=="Y"]
+if [$ANSWER3=="Y"]
 then
     sudo pacman --noconfirm --needed texlive-full
     yay --noconfirm --needed -S texstudio-dark-git
@@ -148,16 +148,16 @@ xdg-user-dirs-update --force
 [ -d $HOME"/.fonts" ] || mkdir -p $HOME"/.fonts"
 
 #Set up URXVT (The powerline stuff is still quite experimental)
-echo "#########################"
-echo "### SETTING UP URXVT ###"
-echo "########################"
+echo "#####################################"
+echo "### SETTING UP URXVT AND POWERLINE###"
+echo "#####################################"
 
 sudo pacman -S --needed --noconfirm rxvt-unicode urxvt-perls
 sudo pacman -S --needed python-pip python2-pip python-setuptools python2-setuptools
 sudo pip install powerline-status
 cd /tmp
 git clone https://github.com/powerline/fonts.git
-cd powerline-fonts
+cd fonts
 exec ./install.sh
 cd ~
 yay -S --needed --noconfirm ttf-nerd-fonts-hack-complete-git
@@ -184,7 +184,7 @@ git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM
 
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-#Setup vim with powerline
+#Setup vim with powerline that we installed before (but no plugins)
 echo "######################"
 echo "### SETTING UP VIM ###"
 echo "######################"
