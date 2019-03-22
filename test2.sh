@@ -5,6 +5,9 @@ sudo pacman -Syyu --noconfirm
 sudo pacman -S --noconfirm --needed vim git
 
 #Optimize Pacman for multiple cores
+echo "#########################"
+echo "### OPTIMIZING PACMAN ###"
+echo "########################"
 numberofcores=$(grep -c ^processor /proc/cpuinfo)
 
 
@@ -57,6 +60,11 @@ echo "###  All cores will be used during building and compression ####"
 echo "################################################################"
 
 #Install LightDM and XFCE4
+
+echo "#########################"
+echo "### INSTALLING XFCE4 ###"
+echo "########################"
+
 sudo pacman -S --needed --noconfirm lightdm
 sudo pacman -S --needed --noconfirm lightdm-gtk-greeter lightdm-gtk-greeter-settings
 sudo pacman -S --needed --noconfirm xfce4 xfce4-goodies
@@ -64,20 +72,39 @@ sudo systemctl enable lightdm.service -f
 sudo systemctl set-default graphical.target
 
 #Install Sound
+echo "#########################"
+echo "### INSTALLING SOUND ###"
+echo "########################"
+
 sudo pacman -S --needed --noconfirm pulseaudio pulseaudio-alsa pavucontrol alsa-utils alsa-plugins alsa-lib alsa-firmware gstreamer gst-plugins-good gst-plugins-bad gst-plugins-base gst-plugins-ugly volumeicon playerctl
 
 #Install printing stuff
+
+echo "###########################"
+echo "### INSTALLING PRINTERS ###"
+echo "##########################"
+
 sudo pacman -S --needed --noconfirm cups cups-pdf ghostscript gsfonts gutenprint gtk3-print-backends libcups hplip system-config-printer
 
 sudo systemctl enable org.cups.cupsd.service
 
 #Install TLP
+
+echo "###################################"
+echo "### INSTALLING POWER MANAGEMENT ###"
+echo "###################################"
+
 sudo pacman -S --needed --noconfirm tlp
 sudo systemctl enable tlp.service
 sudo systemctl start tlp-sleep.service
 
 #Install fonts (we'll deal later with urxvt specific fonts)
-sudo pacman -S --needed --noconfirm ttf-ubuntu-font-family ttd-droid ttf-dejavu ttf-hack
+
+echo "##############################"
+echo "### FINISHING XFCE INSTALL ###"
+echo "#############################"
+
+sudo pacman -S --needed --noconfirm ttf-ubuntu-font-family ttf-droid ttf-dejavu ttf-hack
 
 echo "Would you like to install extra software for a more out-of-the-box experience? \[y/n\}"
 read ANSWER
@@ -121,6 +148,10 @@ xdg-user-dirs-update --force
 [ -d $HOME"/.fonts" ] || mkdir -p $HOME"/.fonts"
 
 #Set up URXVT (The powerline stuff is still quite experimental)
+echo "#########################"
+echo "### SETTING UP URXVT ###"
+echo "########################"
+
 sudo pacman -S --needed --noconfirm rxvt-unicode urxvt-perls
 sudo pacman -S --needed python-pip python2-pip python-setuptools python2-setuptools
 sudo pip install powerline-status
@@ -136,6 +167,10 @@ git clone https://github.com/elendil95/dotfiles.git
 cp ~/dotfiles/.Xresources ~/.Xresources
 
 #Set up zsh
+echo "######################"
+echo "### SETTING UP ZSH ###"
+echo "######################"
+
 sudo pacman -S --needed  --noconfirm zsh zsh-doc zsh-autosuggestions zsh-completions zsh-lovers tig
 cp ~/dotfiles/.zshrc ~/.zshrc
 sudo usermod -s /bin/zsh $(whoami)
@@ -150,11 +185,20 @@ git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 #Setup vim with powerline
+echo "######################"
+echo "### SETTING UP VIM ###"
+echo "######################"
+
 cd ~
 cp -vf ~/dotfiles/.vimrc .
 sed 's/" //g' .vimrc
 
 #Set up Qtile (finally)
+
+echo "########################"
+echo "### SETTING UP QTILE ###"
+echo "########################"
+
 sudo pacman -S --needed --noconfirm qtile
 #Maybe i need to add qtile to the sessions?
 sudo pacman --S --needed --noconfirm network-manager-applet redshift redshift-gtk feh nitrogen syncthing-gtk maim notify-osd dmenu firefox cmus w3m trash-cli atool highlight rangercalcurse light-locker
@@ -173,9 +217,13 @@ cp -vf ~/dotfiles/.profile ~/
 cp -vf ~/dotfiles/.bash_aliases ~/
 
 #Setup Ranger
+
+echo "#########################"
+echo "### SETTING UP RANGER ###"
+echo "#########################"
+
 ranger --copy-config=all
 cp -vf ~/dotfiles/.config/ranger/rc.conf ~/.config/ranger/
 cp -vf ~/dotfiles/.config/ranger/rifle.conf ~/.config/ranger/
 cp -vf ~/dotfiles/.config/ranger/scope.conf ~/.config/ranger/
-
 
