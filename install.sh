@@ -195,7 +195,7 @@ echo "######################"
 
 cd ~
 cp -vf ~/dotfiles/.vimrc .
-sed 's/" //g' ~/.vimrc
+sed -i 's/" //g' ~/.vimrc
 
 #Set up Qtile (finally)
 
