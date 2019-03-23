@@ -110,7 +110,7 @@ read -p "Would you like to install extra software for a more out-of-the-box expe
 
 case $yn in
     [Yy]* ) sudo pacman -S --noconfirm --needed gnome-screenshot gnome-calculator xfburn redshift redshift-gtk gimp gimp-font-viewer pinta ristretto vlc quodlibet firefox thunderbird filezilla hexchat qbittorrent wireshark mpv vlc simplescreenrecorder screenkey quodlibet easytag libreoffice-fresh pyroom gvim retext evince zathura mupdf arc-gtk3-theme baobab curl dconf-editor gnome-disk-utility gnome-system-monitor gnome-terminal gparted grsync gvfs gvfs-mtp htop kvantum-qt5 kvantum-theme-arc lsb-release mlocate net-tools notify-osd noto-fonts numlockx neofetch scrot simple-scan thunar thunar-archive-plugin thunar-volman pcmanfm tumbler wget unace unrar zip unzip sharutils  uudeview  arj cabextract file-roller keepass; break;;
-    [Nn]* ) break;;
+    [Nn]* ) ;;
     * ) echo "Please answer yes or no.";;
 esac
 
@@ -128,7 +128,7 @@ read -p "Would you like to install some proprietary software? [y/n]" yn2
 
 case $yn2 in
     [Yy]* ) yay --noconfirm --needed -S discord visual-studio-code-bin gitkraken; break;;
-    [Nn]* ) break;;
+    [Nn]* ) ;;
     * ) echo "Please answer yes or no.";;
 esac
 
@@ -136,7 +136,7 @@ read -p "Would you like to install Latex and related software? [y/n]" yn3
 
 case $yn3 in
     [Yy]* ) sudo pacman --noconfirm --needed texlive-full && yay --noconfirm --needed -S texstudio-dark-git; break;;
-    [Nn]* ) break;;
+    [Nn]* ) ;;
     * ) echo "Please answer yes or no.";;
 esac
 
@@ -167,8 +167,14 @@ cd ~
 yay -S --needed --noconfirm ttf-nerd-fonts-hack-complete-git
 
 #Clone dotfiles repo
-git clone https://github.com/elendil95/dotfiles.git
-cp ~/dotfiles/.Xresources ~/.Xresources
+if [ ! -d "~/dotfiles" ] ; then
+    git clone https://github.com/elendil95/dotfiles.git ~
+else
+    cd "~/dotfiles"
+    git pull origin master
+fi
+#it clone https://github.com/elendil95/dotfiles.git
+#cp ~/dotfiles/.Xresources ~/.Xresources
 
 #Set up zsh
 echo "######################"
