@@ -180,7 +180,9 @@ cp ~/dotfiles/.zshrc ~/.zshrc
 sudo usermod -s /bin/zsh $(whoami)
 ## Setup oh-my-zsh
 cd ~
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools    /install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" &
+wait
+[ -d $HOME"/.oh-my-zsh" ] || echo "### OH MY ZSH DIR NOT FOUND!" ; exit 1
 cd ~/.oh-my-zsh/
 cp -vf ~/dotfiles/.oh-my-zsh/oh-my-zsh.sh ~/.oh-my-zsh/
 cp -vf ~/dotfiles/.oh-my-zsh/custom/*.zsh ~/.oh-my-zsh/custom/
