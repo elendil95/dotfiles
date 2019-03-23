@@ -2,7 +2,7 @@
 set -e
 cd ~
 sudo pacman -Syyu --noconfirm
-sudo pacman -S --noconfirm --needed vim git
+sudo pacman -S --noconfirm --needed vim git curl wget
 
 #Optimize Pacman for multiple cores
 echo "#########################"
