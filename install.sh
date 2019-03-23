@@ -181,9 +181,9 @@ sudo usermod -s /bin/zsh $(whoami)
 ## Setup oh-my-zsh
 cd ~
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools    /install.sh)"
-cd .oh-my-zsh/
-cp -vf ~/dotfiles/.oh_my_zsh/oh-my-zsh.sh ~/.oh-my-zsh/
-cp -vrf ~/dotfiles/.oh_my_zsh/custom/*.zsh ~/.oh-my-zsh/custom/
+cd ~/.oh-my-zsh/
+cp -vf ~/dotfiles/.oh-my-zsh/oh-my-zsh.sh ~/.oh-my-zsh/
+cp -vf ~/dotfiles/.oh-my-zsh/custom/*.zsh ~/.oh-my-zsh/custom/
 git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
 
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
@@ -204,7 +204,6 @@ echo "### SETTING UP QTILE ###"
 echo "########################"
 
 sudo pacman -S --needed --noconfirm qtile
-#Maybe i need to add qtile to the sessions?
 sudo pacman --S --needed --noconfirm network-manager-applet redshift redshift-gtk feh nitrogen syncthing-gtk maim notify-osd dmenu firefox cmus w3m trash-cli atool highlight rangercalcurse light-locker
 yay -S --needed light-git pamac-aur pamac-tray-appindicator
 sudo pip install pywal
@@ -222,12 +221,11 @@ cp -vf ~/dotfiles/.bash_aliases ~/
 
 #Setup Ranger
 
-echo "#########################"
-echo "### SETTING UP RANGER ###"
-echo "#########################"
+echo "#################################"
+echo "### SETTING UP RANGER CONFIGS ###"
+echo "#################################"
 
 ranger --copy-config=all
 cp -vf ~/dotfiles/.config/ranger/rc.conf ~/.config/ranger/
 cp -vf ~/dotfiles/.config/ranger/rifle.conf ~/.config/ranger/
 cp -vf ~/dotfiles/.config/ranger/scope.conf ~/.config/ranger/
-
