@@ -10,6 +10,7 @@ set expandtab
 " set  rtp+=/usr/local/lib/python3.5/dist-packages/powerline/bindings/vim/
 " set laststatus=2
 " set t_Co=256
+
 "Switch between splits with Ctrl+vimKeys
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -29,3 +30,15 @@ colorscheme slate
 nnoremap <F2> :up \| :silent !pdflatex -synctex=1 -interaction=nonstopmode main.tex<CR>:redr!<CR>
 " toggle spell-checking.
 nnoremap <F4> :setlocal spell! spelllang=en<CR>
+
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+call plug#begin('~/.vim/plugged')
+"Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-commentary' "Type 'gcc' to comment out a line, or 'gc' to comment selected text in visual mode. also works with action cmds like 'gc10j'  
+"Plug 'sheerun/vim-polyglot'
+call plug#end()
+filetype plugin on
