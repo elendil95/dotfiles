@@ -1,0 +1,16 @@
+#!/bin/bash
+
+opts="lock\nexit\nswitch_user\nsuspend\nhibernate\nreboot\nshut_down"
+
+opt=$(echo -e $opts|dmenu -i -p "End Session:")
+
+case $opt in
+    lock) xflock4 ;;
+    exit) dm-toom switch-to-greeter ;; #Probably not good enough
+    switch_user) ;;
+    suspend) sudo systemctl suspend ;;
+    hibernate) sudo systemctl hibernate ;;
+    reboot) gksudo reboot ;;
+    shut_down) gksudo poweroff ;;
+esac
+

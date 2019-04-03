@@ -64,6 +64,7 @@ change shell (as superuser) usermod -s /bin/zsh $USERNAME (i don't remeber the c
 - light-git (aur) for backlight adjustment
 - light-locker (pac) and dm-tool(pac, included with lightdm) for locking the screen
 - calcurse
+- gksu (aur) for session manager
 - pamac-aur (aur)
 - pamac-tray-appindicator (aur) *for update notifications*
 

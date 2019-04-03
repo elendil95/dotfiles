@@ -71,6 +71,7 @@ keys = [
     Key([mod], "r", lazy.spawncmd()),
     Key([mod, "shift"], 'r', lazy.spawn("dmenu_run -b -fn 'Monospace:size=10' -nb '#000000' -nf '#fefefe'")),
     Key([mod, "control"], "l", lazy.spawn("/home/elendil/bin/lock_screen.sh")),   #lock the screen
+    Key([mod, "control"], "x", lazy.spawn("/home/elendil/bin/dmenu_session_manager")),
     
     #Programs
     Key([mod], "Return", lazy.spawn("urxvt")),

@@ -213,7 +213,7 @@ echo "########################"
 
 sudo pacman -S --needed --noconfirm qtile
 sudo pacman --S --needed --noconfirm network-manager-applet redshift redshift-gtk feh nitrogen syncthing-gtk maim notify-osd dmenu firefox cmus w3m trash-cli atool highlight rangercalcurse light-locker
-yay -S --needed light-git pamac-aur pamac-tray-appindicator
+yay -S --needed light-git gksu pamac-aur pamac-tray-appindicator
 sudo pip install pywal
 
 cp -fv ~/dotfiles/.config/qtile/config.py ~/.config/qtile/
