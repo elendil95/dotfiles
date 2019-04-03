@@ -17,7 +17,7 @@
 | Mod + Shift + k  | Move current window up |
 | Mod + Shift + "+"  | Enlarge active window  |
 | Mod + Shift + "-"  | Shrink active Window  |
-| Mod + Shift + m  | Maximize acive window  |
+| Mod + Shift + m  | Maximize active window  |
 | Mod + Shift + n  | Reset active window size  |
 | Mod + Shift + Space  | Flip Master window [^1] |
 
@@ -50,13 +50,14 @@
 | Mod + Control + r  | Restart QTile (reloads config file) |
 | Mod + Control + q  | Log out  |
 | Mod + Control + l  | Lock the screen  |
+| Mod + Control + x  | Invoke session manager (suspend, hibernate reboot etc)  |
 
 ## Programs bindings
 
 | **Keys**  | **Action**  |
 |---|---|
 | Mod + Enter  | Spawn terminal (urxvt)  |
-| Mod + g  | Spawn web browser (Chromium)   |
+| Mod + g  | Spawn web browser (Firefox)   |
 | Mod + f  | Spawn file manager (Ranger)   |
 | Mod + m  | Spawn music player (Cmus) |
 | Mod + c  | Spawn calendar app (Calcurse) |
@@ -76,8 +77,8 @@
 
 
 [^1]: Place active window on the right side of the screen
-[^2]: Floating is a bit buggy, aso its not in the normal list of layouts so you can't cycle into it with Mod+Tab.
-[^3]: Workspaces are callled 'groups' in QTile. The number of workspaces and their symbols an be changed in the config file, its just a string we iterate through. Currently workspaces are digits 1 through 8.
+[^2]: Floating is a bit buggy, as its not in the normal list of layouts so you can't cycle into it with Mod+Tab.
+[^3]: Workspaces are called 'groups' in QTile. The number of workspaces and their symbols an be changed in the config file, its just a string we iterate through. Currently workspaces are digits 1 through 8.
 [^4]: requires exact name of programs to be entered, but can be tab-completed
 [^5]: Not implemented in Qtile but in zsh, only works when working in a terminal.
-[^6]: Normally it grabs a screenshot of the screen. If multiple monitors are present it will also capture the contnet of the other monitors in the same picture. Also note that you *do not* need to press Mod for this
+[^6]: Normally it grabs a screenshot of the screen. If multiple monitors are present it will also capture the content of the other monitors in the same picture. Also note that you *do not* need to press Mod for this
