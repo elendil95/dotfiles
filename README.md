@@ -1,51 +1,27 @@
-# DOTFILE LOCATIONS (maybe a bit outdated)
+# My Dotfiles
 
-## HOME
+![QTile with vim+powerline, neofetch and Ranger running](resources/screenshot.png)
 
-- .bashrc (from laptop)
-- .profile (for Bash)
-- .zshrc (Where plugins are set)
-- .Xresources
-- .vimrc
-- .dircolors (to use with .bashrc for more colors in ls)
-## Oh my zshell folder (~/.oh-my-zshell/)
+## Setup
+    Display Manager: LightDM
+    Screen Locker: Light-locker
+    Window Manager: Qtile (with optional xfce4 as fallback)
+    Bar: QTile built-in bar
+    Layouts: Xmonad-like, full screen, tree view
+    Teminal: URXVT
+    Shell: Zshell (with oh-my-zsh)
+    File Manager: Ranger (with PCManFM as a graphical fallback)
+    Browser: Firefox
+    Music Player: Cmus
+    Editor: Vim
+    Program Launcher: Dmenu
+    Document Viewer: Zathura and Master PDF Editor 5 (for editing documents)
+    Font: Hack (Patched with Nerd Fonts)
 
-- .oh-my-zshell.sh
-- custom/example.zsh (source custom plugins)
-- custom/aliases.zsh (all of the aliases)
-- custom/plugins/ (the whole folder)
+In this repo you will find my dotfles for various programs, but mainly Qtile vim, zsh and Ranger.
 
-## .conkycolors
+*The install script tends to be buggy, so i suggest you deploy manually instead. The installer source code will provide all the information you need*
 
-- conkyrc (source with 'conky -c /home/elendil/.conkycolors/conkyrc')
+Running the installer will deplay my configs with the programs i like, so i suggest you take a look at the contents before running it. Also`install.sh` script only works on Arch. I am working on porting this to other distros and make this more flexible. Given a bank Arch install, the installer shuld get you to a functional desktop with all the programs you might need for day-to-day use.
 
-## .config/
-
-**QTile** (see [here](QTile_keys.md) for a list of QTile Keybinds)
-
-- config.py
-- autostart.sh (for startup programs) 
-
-**texstudio**
-
-- eu.txsprofile
-
-**Ranger**
-
-- rc.conf
-- rifle.conf
-- scope.sh
-
-## Etc
-
-acpi/ *extra acpi settings for suspening the laptop once the lid is closed; Also needs XScreensaver to lock the screen* (**NO LONGER NEEDED IN ARCH**)
-
-## Bin 
-
-small miscellaneous scripts to be used with QTile. Also the update-grub command since its not present in vanilla Arch
-
-## Resources
-
-Assets and helper scripts to be used with QTile
-
-## See [here](REQUIREMENTS_NEW.md) for a rambly guide on how to set up QTile using my config.
+**For a list of the Keybinds used with my QTile setup, see [here](resources/QTile_keys.md)**
