@@ -1,8 +1,8 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH="/home/elendil/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -63,7 +63,7 @@ ZSH_THEME="kafeitu"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
  # git
-  web-search
+ # web-search
   zsh-syntax-highlighting
   history-substring-search
 )
@@ -114,7 +114,7 @@ unsetopt BEEP
 
 # The following lines were added by compinstall
 zstyle ':completion:*' completer _expand _complete _ignored
-zstyle :compinstall filename '/home/elendil/.zshrc'
+zstyle :compinstall filename "$HOME/.zshrc"
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall

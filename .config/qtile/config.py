@@ -28,10 +28,11 @@ from libqtile.config import Key, Screen, Group, Drag, Click
 from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook, extension 
 from typing import List
-import os, shlex, subprocess, platform
+import os, os.path, shlex, subprocess, platform
 
 mod = "mod4"
 
+home=os.environ.get('HOME')
 hostname = platform.node()
 num_screens = {
     'mint-tower': 2,
@@ -70,8 +71,9 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown()),
     Key([mod], "r", lazy.spawncmd()),
     Key([mod, "shift"], 'r', lazy.spawn("dmenu_run -b -fn 'Monospace:size=10' -nb '#000000' -nf '#fefefe'")),
-    Key([mod, "control"], "l", lazy.spawn("/home/elendil/bin/lock_screen.sh")),   #lock the screen
-    Key([mod, "control"], "x", lazy.spawn("/home/elendil/bin/dmenu_session_manager")),
+    Key([mod, "control"], "l", lazy.spawn(os.path.join(home,"bin","lock_screen.sh"))),   #lock the screen
+    # Key([mod, "control"], "x", lazy.spawn("/home/elendil/bin/dmenu_session_manager")),
+    Key([mod, "control"], "x", lazy.spawn(os.path.join(home,"bin","dmenu_session_manager"))),
     
     #Programs
     Key([mod], "Return", lazy.spawn("urxvt")),
@@ -90,8 +92,8 @@ keys = [
     Key([], 'XF86MonBrightnessDown', lazy.spawn("urxvt -e light -U 10")),
     
     #Screenshots
-    Key([], 'Print', lazy.spawn("/home/elendil/bin/screenshot.sh")),
-    Key([mod], 'Print', lazy.spawn("/home/elendil/bin/screenshot_select.sh"))
+    Key([], 'Print', lazy.spawn(os.path.join(home,"bin","screenshot.sh"))),
+    Key([mod], 'Print', lazy.spawn(os.path.join(home,"bin","screenshot_select.sh")))
 
 ]
 
@@ -140,7 +142,7 @@ if (num_screens[hostname] == 2):  #If on desktop pc with dueal screens
                     widget.sep.Sep(padding=2),
                     widget.CurrentLayoutIcon(custom_icon_paths=['/usr/local/src/qtile/qtile/libqtile/resources/layout-icons']),
                     widget.sep.Sep(padding=2),
-                    widget.Volume(theme_path='/home/elendil/.icons/AwOkenWhite/clear/24x24/status'),
+                    widget.Volume(theme_path=os.path.join(home,'.icons/AwOkenWhite/clear/24x24/status')),
                     widget.sep.Sep(padding=2),
                     widget.Systray(),
                     widget.sep.Sep(padding=2),
@@ -181,11 +183,11 @@ else:
                     widget.sep.Sep(padding=2),
                     widget.CurrentLayoutIcon(custom_icon_paths=['/usr/local/src/qtile/qtile/libqtile/resources/layout-icons']),
                     widget.sep.Sep(padding=2),
-                    # widget.BatteryIcon(theme_path='/home/elendil/.icons/AwOkenWhite/clear/24x24/status'),
-                    # widget.Battery(foreground='#0cdb63', low_percentage=0.20, low_foreground='fa5e5b', update_delay=10, format='{percent:.0%}'),
-                    # widget.sep.Sep(padding=2),
-                    # widget.Volume(theme_path='/home/elendil/.icons/AwOkenWhite/clear/24x24/status'),
-                    # widget.sep.Sep(padding=2),
+                    widget.BatteryIcon(theme_path=os.path.join(home,'.icons/AwOkenWhite/clear/24x24/status')),
+                    widget.Battery(foreground='#0cdb63', low_percentage=0.20, low_foreground='fa5e5b', update_delay=10, format='{percent:.0%}'),
+                    widget.sep.Sep(padding=2),
+                    widget.Volume(theme_path=os.path.join(home,'.icons/AwOkenWhite/clear/24x24/status')),
+                    widget.sep.Sep(padding=2),
                     widget.Systray(),
                     widget.sep.Sep(padding=2),
                     widget.Clock(format='%A %d-%m-%Y -- %I:%M %p'),
