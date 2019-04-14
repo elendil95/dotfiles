@@ -109,7 +109,7 @@ sudo pacman -S --needed --noconfirm ttf-ubuntu-font-family ttf-droid ttf-dejavu 
 read -p "Would you like to install extra software for a more out-of-the-box experience? [y/n]" yn
 
 case $yn in
-    [Yy]* ) sudo pacman -S --noconfirm --needed gnome-screenshot gnome-calculator xfburn redshift redshift-gtk gimp gimp-font-viewer pinta ristretto vlc quodlibet firefox thunderbird filezilla hexchat qbittorrent wireshark mpv vlc simplescreenrecorder screenkey quodlibet easytag libreoffice-fresh pyroom gvim retext evince zathura mupdf arc-gtk3-theme baobab curl dconf-editor gnome-disk-utility gnome-system-monitor gnome-terminal gparted grsync gvfs gvfs-mtp htop kvantum-qt5 kvantum-theme-arc lsb-release mlocate net-tools notify-osd noto-fonts numlockx neofetch scrot simple-scan thunar thunar-archive-plugin thunar-volman pcmanfm tumbler wget unace unrar zip unzip sharutils  uudeview  arj cabextract file-roller keepass; break;;
+    [Yy]* ) sudo pacman -S --noconfirm --needed gnome-screenshot gnome-calculator xfburn redshift redshift-gtk gimp gimp-font-viewer pinta ristretto vlc quodlibet firefox thunderbird filezilla hexchat qbittorrent wireshark mpv vlc simplescreenrecorder screenkey quodlibet easytag libreoffice-fresh pyroom gvim retext evince zathura mupdf arc-gtk3-theme baobab curl dconf-editor gnome-disk-utility gnome-system-monitor gnome-terminal gparted grsync gvfs gvfs-mtp htop kvantum-qt5 kvantum-theme-arc lsb-release mlocate net-tools notify-osd noto-fonts numlockx neofetch scrot simple-scan thunar thunar-archive-plugin thunar-volman pcmanfm tumbler wget unace unrar zip unzip sharutils  uudeview  arj cabextract file-roller keepass ntfs-3g; break;;
     [Nn]* ) ;;
     * ) echo "Please answer yes or no.";;
 esac

@@ -28,8 +28,14 @@ colorscheme slate
 
 " compile latex from within cwd (change name of file if you need to)
 nnoremap <F2> :up \| :silent !pdflatex -synctex=1 -interaction=nonstopmode main.tex<CR>:redr!<CR>
+nnoremap <F8> :silent !bibtex main.aux<CR>:redr!<CR>
+
 " toggle spell-checking.
 nnoremap <F4> :setlocal spell! spelllang=en<CR>
+
+"copy-paste from/to clipboard (requires gvim)
+map <C-y> "+y
+map <C-p> "+p
 
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -37,8 +43,13 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 call plug#begin('~/.vim/plugged')
-"Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-commentary' "Type 'gcc' to comment out a line, or 'gc' to comment selected text in visual mode. also works with action cmds like 'gc10j'  
-"Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-surround'   "The word you need to remeber is *surrounding*: delete surrounding '*' (ds*) or change the surrounding {} (cs{) 
+                            "Pick opening or closing paren, works on both
+Plug 'vimwiki/vimwiki'
+Plug 'gioele/vim-autoswap'
 call plug#end()
 filetype plugin on
+set wildmenu
+autocmd filetype tex set linebreak "when writing latex, don't break words in half when wrapping. Doesn't change much but it soothes my computer autism. 
