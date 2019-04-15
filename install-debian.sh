@@ -13,10 +13,10 @@ sudo systemctl set-default graphical.target
 #Install base fonts
 sudo apt install ttf-ubuntu-font-family ttf-dejavu fonts-droid-fallback fonts-hack-ttf
 
-#Install base software #kvantum-qt5 kvantum-theme-arc <--- missing packages
+#Install base software #kvantum-qt5 kvantum-theme-arc <--- missing packages #Timeshift and pyroom missing in ubuntu
 sudo apt install gnome-screenshot gnome-calculator xfburn redshift redshift-gtk gimp pinta ristretto vlc timeshift quodlibet firefox thunderbird filezilla hexchat qbittorrent wireshark mpv vlc simplescreenrecorder screenkey quodlibet easytag libreoffice pyroom vim-gtk retext evince zathura mupdf arc-theme numix-gtk-theme baobab curl dconf-editor gnome-disk-utility gnome-system-monitor gnome-terminal gparted grsync gvfs htop lsb-release mlocate net-tools notify-osd fonts-noto numlockx neofetch scrot simple-scan thunar thunar-archive-plugin thunar-volman pcmanfm tumbler wget unace unrar zip unzip sharutils uudeview arj cabextract file-roller keepass2 ntfs-3g 
 
-#install proprietary software
+#install proprietary software #Install as snaps in ubuntu
 sudo apt install discord visual-studio-code gitkraken
 
 #Install latex
@@ -31,6 +31,7 @@ git clone https://github.com/powerline/fonts.git
 cd fonts
 bash ./install.sh &
 wait
+cdc ..
 git clone https://github.com/ryanoasis/nerd-fonts.git
 cd nerd-fonts
 ./install.sh Hack 
@@ -39,16 +40,17 @@ cd ~
 
 #Set up ZSH
 sudo apt install zsh zsh-dev zsh-doc tig
-sudo usermod -s /bin/zsh $(whoami)
+#sudo usermod -s /bin/zsh $(whoami)
 ## Install oh my zsh
 cd ~
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" &
 wait
 [ -d $HOME"/.oh-my-zsh" ] || echo "### OH MY ZSH DIR NOT FOUND!" ; exit 1
 #TODO: stow oh-my-zsh and aliases
-#TODO: stow zshrc
+#TODO: stow zshrc #Remove .zshrc created by .oh-my-zsh!
 git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+# Copy aliases and .oh-my-zsh config manually
 
 #Set up Vim
 #TODO: stow vimrc
@@ -58,7 +60,7 @@ sed -i 's/" //g' ~/.vimrc
 #Set up QTile
 #QTILE IS NOT AVAILBALE ON DEBIAN STABLE OR TESTING AND NEEDS TO BE INSTALLED FROM SOURCE!
 sudo apt install network-manager-gnome redshift redshift-gtk feh nitrogen syncthing-gtk maim notify-osd suckless-tools firefox cmus w3m w3m-img trash-cli atool highlight ranger calcurse light-locker light gksu synaptic
-sudo pip3 install pywal
+sudo pip3 install pywal #Packages different on Ubuntu: syncthing #gksu not available on ubuntu 
 #TODO: stow qtile configs
 [ -d $HOME"/bin"] || mkdir -p $HOME"/bin"
 cp -fv ~/dotfiles/bin/* ~/bin/
@@ -67,3 +69,5 @@ cp -fv ~/dotfiles/bin/* ~/bin/
 #Setup ranger
 #TODO: stow ranger
 #Install devicons manually(?) i don't remeber if i need to install them via github or not
+
+wget https://github.com/haikarainen/light/releases/download/v1.2/light_1.2_amd64.deb
