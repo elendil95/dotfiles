@@ -17,8 +17,8 @@ sudo apt install ttf-ubuntu-font-family ttf-dejavu fonts-droid-fallback fonts-ha
 sudo apt install gnome-screenshot gnome-calculator xfburn redshift redshift-gtk gimp pinta ristretto vlc quodlibet firefox thunderbird filezilla hexchat qbittorrent wireshark mpv vlc simplescreenrecorder screenkey quodlibet easytag libreoffice vim-gtk retext evince zathura mupdf arc-theme numix-gtk-theme baobab curl dconf-editor gnome-disk-utility gnome-system-monitor gnome-terminal gparted grsync gvfs htop lsb-release mlocate net-tools notify-osd fonts-noto numlockx neofetch scrot simple-scan thunar thunar-archive-plugin thunar-volman pcmanfm tumbler wget unace unrar zip unzip sharutils uudeview arj cabextract file-roller keepass2 ntfs-3g 
 
 #install proprietary software
-sudo apt install discord gitkraken
-sudo snap install --classic visual-studio-code
+sudo snap install discord gitkraken
+sudo snap install --classic code
 
 #Install latex
 sudo apt install texlive-full texstudio
@@ -32,10 +32,10 @@ git clone https://github.com/powerline/fonts.git
 cd fonts
 bash ./install.sh &
 wait
-cdc ..
-git clone https://github.com/ryanoasis/nerd-fonts.git
-cd nerd-fonts
-./install.sh Hack 
+cd ..
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/Hack.zip
+[ -d $HOME"/.local/share/fonts" ] || mkdir -p $HOME"/.local/share/fonts"
+unzip Hack.zip -d ~/.local/share/fonts/
 cd ~
 #TODO: stow .Xresources
 
@@ -51,9 +51,9 @@ wait
  #Remove .zshrc created by .oh-my-zsh!
 rm -v ~/.zshrc
 #TODO: stow zshrc
-rm -v ~/.oh-my-zsh/oh-my-zsh.zsh
+rm -v ~/.oh-my-zsh/oh-my-zsh.sh
 rm -v ~/.oh-my-zsh/custom/example.zsh
-cp -v ~/dotfiles/oh-my-zsh/.oh-my-zsh/oh-my-zsh.zsh ~/.oh-my-zsh/
+cp -v ~/dotfiles/oh-my-zsh/.oh-my-zsh/oh-my-zsh.sh ~/.oh-my-zsh/
 cp -v ~/dotfiles/oh-my-zsh/.oh-my-zsh/custom/example.zsh ~/.oh-my-zsh/custom/
 cp -v ~/dotfiles/oh-my-zsh/.oh-my-zsh/custom/aliases.zsh ~/.oh-my-zsh/custom/
 git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
@@ -69,22 +69,33 @@ sudo apt install qtile
 sudo apt install network-manager-gnome redshift redshift-gtk feh nitrogen syncthing maim notify-osd suckless-tools firefox cmus w3m w3m-img trash-cli atool highlight ranger calcurse light-locker synaptic
 cd ~
 wget https://github.com/haikarainen/light/releases/download/v1.2/light_1.2_amd64.deb
-dpkg -i light_1.2_amd64.deb
+sudo dpkg -i light_1.2_amd64.deb
 sudo pip3 install pywal 
 #TODO: stow qtile configs
-[ -d $HOME"/bin"] || mkdir -p $HOME"/bin"
+[ -d $HOME"/bin" ] || mkdir -p $HOME"/bin"
 cp -fv ~/dotfiles/bin/* ~/bin/
 sudo chmod +x ~/bin/*
+rm -v ~/.bashrc
+rm -v ~/.profile
 #TODO: stow bash
+
 #Setup ranger
 #TODO: stow ranger
-#Install devicons manually(?) i don't remeber if i need to install them via github or not
+cd ~
+git clone https://github.com/alexanderjeurissen/ranger_devicons.git
+cd ranger-devicons
+make install
+
 
 [ -d $HOME"/.icons" ] || mkdir -p $HOME"/.icons"
 cp -rv ~/dotfiles/resources/icons/AwOkenWhite ~/.icons/
-cp -v ~/dotfiles/resources/scripts/git_setup_public.sh
+cp -v ~/dotfiles/resources/scripts/git_setup_public.sh ~
 
 echo "installation almost done: write your credentials inside the scipt git_setup_public.sh and run it to setup your git account"
 
-#I have no idea of how Screen Locking might work for now, will modify installer again. 
+#I have no idea of how Screen Locking might work for now, will modify installer again.
+
+#Add hostname to dictionary and comment out the "extension" package from libqtile to make qtile boot on ubuntu.
+#Uncomemnt powerline in vim config
+
 
