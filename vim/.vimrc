@@ -4,12 +4,12 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
-" python3 from powerline.vim import setup as powerline_setup
-" python3 powerline_setup()
-" python3 del powerline_setup
-" set  rtp+=/usr/local/lib/python3.5/dist-packages/powerline/bindings/vim/
-" set laststatus=2
-" set t_Co=256
+python3 from powerline.vim import setup as powerline_setup
+python3 powerline_setup()
+python3 del powerline_setup
+set  rtp+=/usr/local/lib/python3.5/dist-packages/powerline/bindings/vim/
+set laststatus=2
+set t_Co=256
 
 "Switch between splits with Ctrl+vimKeys
 nnoremap <C-J> <C-W><C-J>
@@ -52,4 +52,6 @@ Plug 'gioele/vim-autoswap'
 call plug#end()
 filetype plugin on
 set wildmenu
+autocmd BufWritePost ~/.Xresources !xrdb %
+
 autocmd filetype tex set linebreak "when writing latex, don't break words in half when wrapping. Doesn't change much but it soothes my computer autism. 

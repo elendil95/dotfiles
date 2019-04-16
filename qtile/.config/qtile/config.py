@@ -26,9 +26,9 @@
 
 from libqtile.config import Key, Screen, Group, Drag, Click
 from libqtile.command import lazy
-from libqtile import layout, bar, widget, hook, extension 
+from libqtile import layout, bar, widget, hook, extension
 from typing import List
-import os, os.path, shlex, subprocess, platform
+import os, os.path, shlex, subprocess, platform, re
 
 mod = "mod4"
 
@@ -232,10 +232,11 @@ floating_layout = layout.Floating(float_rules=[
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 
-@hook.subscribe.client_new #doesn't work yet
+@hook.subscribe.client_new
 def set_floating(window):
-    if ((window.window.get_name() == 'gitkraken') or
-         (window.window.get_name() == 'keepass2')):
+    if ((re.match("Open Database - .*", window.window.get_name())) or
+         (window.window.get_name() == 'GitKraken') or
+         (window.window-get_name() == 'Discord Updater')):
         window.floating = True
 
 @hook.subscribe.client_new

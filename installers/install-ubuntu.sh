@@ -96,6 +96,6 @@ echo "installation almost done: write your credentials inside the scipt git_setu
 #I have no idea of how Screen Locking might work for now, will modify installer again.
 
 #Add hostname to dictionary and comment out the "extension" package from libqtile to make qtile boot on ubuntu.
-#Uncomemnt powerline in vim config
 
+#for-installing xfce applets try xfce4-power-manager, volumeicon and network-manager-applet
 
