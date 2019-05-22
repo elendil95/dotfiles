@@ -7,7 +7,7 @@
     Screen Locker: Light-locker
     Window Manager: Qtile (with optional xfce4 as fallback)
     Bar: QTile built-in bar
-    Layouts: Xmonad-like, full screen, tree view
+    Layouts: Master and stack, full screen, tree view
     Teminal: URXVT
     Shell: Zshell (with oh-my-zsh)
     File Manager: Ranger (with PCManFM as a graphical fallback)
