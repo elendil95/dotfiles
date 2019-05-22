@@ -104,7 +104,7 @@ echo "##############################"
 echo "### FINISHING XFCE INSTALL ###"
 echo "#############################"
 
-sudo pacman -S --needed --noconfirm ttf-ubuntu-font-family ttf-droid ttf-dejavu ttf-hack
+sudo pacman -S --needed --noconfirm ttf-ubuntu-font-family noto-fonts ttf-droid ttf-dejavu ttf-hack
 
 read -p "Would you like to install extra software for a more out-of-the-box experience? [y/n]" yn
 
