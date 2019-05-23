@@ -17,6 +17,7 @@ alias gc='git commit -m'
 alias gca='git commit -a -m'
 alias gpl='git pull'
 alias gps='git push'
+alias gd='git diff'
 
 binary(){
 echo "obase=2; $1"|bc
