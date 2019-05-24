@@ -45,8 +45,8 @@
 | Mod + w  | Close active window  |
 | Mod + \$n | Switch to workspace $n[^3].
 | Mod + Shift + \$n | Send active window to workspace \$n
-| Mod + r  | Invoke run prompt[^4]  |
-| Mod + Shift + r  | Invoke D_Menu (program search bar)   |
+| Mod + r  | Invoke Dmenu  |
+| Mod + Shift + r  | Launch app finder   |
 | Mod + Control + r  | Restart QTile (reloads config file) |
 | Mod + Control + q  | Log out  |
 | Mod + Control + l  | Lock the screen  |
@@ -57,18 +57,19 @@
 | **Keys**  | **Action**  |
 |---|---|
 | Mod + Enter  | Spawn terminal (urxvt)  |
-| Mod + g  | Spawn web browser (Firefox)   |
+| Mod + b  | Spawn web browser (Firefox)   |
 | Mod + f  | Spawn file manager (Ranger)   |
 | Mod + m  | Spawn music player (Cmus) |
 | Mod + c  | Spawn calendar app (Calcurse) |
-| Control + Shift + f  | Spawn file manager in current directory[^5] (**Read footnote**) |
+| Control + Shift + f  | Spawn file manager in current directory[^4] (**Read footnote**) |
+| Mod + p  | Spawn password manager (Keepass)   |
 
 
 ## Special keys
 
 | **Keys**  | **Action**  |
 |---|---|
-| Print  | Take screenshot of all monitors[^6] |
+| Print  | Take screenshot of all monitors[^5] |
 | Mod + Print  | Select area to screenshot  |
 | 'Volume Up' Key  | Raise volume by 2dB  	|
 | 'Volume Down' key  | Lower volume by 2dB  |
@@ -79,6 +80,5 @@
 [^1]: Place active window on the right side of the screen
 [^2]: Floating is a bit buggy, as its not in the normal list of layouts so you can't cycle into it with Mod+Tab.
 [^3]: Workspaces are called 'groups' in QTile. The number of workspaces and their symbols an be changed in the config file, its just a string we iterate through. Currently workspaces are digits 1 through 8.
-[^4]: requires exact name of programs to be entered, but can be tab-completed
-[^5]: Not implemented in Qtile but in zsh, only works when working in a terminal.
-[^6]: Normally it grabs a screenshot of the screen. If multiple monitors are present it will also capture the content of the other monitors in the same picture. Also note that you *do not* need to press Mod for this
+[^4]: Not implemented in Qtile but in zsh, only works when working in a terminal.
+[^5]: Normally it grabs a screenshot of the screen. If multiple monitors are present it will also capture the content of the other monitors in the same picture. Also note that you *do not* need to press Mod for this

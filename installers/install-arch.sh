@@ -109,7 +109,7 @@ sudo pacman -S --needed --noconfirm ttf-ubuntu-font-family noto-fonts ttf-droid 
 read -p "Would you like to install extra software for a more out-of-the-box experience? [y/n]" yn
 
 case $yn in
-    [Yy]* ) sudo pacman -S --noconfirm --needed gnome-screenshot gnome-calculator xfburn redshift redshift-gtk gimp gimp-font-viewer pinta ristretto vlc quodlibet firefox thunderbird filezilla hexchat qbittorrent wireshark mpv vlc simplescreenrecorder screenkey quodlibet easytag libreoffice-fresh pyroom gvim retext evince zathura mupdf arc-gtk3-theme baobab curl dconf-editor gnome-disk-utility gnome-system-monitor gnome-terminal gparted grsync gvfs gvfs-mtp htop kvantum-qt5 kvantum-theme-arc lsb-release mlocate net-tools notify-osd noto-fonts numlockx neofetch scrot simple-scan thunar thunar-archive-plugin thunar-volman pcmanfm tumbler wget unace unrar zip unzip sharutils  uudeview  arj cabextract file-roller keepass ntfs-3g; break;;
+    [Yy]* ) sudo pacman -S --noconfirm --needed compton gnome-screenshot gnome-calculator xfburn redshift redshift-gtk gimp gimp-font-viewer pinta ristretto vlc quodlibet firefox thunderbird filezilla hexchat qbittorrent wireshark mpv vlc simplescreenrecorder screenkey quodlibet easytag libreoffice-fresh pyroom gvim retext evince zathura mupdf arc-gtk3-theme baobab curl dconf-editor gnome-disk-utility gnome-system-monitor gnome-terminal gparted grsync gvfs gvfs-mtp htop kvantum-qt5 kvantum-theme-arc lsb-release mlocate net-tools notify-osd noto-fonts numlockx neofetch scrot simple-scan thunar thunar-archive-plugin thunar-volman pcmanfm tumbler wget unace unrar zip unzip sharutils  uudeview  arj cabextract file-roller keepass ntfs-3g; break;;
     [Nn]* ) ;;
     * ) echo "Please answer yes or no.";;
 esac
@@ -212,7 +212,7 @@ echo "### SETTING UP QTILE ###"
 echo "########################"
 
 sudo pacman -S --needed --noconfirm qtile
-sudo pacman --S --needed --noconfirm network-manager-applet redshift redshift-gtk feh nitrogen syncthing-gtk maim notify-osd dmenu firefox cmus w3m trash-cli atool highlight rangercalcurse light-locker
+sudo pacman --S --needed --noconfirm network-manager-applet redshift redshift-gtk feh nitrogen syncthing-gtk maim notify-osd dmenu firefox cmus w3m trash-cli atool highlight rangercalcurse light-locker xfce4-appfinder
 yay -S --needed light-git gksu pamac-aur pamac-tray-appindicator
 sudo pip install pywal
 

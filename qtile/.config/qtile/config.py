@@ -69,8 +69,8 @@ keys = [
     Key([mod], "w", lazy.window.kill()),
     Key([mod, "control"], "r", lazy.restart()),
     Key([mod, "control"], "q", lazy.shutdown()),
-    Key([mod], "r", lazy.spawncmd()),
-    Key([mod, "shift"], 'r', lazy.spawn("dmenu_run -b -fn 'Monospace:size=10' -nb '#000000' -nf '#fefefe'")),
+    Key([mod], "r", lazy.spawn("dmenu_run -p 'Run:' -fn 'Monospace:size=12' -nb '#000000' -nf '#fefefe'")),
+    Key([mod, "shift"], 'r', lazy.spawn("xfce4-appfinder")),
     Key([mod, "control"], "l", lazy.spawn(os.path.join(home,"bin","lock_screen.sh"))),   #lock the screen
     # Key([mod, "control"], "x", lazy.spawn("/home/elendil/bin/dmenu_session_manager")),
     Key([mod, "control"], "x", lazy.spawn(os.path.join(home,"bin","dmenu_session_manager"))),

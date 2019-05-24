@@ -1,5 +1,6 @@
 #!/bin/sh
 
+compton -b --config ~/.config/compton/compton.conf &
 nitrogen --restore &
 xsettingsd &
 # xfce4-power-manager &
