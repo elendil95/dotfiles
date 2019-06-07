@@ -164,7 +164,7 @@ cd fonts
 bash ./install.sh &
 wait
 cd ~
-yay -S --needed --noconfirm ttf-nerd-fonts-hack-complete-git
+yay -S --needed --noconfirm ttf-nerd-fonts-hack-complete-git urxvt-resize-font-git
 
 #Clone dotfiles repo
 if [ ! -d "~/dotfiles" ] ; then

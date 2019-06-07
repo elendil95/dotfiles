@@ -3,9 +3,13 @@
 !Transparency requires the Compton compositor
 URxvt.font: xft:Hack\ Nerd\ Font\ Mono:pixelsize=16
 URxvt.scrollBar: false
-URxvt.perl-ext.common: default,matcher,url-select,selection-to clipboard
+URxvt.perl-ext.common: default,matcher,url-select,resize-font,selection-to clipboard
 URxvt.keysym.Shift-Control-V: eval:paste_clipboard
 URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+URxvt.keysym.Control-minus:     resize-font:smaller
+URxvt.keysym.Control-plus:      resize-font:bigger
+URxvt.keysym.Control-equal:     resize-font:reset
+URxvt.keysym.Control-question:  resize-font:show
 URxvt.iso14755: false
 URxvt.iso14755_52: false
 URxvt.depth: 32
