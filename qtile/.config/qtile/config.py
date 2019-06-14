@@ -35,7 +35,7 @@ mod = "mod4"
 home=os.environ.get('HOME')
 hostname = platform.node()
 num_screens = {
-    'mint-tower': 2,
+    'manjaro-tower': 1,
     'ThinkPad-E480': 1
 } 
 
