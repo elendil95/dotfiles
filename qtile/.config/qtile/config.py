@@ -35,7 +35,7 @@ mod = "mod4"
 home=os.environ.get('HOME')
 hostname = platform.node()
 num_screens = {
-    'manjaro-tower': 1,
+    'manjaro-tower': 2,
     'ThinkPad-E480': 1
 } 
 
@@ -77,7 +77,7 @@ keys = [
     
     #Programs
     Key([mod], "Return", lazy.spawn("urxvt")),
-    Key([mod], "g", lazy.spawn("firefox")),
+    Key([mod], "b", lazy.spawn("firefox")),
     Key([mod], "f", lazy.spawn("urxvt -e ranger")),
     Key([mod], "m", lazy.spawn("urxvt -e cmus")),
     Key([mod], "c", lazy.spawn("urxvt -e calcurse")),
@@ -133,37 +133,75 @@ if (num_screens[hostname] == 2):  #If on desktop pc with dueal screens
         Screen(
             top=bar.Bar(
                 [
-                    widget.GroupBox(),
+widget.GroupBox(inactive="#a9a9a9", active="#f3f4f5"),
                     widget.Prompt(foreground='#00d2ff', prompt="Run: "),
-                    widget.WindowName(),
-                    widget.Notify(default_timeout=5),
-                    widget.Net(interface='enp3s0'),
-                    widget.CPUGraph(fill_color='#fff400', graph_color='#ce0202', line_width=2),
-                    widget.Memory(update_interval=30),
-                    widget.sep.Sep(padding=2),
+                    widget.WindowName(font="Noto Sans Bold"),
+                    #widget.Notify(default_timeout=5),
+                    widget.TextBox(font="FontAwesome", text=" ", foreground="#44c419", padding=0, fontsize=30),
+                    widget.TextBox(font="FontAwesome", text="", foreground="#44c419", padding=0, fontsize=30),
+                    widget.Net(interface='enp5s0'),
+                    widget.Sep(padding=10),
+                    widget.KeyboardLayout(configured_keyboards=['it', 'dk', 'us'], font="Noto Sans Bold"),
+                    widget.sep.Sep(padding=10),
+                    widget.TextBox(font="FontAwesome", text="", foreground='#cd1f3f', padding=0, fontsize=32),
+                    widget.CPUGraph(border_color='#c0c5ce',  fill_color='#6790eb', graph_color='#6790eb', border_width=1, line_width=1, core="all", type="box"),
+                    widget.Sep(linewidth=0, padding=5),
+                    widget.TextBox(font="FontAwesome", text="", foreground="#bc5a03", padding=0, fontsize=20),
+                    widget.ThermalSensor(foreground_alert="#cd1f3f", metric=True, padding=3, threshold=80),
+                    widget.Sep(padding=10),
+                    widget.TextBox(font="FontAwesome", text="", foreground='#3384d0', padding=0, fontsize=32),
+                    widget.Memory(fmt = '{MemUsed}M/{MemTotal}M', update_interval=5, foreground='#f3f4f5'),
+                    widget.sep.Sep(padding=10),
                     widget.CurrentLayoutIcon(custom_icon_paths=['/usr/local/src/qtile/qtile/libqtile/resources/layout-icons']),
-                    widget.sep.Sep(padding=2),
-                    widget.Volume(theme_path=os.path.join(home,'.icons/AwOkenWhite/clear/24x24/status')),
-                    widget.sep.Sep(padding=2),
+                    widget.sep.Sep(padding=10),
+                    #widget.BatteryIcon(theme_path=os.path.join(home,'.icons/AwOkenWhite/clear/24x24/status')),
+                    #widget.Battery(foreground='#0cdb63', low_percentage=0.20, low_foreground='fa5e5b', update_delay=10, format='{percent:.0%}'),
+                    #widget.sep.Sep(padding=2),
+                    #widget.Volume(theme_path=os.path.join(home,'.icons/AwOkenWhite/clear/24x24/status')),
+                    #widget.sep.Sep(padding=2),
                     widget.Systray(),
-                    widget.sep.Sep(padding=2),
+                    widget.sep.Sep(padding=10),
+                    widget.TextBox(font="Font Awesome", text="", foreground="#fba922", padding=2, fontsize=32),
                     widget.Clock(format='%A %d-%m-%Y -- %I:%M %p'),
                 ],
-                24, background="#151515"
+                24, background="#2F343F"  #background="#151515"
             ),
         ),
         Screen(
             top=bar.Bar(
                 [
-                    widget.GroupBox(),
+                 widget.GroupBox(inactive="#a9a9a9", active="#f3f4f5"),
                     widget.Prompt(foreground='#00d2ff', prompt="Run: "),
-                    widget.WindowName(),
-                    widget.Notify(default_timeout=5),
-                    widget.CurrentLayoutIcon(custom_icon_paths=['/usr/local/src/qtile/qtile/libqtile/resources/layout-icons']), #The path changes with install directory.
-                    widget.sep.Sep(padding=2),
-                    widget.Clock(format='%A %d-%m-%Y -- %I:%M %p'),   
+                    widget.WindowName(font="Noto Sans Bold"),
+                    #widget.Notify(default_timeout=5),
+                    widget.TextBox(font="FontAwesome", text=" ", foreground="#44c419", padding=0, fontsize=30),
+                    widget.TextBox(font="FontAwesome", text="", foreground="#44c419", padding=0, fontsize=30),
+                    widget.Net(interface='enp5s0'),
+                    widget.Sep(padding=10),
+                    widget.KeyboardLayout(configured_keyboards=['it', 'dk', 'us'], font="Noto Sans Bold"),
+                    widget.sep.Sep(padding=10),
+                    widget.TextBox(font="FontAwesome", text="", foreground='#cd1f3f', padding=0, fontsize=32),
+                    widget.CPUGraph(border_color='#c0c5ce',  fill_color='#6790eb', graph_color='#6790eb', border_width=1, line_width=1, core="all", type="box"),
+                    widget.Sep(linewidth=0, padding=5),
+                    widget.TextBox(font="FontAwesome", text="", foreground="#bc5a03", padding=0, fontsize=20),
+                    widget.ThermalSensor(foreground_alert="#cd1f3f", metric=True, padding=3, threshold=80),
+                    widget.Sep(padding=10),
+                    widget.TextBox(font="FontAwesome", text="", foreground='#3384d0', padding=0, fontsize=32),
+                    widget.Memory(fmt = '{MemUsed}M/{MemTotal}M', update_interval=5, foreground='#f3f4f5'),
+                    widget.sep.Sep(padding=10),
+                    widget.CurrentLayoutIcon(custom_icon_paths=['/usr/local/src/qtile/qtile/libqtile/resources/layout-icons']),
+                    #widget.sep.Sep(padding=10),
+                    #widget.BatteryIcon(theme_path=os.path.join(home,'.icons/AwOkenWhite/clear/24x24/status')),
+                    #widget.Battery(foreground='#0cdb63', low_percentage=0.20, low_foreground='fa5e5b', update_delay=10, format='{percent:.0%}'),
+                    #widget.sep.Sep(padding=2),
+                    #widget.Volume(theme_path=os.path.join(home,'.icons/AwOkenWhite/clear/24x24/status')),
+                    #widget.sep.Sep(padding=2),
+                    #widget.Systray(),
+                    widget.sep.Sep(padding=10),
+                    widget.TextBox(font="Font Awesome", text="", foreground="#fba922", padding=2, fontsize=32),
+                    widget.Clock(format='%A %d-%m-%Y -- %I:%M %p'),
                 ],
-                24, background="#151515"
+                24, background="#2F343F"  #background="#151515"
             )
         )
     ]
