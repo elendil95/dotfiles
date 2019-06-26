@@ -1,6 +1,6 @@
 # My Dotfiles
 
-![QTile with vim+powerline, neofetch and Ranger running](resources/screenshot.png)
+![QTile with vim+powerline and neofetch running](resources/screenshot_new.png)
 
 ## Setup
     Display Manager: LightDM
