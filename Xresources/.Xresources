@@ -13,11 +13,11 @@ URxvt.keysym.Control-question:  resize-font:show
 URxvt.iso14755: false
 URxvt.iso14755_52: false
 URxvt.depth: 32
-URxvt.background: [85]#151515
+!URxvt.background: #151515
 
 ! special
 *.foreground:   #dedede
-!*.background:   #151515
+*.background:   #151515
 *.cursorColor:  #dedede
 
 ! black
