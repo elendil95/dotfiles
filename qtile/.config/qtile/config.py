@@ -26,7 +26,7 @@
 
 from libqtile.config import Key, Screen, Group, Drag, Click
 from libqtile.command import lazy
-from libqtile import layout, bar, widget, hook, extension
+from libqtile import layout, bar, widget, hook
 from typing import List
 import os, os.path, shlex, subprocess, platform, re
 
@@ -36,8 +36,9 @@ home=os.environ.get('HOME')
 hostname = platform.node()
 num_screens = {
     'manjaro-tower': 2,
-    'ThinkPad-E480': 1
-} 
+    'ThinkPad-E480': 1,
+    'hrskyen-Lenovo-Flex-2-Pro-15': 2
+}
 
 
 ##-----KEYBINDS------
@@ -81,7 +82,7 @@ keys = [
     Key([mod], "f", lazy.spawn("urxvt -e ranger")),
     Key([mod], "m", lazy.spawn("urxvt -e cmus")),
     Key([mod], "c", lazy.spawn("urxvt -e calcurse")),
-    Key([mod], "p", lazy.spawn("keepass")),
+    Key([mod], "p", lazy.spawn("keepass2")),
 
     #Audio Controls
     Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -c 0 -q set Master 2dB+")),
@@ -137,19 +138,19 @@ widget.GroupBox(inactive="#a9a9a9", active="#f3f4f5"),
                     widget.Prompt(foreground='#00d2ff', prompt="Run: "),
                     widget.WindowName(font="Noto Sans Bold"),
                     #widget.Notify(default_timeout=5),
-                    widget.TextBox(font="FontAwesome", text=" ", foreground="#44c419", padding=0, fontsize=30),
-                    widget.TextBox(font="FontAwesome", text="", foreground="#44c419", padding=0, fontsize=30),
-                    widget.Net(interface='enp5s0'),
+                    widget.TextBox(font="FontAwesome", text=" ", foreground="#44c419", padding=0, fontsize=20),
+                    widget.TextBox(font="FontAwesome", text="", foreground="#44c419", padding=0, fontsize=20),
+                    widget.Net(interface='wlp2s0'),
                     widget.Sep(padding=10),
                     widget.KeyboardLayout(configured_keyboards=['it', 'dk', 'us'], font="Noto Sans Bold"),
                     widget.sep.Sep(padding=10),
-                    widget.TextBox(font="FontAwesome", text="", foreground='#cd1f3f', padding=0, fontsize=32),
+                    widget.TextBox(font="FontAwesome", text="", foreground='#cd1f3f', padding=0, fontsize=22),
                     widget.CPUGraph(border_color='#c0c5ce',  fill_color='#6790eb', graph_color='#6790eb', border_width=1, line_width=1, core="all", type="box"),
                     widget.Sep(linewidth=0, padding=5),
                     widget.TextBox(font="FontAwesome", text="", foreground="#bc5a03", padding=0, fontsize=20),
                     widget.ThermalSensor(foreground_alert="#cd1f3f", metric=True, padding=3, threshold=80),
                     widget.Sep(padding=10),
-                    widget.TextBox(font="FontAwesome", text="", foreground='#3384d0', padding=0, fontsize=32),
+                    widget.TextBox(font="FontAwesome", text="", foreground='#3384d0', padding=0, fontsize=20),
                     widget.Memory(fmt = '{MemUsed}M/{MemTotal}M', update_interval=5, foreground='#f3f4f5'),
                     widget.sep.Sep(padding=10),
                     widget.CurrentLayoutIcon(custom_icon_paths=['/usr/local/src/qtile/qtile/libqtile/resources/layout-icons']),
@@ -161,7 +162,7 @@ widget.GroupBox(inactive="#a9a9a9", active="#f3f4f5"),
                     #widget.sep.Sep(padding=2),
                     widget.Systray(),
                     widget.sep.Sep(padding=10),
-                    widget.TextBox(font="Font Awesome", text="", foreground="#fba922", padding=2, fontsize=32),
+                    widget.TextBox(font="Font Awesome", text="", foreground="#fba922", padding=2, fontsize=20),
                     widget.Clock(format='%A %d-%m-%Y -- %I:%M %p'),
                 ],
                 24, background="#2F343F"  #background="#151515"
@@ -174,19 +175,19 @@ widget.GroupBox(inactive="#a9a9a9", active="#f3f4f5"),
                     widget.Prompt(foreground='#00d2ff', prompt="Run: "),
                     widget.WindowName(font="Noto Sans Bold"),
                     #widget.Notify(default_timeout=5),
-                    widget.TextBox(font="FontAwesome", text=" ", foreground="#44c419", padding=0, fontsize=30),
-                    widget.TextBox(font="FontAwesome", text="", foreground="#44c419", padding=0, fontsize=30),
-                    widget.Net(interface='enp5s0'),
+                    widget.TextBox(font="FontAwesome", text=" ", foreground="#44c419", padding=0, fontsize=20),
+                    widget.TextBox(font="FontAwesome", text="", foreground="#44c419", padding=0, fontsize=20),
+                    widget.Net(interface='wlp2s0'),
                     widget.Sep(padding=10),
                     widget.KeyboardLayout(configured_keyboards=['it', 'dk', 'us'], font="Noto Sans Bold"),
                     widget.sep.Sep(padding=10),
-                    widget.TextBox(font="FontAwesome", text="", foreground='#cd1f3f', padding=0, fontsize=32),
+                    widget.TextBox(font="FontAwesome", text="", foreground='#cd1f3f', padding=0, fontsize=20),
                     widget.CPUGraph(border_color='#c0c5ce',  fill_color='#6790eb', graph_color='#6790eb', border_width=1, line_width=1, core="all", type="box"),
                     widget.Sep(linewidth=0, padding=5),
                     widget.TextBox(font="FontAwesome", text="", foreground="#bc5a03", padding=0, fontsize=20),
                     widget.ThermalSensor(foreground_alert="#cd1f3f", metric=True, padding=3, threshold=80),
                     widget.Sep(padding=10),
-                    widget.TextBox(font="FontAwesome", text="", foreground='#3384d0', padding=0, fontsize=32),
+                    widget.TextBox(font="FontAwesome", text="", foreground='#3384d0', padding=0, fontsize=20),
                     widget.Memory(fmt = '{MemUsed}M/{MemTotal}M', update_interval=5, foreground='#f3f4f5'),
                     widget.sep.Sep(padding=10),
                     widget.CurrentLayoutIcon(custom_icon_paths=['/usr/local/src/qtile/qtile/libqtile/resources/layout-icons']),
@@ -198,7 +199,7 @@ widget.GroupBox(inactive="#a9a9a9", active="#f3f4f5"),
                     #widget.sep.Sep(padding=2),
                     #widget.Systray(),
                     widget.sep.Sep(padding=10),
-                    widget.TextBox(font="Font Awesome", text="", foreground="#fba922", padding=2, fontsize=32),
+                    widget.TextBox(font="Font Awesome", text="", foreground="#fba922", padding=2, fontsize=20),
                     widget.Clock(format='%A %d-%m-%Y -- %I:%M %p'),
                 ],
                 24, background="#2F343F"  #background="#151515"
