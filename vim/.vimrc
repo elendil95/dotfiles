@@ -64,13 +64,19 @@ Plug 'tpope/vim-surround'   "The word you need to remeber is *surrounding*: dele
                             "Pick opening or closing paren, works on both
 Plug 'vimwiki/vimwiki'
 Plug 'gioele/vim-autoswap'
-Plug 'scrooloose/nerdtree', {'for': 'python'}
+Plug 'scrooloose/nerdtree'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'scrooloose/syntastic', {'for': 'python'}
 call plug#end()
 
 filetype plugin on
 set wildmenu
+
+"NerdTree stuff
+map <C-n> :NERDTreeToggle<CR>
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 autocmd BufWritePost ~/.Xresources !xrdb %
 
