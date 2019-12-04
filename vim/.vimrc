@@ -1,3 +1,4 @@
+set encoding=UTF-8
 set number
 set tabstop=4
 set shiftwidth=4
@@ -32,6 +33,11 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+"Switch between tabs with Alt+h/l
+map  <A-l> :tabn<CR>
+map  <A-h> :tabp<CR>
+map  <A-n> :tabnew<CR>
+
 "remap arrowkeys to move between wrapped lines (a.k.a visual lines)
 imap <silent> <Down> <C-o>gj
 imap <silent> <Up> <C-o>gk
@@ -65,6 +71,7 @@ Plug 'tpope/vim-surround'   "The word you need to remeber is *surrounding*: dele
 Plug 'vimwiki/vimwiki'
 Plug 'gioele/vim-autoswap'
 Plug 'scrooloose/nerdtree'
+Plug 'ryanoasis/vim-devicons'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'scrooloose/syntastic', {'for': 'python'}
 call plug#end()
@@ -74,6 +81,8 @@ set wildmenu
 
 "NerdTree stuff
 map <C-n> :NERDTreeToggle<CR>
+let NERDTreeMapOpenVSplit='v'
+let NERDTreeMapOpenHSplit='s'
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
