@@ -7,7 +7,7 @@
 sleep 0.2
 
 filename=$(date +"%Y%m%d_%H%M")".png"
-screenshots="/home/elendil/Pictures/screenshots"
+screenshots="$HOME/Pictures/screenshots"
 dest="$screenshots/$filename"
 
 # create destination directory if it does not exist
@@ -26,4 +26,4 @@ fi
 
 #echo $dest | xclip
 
-notify-send -u critical "Screenshot $filename saved to $dest" -t 5000
+notify-send -u critical "Screenshot $filename saved to $dest" -t 1000

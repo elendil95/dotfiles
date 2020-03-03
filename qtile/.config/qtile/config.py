@@ -26,7 +26,7 @@
 
 from libqtile.config import Key, Screen, Group, Drag, Click
 from libqtile.command import lazy
-from libqtile import layout, bar, widget, hook, extension
+from libqtile import layout, bar, widget, hook
 from typing import List
 import os, os.path, shlex, subprocess, platform, re
 
@@ -36,8 +36,9 @@ home=os.environ.get('HOME')
 hostname = platform.node()
 num_screens = {
     'manjaro-tower': 2,
-    'ThinkPad-E480': 1
-} 
+    'ThinkPad-E480': 1,
+    'ThinkPad-T495': 2
+}
 
 
 ##-----KEYBINDS------
@@ -60,11 +61,11 @@ keys = [
 
     # Toggle between different layouts
     Key([mod], "Tab", lazy.next_layout()),
-   
+
     #Floating Layout Keybinds
     Key([mod], "t", lazy.window.enable_floating()),
     Key([mod, "shift"], "t", lazy.window.disable_floating()),
-    
+
     #Window controls (layout agnostic)
     Key([mod], "w", lazy.window.kill()),
     Key([mod, "control"], "r", lazy.restart()),
@@ -72,26 +73,26 @@ keys = [
     Key([mod], "r", lazy.spawn("dmenu_run -p 'Run:' -fn 'Monospace:size=12' -nb '#000000' -nf '#fefefe'")),
     Key([mod, "shift"], 'r', lazy.spawn("xfce4-appfinder")),
     Key([mod, "control"], "l", lazy.spawn(os.path.join(home,"bin","lock_screen.sh"))),   #lock the screen
-    # Key([mod, "control"], "x", lazy.spawn("/home/elendil/bin/dmenu_session_manager")),
     Key([mod, "control"], "x", lazy.spawn(os.path.join(home,"bin","dmenu_session_manager"))),
-    
+
     #Programs
     Key([mod], "Return", lazy.spawn("urxvt")),
     Key([mod], "b", lazy.spawn("firefox")),
     Key([mod], "f", lazy.spawn("urxvt -e ranger")),
     Key([mod], "m", lazy.spawn("urxvt -e cmus")),
     Key([mod], "c", lazy.spawn("urxvt -e calcurse")),
+    Key([mod, "shift"], "c", lazy.spawn("gnome-calculator")),
     Key([mod], "p", lazy.spawn("keepass")),
 
     #Audio Controls
     Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -c 0 -q set Master 2dB+")),
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -c 0 -q set Master 2dB-")),
     Key([], "XF86AudioMute", lazy.spawn("amixer -D pulse sset Master toggle -q")),
-    
+
     #Screen brightness
     Key([], 'XF86MonBrightnessUp',   lazy.spawn("urxvt -e light -A 10")),
     Key([], 'XF86MonBrightnessDown', lazy.spawn("urxvt -e light -U 10")),
-    
+
     #Screenshots
     Key([], 'Print', lazy.spawn(os.path.join(home,"bin","screenshot.sh"))),
     Key([mod], 'Print', lazy.spawn(os.path.join(home,"bin","screenshot_select.sh")))
@@ -136,7 +137,6 @@ if (num_screens[hostname] == 2):  #If on desktop pc with dueal screens
 widget.GroupBox(inactive="#a9a9a9", active="#f3f4f5"),
                     widget.Prompt(foreground='#00d2ff', prompt="Run: "),
                     widget.WindowName(font="Noto Sans Bold"),
-                    #widget.Notify(default_timeout=5),
                     widget.TextBox(font="FontAwesome", text=" ", foreground="#44c419", padding=0, fontsize=30),
                     widget.TextBox(font="FontAwesome", text="", foreground="#44c419", padding=0, fontsize=30),
                     widget.Net(interface='enp5s0'),
@@ -154,17 +154,12 @@ widget.GroupBox(inactive="#a9a9a9", active="#f3f4f5"),
                     widget.sep.Sep(padding=10),
                     widget.CurrentLayoutIcon(custom_icon_paths=['/usr/local/src/qtile/qtile/libqtile/resources/layout-icons']),
                     widget.sep.Sep(padding=10),
-                    #widget.BatteryIcon(theme_path=os.path.join(home,'.icons/AwOkenWhite/clear/24x24/status')),
-                    #widget.Battery(foreground='#0cdb63', low_percentage=0.20, low_foreground='fa5e5b', update_delay=10, format='{percent:.0%}'),
-                    #widget.sep.Sep(padding=2),
-                    #widget.Volume(theme_path=os.path.join(home,'.icons/AwOkenWhite/clear/24x24/status')),
-                    #widget.sep.Sep(padding=2),
                     widget.Systray(),
                     widget.sep.Sep(padding=10),
                     widget.TextBox(font="Font Awesome", text="", foreground="#fba922", padding=2, fontsize=32),
                     widget.Clock(format='%A %d-%m-%Y -- %I:%M %p'),
                 ],
-                24, background="#2F343F"  #background="#151515"
+                24, background="#2F343F"  # Old background="#151515"
             ),
         ),
         Screen(
@@ -173,7 +168,6 @@ widget.GroupBox(inactive="#a9a9a9", active="#f3f4f5"),
                  widget.GroupBox(inactive="#a9a9a9", active="#f3f4f5"),
                     widget.Prompt(foreground='#00d2ff', prompt="Run: "),
                     widget.WindowName(font="Noto Sans Bold"),
-                    #widget.Notify(default_timeout=5),
                     widget.TextBox(font="FontAwesome", text=" ", foreground="#44c419", padding=0, fontsize=30),
                     widget.TextBox(font="FontAwesome", text="", foreground="#44c419", padding=0, fontsize=30),
                     widget.Net(interface='enp5s0'),
@@ -190,18 +184,11 @@ widget.GroupBox(inactive="#a9a9a9", active="#f3f4f5"),
                     widget.Memory(fmt = '{MemUsed}M/{MemTotal}M', update_interval=5, foreground='#f3f4f5'),
                     widget.sep.Sep(padding=10),
                     widget.CurrentLayoutIcon(custom_icon_paths=['/usr/local/src/qtile/qtile/libqtile/resources/layout-icons']),
-                    #widget.sep.Sep(padding=10),
-                    #widget.BatteryIcon(theme_path=os.path.join(home,'.icons/AwOkenWhite/clear/24x24/status')),
-                    #widget.Battery(foreground='#0cdb63', low_percentage=0.20, low_foreground='fa5e5b', update_delay=10, format='{percent:.0%}'),
-                    #widget.sep.Sep(padding=2),
-                    #widget.Volume(theme_path=os.path.join(home,'.icons/AwOkenWhite/clear/24x24/status')),
-                    #widget.sep.Sep(padding=2),
-                    #widget.Systray(),
                     widget.sep.Sep(padding=10),
                     widget.TextBox(font="Font Awesome", text="", foreground="#fba922", padding=2, fontsize=32),
                     widget.Clock(format='%A %d-%m-%Y -- %I:%M %p'),
                 ],
-                24, background="#2F343F"  #background="#151515"
+                24, background="#2F343F"  #Old background="#151515"
             )
         )
     ]
@@ -213,7 +200,6 @@ else:
                     widget.GroupBox(inactive="#a9a9a9", active="#f3f4f5"),
                     widget.Prompt(foreground='#00d2ff', prompt="Run: "),
                     widget.WindowName(font="Noto Sans Bold"),
-                    #widget.Notify(default_timeout=5),
                     widget.TextBox(font="FontAwesome", text=" ", foreground="#44c419", padding=0, fontsize=30),
                     widget.TextBox(font="FontAwesome", text="", foreground="#44c419", padding=0, fontsize=30),
                     widget.Net(interface='wlp5s0'),
@@ -231,21 +217,16 @@ else:
                     widget.sep.Sep(padding=10),
                     widget.CurrentLayoutIcon(custom_icon_paths=['/usr/local/src/qtile/qtile/libqtile/resources/layout-icons']),
                     widget.sep.Sep(padding=10),
-                    #widget.BatteryIcon(theme_path=os.path.join(home,'.icons/AwOkenWhite/clear/24x24/status')),
-                    #widget.Battery(foreground='#0cdb63', low_percentage=0.20, low_foreground='fa5e5b', update_delay=10, format='{percent:.0%}'),
-                    #widget.sep.Sep(padding=2),
-                    #widget.Volume(theme_path=os.path.join(home,'.icons/AwOkenWhite/clear/24x24/status')),
-                    #widget.sep.Sep(padding=2),
                     widget.Systray(),
                     widget.sep.Sep(padding=10),
                     widget.TextBox(font="Font Awesome", text="", foreground="#fba922", padding=2, fontsize=32),
                     widget.Clock(format='%A %d-%m-%Y -- %I:%M %p'),
                 ],
-                24, background="#2F343F"  #background="#151515"
+                24, background="#2F343F"  #Old background="#151515"
             ),
         ),
         Screen(),
-   ]         
+   ]
 
 # Drag floating layouts.
 mouse = [
@@ -286,6 +267,7 @@ def set_floating(window):
     if ((re.match("Open Database - .*", window.window.get_name())) or
          (window.window.get_name() == 'GitKraken') or
          (window.window.get_name() == 'Steam') or
+         (window.window.get_name() == 'gnome-calculator') or
          (window.window-get_name() == 'Discord Updater')):
         window.floating = True
 
@@ -295,7 +277,7 @@ def floating_dialogs(window):
     transient = window.window.get_wm_transient_for()
     if dialog or transient:
         window.floating = True
-        
+
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
 # mailing lists, github issues, and other WM documentation that suggest setting
