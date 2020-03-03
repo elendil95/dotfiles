@@ -102,6 +102,9 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+source "$ZSH_CUSTOM/aliases.zsh"
+
+export TERM=xterm-256color
 export FILE_MANAGER=ranger
 export EDITOR=/usr/bin/vim #Add the same 2 lines to /etc/profile to make this global
 export VISUAL=/usr/bin/vim
