@@ -109,7 +109,7 @@ sudo pacman -S --needed --noconfirm ttf-ubuntu-font-family noto-fonts ttf-droid 
 read -p "Would you like to install extra software for a more out-of-the-box experience? [y/n]" yn
 
 case $yn in
-    [Yy]* ) sudo pacman -S --noconfirm --needed compton gnome-screenshot gnome-calculator xfburn redshift redshift-gtk gimp gimp-font-viewer pinta ristretto vlc quodlibet firefox thunderbird filezilla hexchat qbittorrent wireshark mpv vlc simplescreenrecorder screenkey quodlibet easytag libreoffice-fresh pyroom gvim retext evince zathura mupdf arc-gtk3-theme baobab curl dconf-editor gnome-disk-utility gnome-system-monitor gnome-terminal gparted grsync gvfs gvfs-mtp htop kvantum-qt5 kvantum-theme-arc lsb-release mlocate net-tools notify-osd noto-fonts numlockx neofetch scrot simple-scan thunar thunar-archive-plugin thunar-volman pcmanfm tumbler wget unace unrar zip unzip sharutils  uudeview  arj cabextract file-roller keepass ntfs-3g; break;;
+    [Yy]* ) sudo pacman -S --noconfirm --needed gnome-screenshot xfburn redshift redshift-gtk gimp gimp-font-viewer pinta ristretto vlc quodlibet firefox thunderbird filezilla hexchat qbittorrent wireshark mpv vlc simplescreenrecorder screenkey quodlibet easytag libreoffice-fresh pyroom gvim retext evince zathura mupdf arc-gtk3-theme baobab curl dconf-editor gnome-disk-utility gnome-system-monitor gnome-terminal gparted grsync gvfs gvfs-mtp htop kvantum-qt5 kvantum-theme-arc lsb-release mlocate net-tools notify-osd noto-fonts numlockx neofetch scrot simple-scan thunar thunar-archive-plugin thunar-volman pcmanfm tumbler wget unace unrar zip unzip sharutils  uudeview  arj cabextract file-roller keepass ntfs-3g; break;;
     [Nn]* ) ;;
     * ) echo "Please answer yes or no.";;
 esac
@@ -183,18 +183,20 @@ echo "######################"
 
 sudo pacman -S --needed  --noconfirm zsh zsh-doc zsh-autosuggestions zsh-completions zsh-lovers tig
 cp ~/dotfiles/.zshrc ~/.zshrc
-sudo usermod -s /bin/zsh $(whoami)
+
 ## Setup oh-my-zsh
 cd ~
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" &
 wait
 [ -d $HOME"/.oh-my-zsh" ] || echo "### OH MY ZSH DIR NOT FOUND!" ; exit 1
 cd ~/.oh-my-zsh/
-cp -vf ~/dotfiles/.oh-my-zsh/oh-my-zsh.sh ~/.oh-my-zsh/
+# Its no longer necessary to copy over oh-my-zsh.zsh
 cp -vf ~/dotfiles/.oh-my-zsh/custom/*.zsh ~/.oh-my-zsh/custom/
 git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
 
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+git clone https://github.com/softmoth/zsh-vim-mode.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-vim-mode
 
 #Setup vim with powerline that we installed before (but no plugins)
 echo "######################"
@@ -212,7 +214,7 @@ echo "### SETTING UP QTILE ###"
 echo "########################"
 
 sudo pacman -S --needed --noconfirm qtile
-sudo pacman --S --needed --noconfirm network-manager-applet redshift redshift-gtk feh nitrogen syncthing-gtk maim notify-osd dmenu firefox cmus w3m trash-cli atool highlight rangercalcurse light-locker xfce4-appfinder
+sudo pacman --S --needed --noconfirm picom network-manager-applet redshift redshift-gtk feh nitrogen syncthing-gtk maim notify-osd dmenu firefox cmus w3m trash-cli atool highlight ranger calcurse light-locker xfce4-appfinder gnome-calculator 
 yay -S --needed light-git gksu pamac-aur pamac-tray-appindicator
 sudo pip install pywal
 
@@ -237,3 +239,9 @@ ranger --copy-config=all
 cp -vf ~/dotfiles/.config/ranger/rc.conf ~/.config/ranger/
 cp -vf ~/dotfiles/.config/ranger/rifle.conf ~/.config/ranger/
 cp -vf ~/dotfiles/.config/ranger/scope.conf ~/.config/ranger/
+
+# Add devicons to ranger
+cd /tmp
+git clone https://github.com/alexanderjeurissen/ranger_devicons.git
+cd ranger_devicons
+sudo make install

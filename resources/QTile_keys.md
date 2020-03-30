@@ -46,11 +46,11 @@
 | Mod + \$n | Switch to workspace $n[^3].
 | Mod + Shift + \$n | Send active window to workspace \$n
 | Mod + r  | Invoke Dmenu  |
-| Mod + Shift + r  | Launch app finder   |
+| Mod + Shift + r  | Launch gaphical app finder   |
 | Mod + Control + r  | Restart QTile (reloads config file) |
 | Mod + Control + q  | Log out  |
 | Mod + Control + l  | Lock the screen  |
-| Mod + Control + x  | Invoke session manager (suspend, hibernate reboot etc)  |
+| Mod + Control + x  | Invoke session manager (suspend, hibernate, shutdown, reboot etc)  |
 
 ## Programs bindings
 
@@ -58,10 +58,11 @@
 |---|---|
 | Mod + Enter  | Spawn terminal (urxvt)  |
 | Mod + b  | Spawn web browser (Firefox)   |
+| Mod + e  | Spawn email client (Thunderbird)   |
 | Mod + f  | Spawn file manager (Ranger)   |
 | Mod + m  | Spawn music player (Cmus) |
 | Mod + c  | Spawn calendar app (Calcurse) |
-| Control + Shift + f  | Spawn file manager in current directory[^4] (**Read footnote**) |
+| Mod + Shift + c  | Spawn calculator (Gnome Calculator)  |
 | Mod + p  | Spawn password manager (Keepass)   |
 
 
@@ -80,5 +81,4 @@
 [^1]: Place active window on the right side of the screen
 [^2]: Floating is a bit buggy, as its not in the normal list of layouts so you can't cycle into it with Mod+Tab.
 [^3]: Workspaces are called 'groups' in QTile. The number of workspaces and their symbols an be changed in the config file, its just a string we iterate through. Currently workspaces are digits 1 through 8.
-[^4]: Not implemented in Qtile but in zsh, only works when working in a terminal.
 [^5]: Normally it grabs a screenshot of the screen. If multiple monitors are present it will also capture the content of the other monitors in the same picture. Also note that you *do not* need to press Mod for this
