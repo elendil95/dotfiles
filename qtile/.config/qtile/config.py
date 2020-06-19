@@ -81,8 +81,9 @@ keys = [
     Key([mod], "f", lazy.spawn("urxvt -e ranger")),
     Key([mod], "m", lazy.spawn("urxvt -e cmus")),
     Key([mod], "c", lazy.spawn("urxvt -e calcurse")),
-    Key([mod, "shift"], "c", lazy.spawn("gnome-calculator")),
     Key([mod], "p", lazy.spawn("keepass")),
+    Key([mod], "e", lazy.spawn("thunderbird")),
+    Key([mod, "shift"], "c", lazy.spawn("gnome-calculator")),
 
     #Audio Controls
     Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -c 0 -q set Master 2dB+")),
