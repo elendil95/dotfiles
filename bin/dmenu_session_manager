@@ -1,8 +1,10 @@
 #!/bin/bash
 
+. "${HOME}/.cache/wal/colors.sh"
+
 opts="lock\nexit\nswitch_user\nsuspend\nhibernate\nreboot\nshut_down"
 
-opt=$(echo -e $opts|dmenu -i -p "End Session:")
+opt=$(echo -e $opts|dmenu -i -p "End Session:" -nb "$color0" -nf "$color15" -sb "$color10" -sf "$color15")
 
 case $opt in
     lock) xflock4 ;;
