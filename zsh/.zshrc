@@ -67,9 +67,9 @@ ZSH_THEME="kafeitu"
 plugins=(
  # git
  # web-search
-  zsh-vim-mode
   zsh-syntax-highlighting
   history-substring-search
+  zsh-vim-mode
 )
 
 source $ZSH/oh-my-zsh.sh
