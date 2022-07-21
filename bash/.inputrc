@@ -1,0 +1,17 @@
+$include /etc/inputrc 
+set completion-ignore-case On
+
+# New in bash 4.3/ GNU readline 6.3 
+set show-mode-in-prompt on 
+"\e[A": history-substring-search-backward 
+"\e[B": history-substring-search-forward
+set editing-mode vi
+
+$if mode=vi
+set keymap vi-command
+# these are for vi-command mode
+Control-l: clear-screen
+set keymap vi-insert
+# these are for vi-insert mode
+Control-l: clear-screen
+$endif
