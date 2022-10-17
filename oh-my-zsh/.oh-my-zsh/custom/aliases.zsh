@@ -18,6 +18,7 @@ alias gc='git commit -m'
 alias gca='git commit -a -m'
 alias gpl='git pull'
 alias gps='git push'
+alias gcl='git clone'
 alias gd='git diff'
 
 binary(){
