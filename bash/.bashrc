@@ -123,6 +123,13 @@ fi
 #Enable VI mode
 set -o vi
 
+#PATH Definition.
+if [ -d "$HOME/.local/bin" ]; then
+  PATH="$HOME/.local/bin:$PATH"
+fi
+if [ -d "$HOME/bin" ]; then
+  PATH="$HOME/bin:$PATH"
+fi
 #STARTUP
 #cat reminder.txt
 #cat homu_bash.txt
