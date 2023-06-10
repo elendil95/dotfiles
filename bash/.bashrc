@@ -16,6 +16,10 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+# HISTSIZE = Number of commands to remember for the current shell session: these will be written to .bash_history when bash terminates.
+#            Setting to -1 disables the limit.
+#
+# HISTFILESIZE = number of commands to keep in .bash_history. Setting to -1 disables the limit.
 HISTSIZE=1000
 HISTFILESIZE=50000
 
@@ -76,13 +80,12 @@ xterm*|rxvt*)
     ;;
 esac
 
-# enable color support of ls and also add handy aliases
+# enable color support in ls and grep
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
-
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
@@ -120,10 +123,10 @@ if ! shopt -oq posix; then
   fi
 fi
 
-#Enable VI mode
+# Enable VI mode
 set -o vi
 
-#PATH Definition.
+# Add some more directories on the PATH for custom scripts
 if [ -d "$HOME/.local/bin" ]; then
   PATH="$HOME/.local/bin:$PATH"
 fi
