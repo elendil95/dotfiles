@@ -1,16 +1,14 @@
-alias vpns='expressvpn status'
-alias vpnc='expressvpn connect'
-alias vpnd='expressvpn disconnect'
+# Basic Sysytem aliases
+alias cd..='cd ..'
+alias ll='ls -lah'
+alias la='ls -lAh'
+alias l='ls -CF'
+# alias lsa='ls -lah'
 alias cp='cp -v'
 alias mv='mv -v'
-alias rm='rm -Iv'
-alias cd..='cd ..'
-alias l='ls -lah'
-alias la='ls -lAh'
-alias ll='ls -lah'
-alias ls='ls --color=tty'
-alias lsa='ls -lah'
 
+#User aliases
+alias rm='rm -Iv'
 alias timezones='tzwatch'
 alias du='du -sh'
 alias df='df -hT -x tmpfs'
@@ -24,7 +22,11 @@ alias gca='git commit -a -m'
 alias gpl='git pull'
 alias gps='git push'
 alias gd='git diff'
+alias gcl='git clone'
 alias vm='vim'
+alias vpns='expressvpn status'
+alias vpnc='expressvpn connect'
+alias vpnd='expressvpn disconnect'
 
 binary(){
 echo "obase=2; $1"|bc
