@@ -76,11 +76,11 @@ keys = [
     Key([mod, "control"], "x", lazy.spawn(os.path.join(home,"bin","dmenu_session_manager"))),
 
     #Programs
-    Key([mod], "Return", lazy.spawn("st")),
+    Key([mod], "Return", lazy.spawn("urxvt")),
     Key([mod], "b", lazy.spawn("firefox")),
     Key([mod], "f", lazy.spawn("thunar")),
-    Key([mod], "m", lazy.spawn("st -e cmus")),
-    Key([mod], "c", lazy.spawn("st -e calcurse")),
+    Key([mod], "m", lazy.spawn("urxvt -e cmus")),
+    Key([mod], "c", lazy.spawn("urxvt -e calcurse")),
     Key([mod], "p", lazy.spawn("keepassxc")),
     Key([mod], "e", lazy.spawn("thunderbird")),
     Key([mod, "shift"], "c", lazy.spawn("gnome-calculator")),
@@ -91,8 +91,8 @@ keys = [
     Key([], "XF86AudioMute", lazy.spawn("amixer -D pulse sset Master toggle -q")),
 
     #Screen brightness
-    Key([], 'XF86MonBrightnessUp',   lazy.spawn("st -e light -A 10")),
-    Key([], 'XF86MonBrightnessDown', lazy.spawn("st -e light -U 10")),
+    Key([], 'XF86MonBrightnessUp',   lazy.spawn("urxvt -e light -A 10")),
+    Key([], 'XF86MonBrightnessDown', lazy.spawn("urxvt -e light -U 10")),
 
     #Screenshots
     Key([], 'Print', lazy.spawn(os.path.join(home,"bin","screenshot.sh"))),
