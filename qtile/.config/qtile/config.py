@@ -279,7 +279,7 @@ floating_layout = layout.Floating(
     ]
 )
 
-# If a window requests to be fullscreen, it is automatically fullscreened. 
+# If a window requests to be fullscreen, it is automatically fullscreened.
 # Set this to false if you only want windows to be fullscreen if you ask them to be.
 AUTO_FULLSCREEN = True
 
@@ -289,11 +289,11 @@ AUTO_MINIMIZE = True
 # When clicked, should the window be brought to the front or not.
 BRING_FRONT_CLICK = False
 
-# If true, the cursor follows the focus as directed by the keyboard, warping to the center of the focused window. 
+# If true, the cursor follows the focus as directed by the keyboard, warping to the center of the focused window.
 # When switching focus between screens, If there are no windows in the screen, the cursor will warp to the center of the screen.
 CURSOR_WARP = False
 
-# A function which generates group binding hotkeys. 
+# A function which generates group binding hotkeys.
 # It takes a single argument, the DGroups object, and can use that to set up dynamic key bindings.
 DGROUPS_KEY_BINDER = None
 
