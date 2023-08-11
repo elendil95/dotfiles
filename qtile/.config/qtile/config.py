@@ -24,12 +24,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import os
+import subprocess
+import platform
 from libqtile.config import Key, Screen, Group, Drag, Click, Match
 from libqtile.command import lazy
-from libqtile import layout, bar, widget, hook
-from typing import List
-import os, os.path, shlex, subprocess, platform, re
+from libqtile.log_utils import logger
+from libqtile import layout, bar, widget, hook, extension
 
+# Mod Key is Windows key
 mod = "mod4"
 
 home=os.environ.get('HOME')
@@ -39,7 +42,12 @@ num_screens = {
     'ThinkPad-E480': 1,
     'ThinkPad-T495': 2
 }
-
+# Log some common mistakes that can happen when first setting up qtile
+if (hostname not in num_screens):
+    logger.warning("Current hostname is not in num_screen dictionary! Screen/bar layout for this machine cannot be configured")
+scriptDir = os.path.expanduser("~/bin")
+if (not os.path.isdir(scriptDir)):
+    logger.warning("$HOME/bin is not configured, some commands will not work correctly")
 
 ##-----KEYBINDS------
 keys = [
@@ -70,10 +78,11 @@ keys = [
     Key([mod], "w", lazy.window.kill()),
     Key([mod, "control"], "r", lazy.restart()),
     Key([mod, "control"], "q", lazy.shutdown()),
-    Key([mod], "r", lazy.spawn("dmenu_run -p 'Run:' -fn 'Monospace:size=12' -nb '#000000' -nf '#fefefe'")),
+    Key([mod], "r", lazy.run_extension(extension.DmenuRun(dmenu_height=24))), # Use dmenu wrapper
+    # Key([mod], "r", lazy.spawn("dmenu_run -p 'Run:' -fn 'Monospace:size=12' -nb '#000000' -nf '#fefefe'")),
     Key([mod, "shift"], 'r', lazy.spawn("xfce4-appfinder")),
-    Key([mod, "control"], "l", lazy.spawn(os.path.join(home,"bin","lock_screen.sh"))),   #lock the screen
-    Key([mod, "control"], "x", lazy.spawn(os.path.join(home,"bin","dmenu_session_manager"))),
+    Key([mod, "control"], "l", lazy.spawn(os.path.expanduser("~/bin/lock_screen.sh"))),   #lock the screen
+    Key([mod, "control"], "x", lazy.spawn(os.path.expanduser("~/bin/dmenu_session_manager"))),
 
     #Programs
     Key([mod], "Return", lazy.spawn("urxvt")),
@@ -95,8 +104,8 @@ keys = [
     Key([], 'XF86MonBrightnessDown', lazy.spawn("urxvt -e light -U 10")),
 
     #Screenshots
-    Key([], 'Print', lazy.spawn(os.path.join(home,"bin","screenshot.sh"))),
-    Key([mod], 'Print', lazy.spawn(os.path.join(home,"bin","screenshot_select.sh")))
+    Key([], 'Print', lazy.spawn(os.path.expanduser("~/bin/screenshot.sh"))),
+    Key([mod], 'Print', lazy.spawn(os.path.expanduser("~/bin/screenshot_select.sh")))
 
 ]
 
@@ -120,14 +129,19 @@ floating_layout = layout.Floating()
 
 @hook.subscribe.startup_once
 def autostart():
-    home =os.path.expanduser('~/.config/qtile/autostart.sh')
-    subprocess.call([home])
+    autoStartFile = os.path.expanduser('~/.config/qtile/autostart.sh')
+    if (os.path.isfile(autoStartFile) and os.access(autoStartFile, os.X_OK)):
+        subprocess.Popen([autoStartFile])
+    else:
+        logger.warning("autostart file is not executable, or does not exist")
 
+# Default settings for bar widgets.
 widget_defaults = dict(
     font='Noto Sans',
     fontsize=12,
     padding=2,
 )
+# Default settings for extensions.
 extension_defaults = widget_defaults.copy()
 
 if (num_screens[hostname] == 2):  #If on desktop pc with dueal screens
@@ -136,7 +150,7 @@ if (num_screens[hostname] == 2):  #If on desktop pc with dueal screens
             top=bar.Bar(
                 [
 widget.GroupBox(inactive="#a9a9a9", active="#f3f4f5"),
-                    widget.Prompt(foreground='#00d2ff', prompt="Run: "),
+                    # widget.Prompt(foreground='#00d2ff', prompt="Run: "),
                     widget.WindowName(font="Noto Sans Bold"),
                     widget.TextBox(font="FontAwesome", text=" ", foreground="#44c419", padding=0, fontsize=20),
                     widget.TextBox(font="FontAwesome", text="", foreground="#44c419", padding=0, fontsize=20),
@@ -167,7 +181,7 @@ widget.GroupBox(inactive="#a9a9a9", active="#f3f4f5"),
             top=bar.Bar(
                 [
                  widget.GroupBox(inactive="#a9a9a9", active="#f3f4f5"),
-                    widget.Prompt(foreground='#00d2ff', prompt="Run: "),
+                    # widget.Prompt(foreground='#00d2ff', prompt="Run: "),
                     widget.WindowName(font="Noto Sans Bold"),
                     widget.TextBox(font="FontAwesome", text=" ", foreground="#44c419", padding=0, fontsize=20),
                     widget.TextBox(font="FontAwesome", text="", foreground="#44c419", padding=0, fontsize=20),
@@ -194,7 +208,7 @@ widget.GroupBox(inactive="#a9a9a9", active="#f3f4f5"),
         )
     ]
 else:
-   screens = [      #If on laptop
+    screens = [      #If on laptop
         Screen(
             top=bar.Bar(
                 [
@@ -238,12 +252,7 @@ mouse = [
     Click([mod], "Button2", lazy.window.bring_to_front())
 ]
 
-dgroups_key_binder = None
-dgroups_app_rules = []
-main = None
-follow_mouse_focus = True
-bring_front_click = False
-cursor_warp = False
+# main = None
 floating_layout = layout.Floating(
     float_rules=[
          # Run the utility of `xprop` to see the wm class and name of an X client.
@@ -269,8 +278,40 @@ floating_layout = layout.Floating(
         Match(title="Discord Updater"),
     ]
 )
-auto_fullscreen = True
-focus_on_window_activation = "smart"
+
+# If a window requests to be fullscreen, it is automatically fullscreened. 
+# Set this to false if you only want windows to be fullscreen if you ask them to be.
+AUTO_FULLSCREEN = True
+
+# If things like steam games want to auto-minimize themselves when losing focus, should we respect this or not?
+AUTO_MINIMIZE = True
+
+# When clicked, should the window be brought to the front or not.
+BRING_FRONT_CLICK = False
+
+# If true, the cursor follows the focus as directed by the keyboard, warping to the center of the focused window. 
+# When switching focus between screens, If there are no windows in the screen, the cursor will warp to the center of the screen.
+CURSOR_WARP = False
+
+# A function which generates group binding hotkeys. 
+# It takes a single argument, the DGroups object, and can use that to set up dynamic key bindings.
+DGROUPS_KEY_BINDER = None
+
+# A list of Rule objects which can send windows to various groups based on matching criteria.
+DGROUPS_APP_RULES = []
+
+# Behavior of the _NET_ACTIVATE_WINDOW message sent by applications
+#     - urgent: urgent flag is set for the window
+#     - focus: automatically focus the window
+#     - smart: automatically focus if the window is in the current group
+#     - never: never automatically focus any window that requests it
+FOCUS_ON_WINDOW_ACTIVATION = "smart"
+
+# Controls whether or not focus follows the mouse around as it moves across windows in a layout.
+FOLLOW_MOUSE_FOCUS = True
+
+# Controls whether or not to automatically reconfigure screens when there are changes in randr output configuration.
+RECONFIGURE_SCREENS = True
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
@@ -281,4 +322,4 @@ focus_on_window_activation = "smart"
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 #wmname = "LG3D"
-wmname = "Qtile"
+WMNAME = "Qtile"
