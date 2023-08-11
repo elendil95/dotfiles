@@ -272,22 +272,6 @@ floating_layout = layout.Floating(
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 
-# @hook.subscribe.client_new
-# def set_floating(window):
-#     if ((re.match("Open Database - .*", window.window.get_name())) or
-#          (window.window.get_name() == 'GitKraken') or
-#          (window.window.get_name() == 'Steam') or
-#          (window.window.get_name() == 'gnome-calculator') or
-#          (window.window-get_name() == 'Discord Updater')):
-#         window.floating = True
-
-# @hook.subscribe.client_new
-# def floating_dialogs(window):
-#     dialog = window.window.get_wm_type() == 'dialog'
-#     transient = window.window.get_wm_transient_for()
-#     if dialog or transient:
-#         window.floating = True
-
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
 # mailing lists, github issues, and other WM documentation that suggest setting
