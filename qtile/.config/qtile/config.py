@@ -35,7 +35,7 @@ mod = "mod4"
 home=os.environ.get('HOME')
 hostname = platform.node()
 num_screens = {
-    'manjaro-tower': 2,
+    'arch-gaming': 2,
     'ThinkPad-E480': 1,
     'ThinkPad-T495': 2
 }
@@ -76,12 +76,12 @@ keys = [
     Key([mod, "control"], "x", lazy.spawn(os.path.join(home,"bin","dmenu_session_manager"))),
 
     #Programs
-    Key([mod], "Return", lazy.spawn("urxvt")),
+    Key([mod], "Return", lazy.spawn("st")),
     Key([mod], "b", lazy.spawn("firefox")),
-    Key([mod], "f", lazy.spawn("urxvt -e ranger")),
-    Key([mod], "m", lazy.spawn("urxvt -e cmus")),
-    Key([mod], "c", lazy.spawn("urxvt -e calcurse")),
-    Key([mod], "p", lazy.spawn("keepass")),
+    Key([mod], "f", lazy.spawn("thunar")),
+    Key([mod], "m", lazy.spawn("st -e cmus")),
+    Key([mod], "c", lazy.spawn("st -e calcurse")),
+    Key([mod], "p", lazy.spawn("keepassxc")),
     Key([mod], "e", lazy.spawn("thunderbird")),
     Key([mod, "shift"], "c", lazy.spawn("gnome-calculator")),
 
@@ -91,8 +91,8 @@ keys = [
     Key([], "XF86AudioMute", lazy.spawn("amixer -D pulse sset Master toggle -q")),
 
     #Screen brightness
-    Key([], 'XF86MonBrightnessUp',   lazy.spawn("urxvt -e light -A 10")),
-    Key([], 'XF86MonBrightnessDown', lazy.spawn("urxvt -e light -U 10")),
+    Key([], 'XF86MonBrightnessUp',   lazy.spawn("st -e light -A 10")),
+    Key([], 'XF86MonBrightnessDown', lazy.spawn("st -e light -U 10")),
 
     #Screenshots
     Key([], 'Print', lazy.spawn(os.path.join(home,"bin","screenshot.sh"))),
@@ -114,7 +114,7 @@ for i in groups:
 layouts = [
     layout.MonadTall(align='MonadTail._right', border_width=0, border_focus='#ff0000', margin=10),
     layout.Max(),
-    layout.TreeTab(margin=10),
+    # layout.TreeTab(margin=10),
 ]
 floating_layout = layout.Floating()
 
@@ -140,7 +140,7 @@ widget.GroupBox(inactive="#a9a9a9", active="#f3f4f5"),
                     widget.WindowName(font="Noto Sans Bold"),
                     widget.TextBox(font="FontAwesome", text=" ", foreground="#44c419", padding=0, fontsize=30),
                     widget.TextBox(font="FontAwesome", text="", foreground="#44c419", padding=0, fontsize=30),
-                    widget.Net(interface='enp5s0'),
+                    widget.Net(interface='eth0'),
                     widget.Sep(padding=10),
                     widget.KeyboardLayout(configured_keyboards=['it', 'dk', 'us'], font="Noto Sans Bold"),
                     widget.sep.Sep(padding=10),
@@ -151,9 +151,9 @@ widget.GroupBox(inactive="#a9a9a9", active="#f3f4f5"),
                     widget.ThermalSensor(foreground_alert="#cd1f3f", metric=True, padding=3, threshold=80),
                     widget.Sep(padding=10),
                     widget.TextBox(font="FontAwesome", text="", foreground='#3384d0', padding=0, fontsize=32),
-                    widget.Memory(fmt = '{MemUsed}M/{MemTotal}M', update_interval=5, foreground='#f3f4f5'),
+                    widget.Memory(format = '{MemUsed: .0f}{mm}/{MemTotal: .0f}{mm}', update_interval=5, foreground='#f3f4f5'),
                     widget.sep.Sep(padding=10),
-                    widget.CurrentLayoutIcon(custom_icon_paths=['/usr/local/src/qtile/qtile/libqtile/resources/layout-icons']),
+                    widget.CurrentLayoutIcon(custom_icon_paths=['usr/lib/python3.11/site-packages/libqtile/resources/layout-icons']),
                     widget.sep.Sep(padding=10),
                     widget.Systray(),
                     widget.sep.Sep(padding=10),
@@ -171,7 +171,7 @@ widget.GroupBox(inactive="#a9a9a9", active="#f3f4f5"),
                     widget.WindowName(font="Noto Sans Bold"),
                     widget.TextBox(font="FontAwesome", text=" ", foreground="#44c419", padding=0, fontsize=30),
                     widget.TextBox(font="FontAwesome", text="", foreground="#44c419", padding=0, fontsize=30),
-                    widget.Net(interface='enp5s0'),
+                    widget.Net(interface='eth0'),
                     widget.Sep(padding=10),
                     widget.KeyboardLayout(configured_keyboards=['it', 'dk', 'us'], font="Noto Sans Bold"),
                     widget.sep.Sep(padding=10),
@@ -182,9 +182,9 @@ widget.GroupBox(inactive="#a9a9a9", active="#f3f4f5"),
                     widget.ThermalSensor(foreground_alert="#cd1f3f", metric=True, padding=3, threshold=80),
                     widget.Sep(padding=10),
                     widget.TextBox(font="FontAwesome", text="", foreground='#3384d0', padding=0, fontsize=32),
-                    widget.Memory(fmt = '{MemUsed}M/{MemTotal}M', update_interval=5, foreground='#f3f4f5'),
+                    widget.Memory(format = '{MemUsed: .0f}{mm}/{MemTotal: .0f}{mm}', update_interval=5, foreground='#f3f4f5'),
                     widget.sep.Sep(padding=10),
-                    widget.CurrentLayoutIcon(custom_icon_paths=['/usr/local/src/qtile/qtile/libqtile/resources/layout-icons']),
+                    widget.CurrentLayoutIcon(custom_icon_paths=['usr/lib/python3.11/site-packages/libqtile/resources/layout-icons']),
                     widget.sep.Sep(padding=10),
                     widget.TextBox(font="Font Awesome", text="", foreground="#fba922", padding=2, fontsize=32),
                     widget.Clock(format='%A %d-%m-%Y -- %I:%M %p'),
@@ -214,9 +214,9 @@ else:
                     widget.ThermalSensor(foreground_alert="#cd1f3f", metric=True, padding=3, threshold=80),
                     widget.Sep(padding=10),
                     widget.TextBox(font="FontAwesome", text="", foreground='#3384d0', padding=0, fontsize=32),
-                    widget.Memory(fmt = '{MemUsed}M/{MemTotal}M', update_interval=5, foreground='#f3f4f5'),
+                    widget.Memory(format = '{MemUsed: .0f}{mm}/{MemTotal: .0f}{mm}', update_interval=5, foreground='#f3f4f5'),
                     widget.sep.Sep(padding=10),
-                    widget.CurrentLayoutIcon(custom_icon_paths=['/usr/local/src/qtile/qtile/libqtile/resources/layout-icons']),
+                    widget.CurrentLayoutIcon(custom_icon_paths=['usr/lib/python3.11/site-packages/libqtile/resources/layout-icons']),
                     widget.sep.Sep(padding=10),
                     widget.Systray(),
                     widget.sep.Sep(padding=10),
