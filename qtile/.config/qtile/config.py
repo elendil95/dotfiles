@@ -24,7 +24,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from libqtile.config import Key, Screen, Group, Drag, Click
+from libqtile.config import Key, Screen, Group, Drag, Click, Match
 from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook
 from typing import List
@@ -244,40 +244,49 @@ main = None
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
-floating_layout = layout.Floating(float_rules=[
-    {'wmclass': 'confirm'},
-    {'wmclass': 'dialog'},
-    {'wmclass': 'download'},
-    {'wmclass': 'error'},
-    {'wmclass': 'file_progress'},
-    {'wmclass': 'notification'},
-    {'wmclass': 'splash'},
-    {'wmclass': 'toolbar'},
-    {'wmclass': 'confirmreset'},  # gitk
-    {'wmclass': 'makebranch'},  # gitk
-    {'wmclass': 'maketag'},  # gitk
-    {'wname': 'branchdialog'},  # gitk
-    {'wname': 'pinentry'},  # GPG key password entry
-    {'wmclass': 'ssh-askpass'},  # ssh-askpass
-])
+floating_layout = layout.Floating(
+    float_rules=[
+         # Run the utility of `xprop` to see the wm class and name of an X client.
+        *layout.Floating.default_float_rules,
+        Match(wm_class= "confirm"),
+        Match(wm_class= "dialog"),
+        Match(wm_class= "download"),
+        Match(wm_class= "error"),
+        Match(wm_class= "file_progress"),
+        Match(wm_class= "notification"),
+        Match(wm_class= "splash"),
+        Match(wm_class= "toolbar"),
+        Match(wm_class="confirmreset"),  # gitk
+        Match(wm_class="makebranch"),  # gitk
+        Match(wm_class="maketag"),  # gitk
+        Match(wm_class="ssh-askpass"),  # ssh-askpass
+        Match(title="branchdialog"),  # gitk
+        Match(title="pinentry"),  # GPG key password entry
+        Match(title="main-eu.kdbx [Locked] - KeePassXC"), #Keepassxc database unlock window
+        Match(title="GitKraken"),
+        Match(title="Steam"),
+        Match(title="gnome-calculator"),
+        Match(title="Discord Updater"),
+    ]
+)
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 
-@hook.subscribe.client_new
-def set_floating(window):
-    if ((re.match("Open Database - .*", window.window.get_name())) or
-         (window.window.get_name() == 'GitKraken') or
-         (window.window.get_name() == 'Steam') or
-         (window.window.get_name() == 'gnome-calculator') or
-         (window.window-get_name() == 'Discord Updater')):
-        window.floating = True
+# @hook.subscribe.client_new
+# def set_floating(window):
+#     if ((re.match("Open Database - .*", window.window.get_name())) or
+#          (window.window.get_name() == 'GitKraken') or
+#          (window.window.get_name() == 'Steam') or
+#          (window.window.get_name() == 'gnome-calculator') or
+#          (window.window-get_name() == 'Discord Updater')):
+#         window.floating = True
 
-@hook.subscribe.client_new
-def floating_dialogs(window):
-    dialog = window.window.get_wm_type() == 'dialog'
-    transient = window.window.get_wm_transient_for()
-    if dialog or transient:
-        window.floating = True
+# @hook.subscribe.client_new
+# def floating_dialogs(window):
+#     dialog = window.window.get_wm_type() == 'dialog'
+#     transient = window.window.get_wm_transient_for()
+#     if dialog or transient:
+#         window.floating = True
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
