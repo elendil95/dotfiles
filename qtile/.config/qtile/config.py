@@ -27,12 +27,14 @@
 import os
 import subprocess
 import platform
+from libqtile import layout, bar, widget, hook, extension
 from libqtile.config import Key, Screen, Group, Drag, Click, Match
 from libqtile.command import lazy
-from libqtile.log_utils import logger
-from libqtile import layout, bar, widget, hook, extension
+from libqtile.log_utils import logger as log
+
 
 # Mod Key is Windows key
+# pylint: disable=invalid-name
 mod = "mod4"
 
 home=os.environ.get('HOME')
@@ -44,68 +46,69 @@ num_screens = {
 }
 # Log some common mistakes that can happen when first setting up qtile
 if (hostname not in num_screens):
-    logger.warning("Current hostname is not in num_screen dictionary! Screen/bar layout for this machine cannot be configured")
+    log.warning("Current hostname is not in num_screen dictionary! Screen/bar layout for this machine cannot be configured")
 scriptDir = os.path.expanduser("~/bin")
 if (not os.path.isdir(scriptDir)):
-    logger.warning("$HOME/bin is not configured, some commands will not work correctly")
+    log.warning("$HOME/bin is not configured, some commands will not work correctly")
 
 ##-----KEYBINDS------
 keys = [
-    #MonadTall Bindings
-    Key([mod], "h", lazy.layout.left()),
-    Key([mod], "l", lazy.layout.right()),
-    Key([mod], "j", lazy.layout.down()),
-    Key([mod], "k", lazy.layout.up()),
-    Key([mod], "space", lazy.layout.next()),
-    Key([mod, "shift"], "h", lazy.layout.swap_left()),
-    Key([mod, "shift"], "l", lazy.layout.swap_right()),
-    Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
-    Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
-    Key([mod, "shift"], "plus", lazy.layout.grow()),
-    Key([mod, "shift"], "minus", lazy.layout.shrink()),
-    Key([mod, "shift"], "n", lazy.layout.reset()),
-    Key([mod, "shift"], "m", lazy.layout.maximize()),
-    Key([mod, "shift"], "space", lazy.layout.flip()),
+    # MonadTall Bindings
+    Key([mod], "h", lazy.layout.left(), desc="Focus window to the left"),
+    Key([mod], "l", lazy.layout.right(), desc="Focus window to the right"),
+    Key([mod], "j", lazy.layout.down(), desc="Focus window below"),
+    Key([mod], "k", lazy.layout.up(), desc="Focus window above"),
+    Key([mod], "space", lazy.layout.next(), desc="Focus next window"),
+    Key([mod, "shift"], "h", lazy.layout.swap_left(), desc="Move current window to the left"),
+    Key([mod, "shift"], "l", lazy.layout.swap_right(), desc="Move current window to the right"),
+    Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move current window down"),
+    Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move current window up"),
+    Key([mod, "shift"], "plus", lazy.layout.grow(), desc="Increase the size of the current window"),
+    Key([mod, "shift"], "minus", lazy.layout.shrink(), desc="Decrease the size of the current window"),
+    Key([mod, "shift"], "n", lazy.layout.reset(), desc="Reset the size of the current window"),
+    # Key([mod, "shift"], "m", lazy.layout.maximize()),
+    Key([mod, "shift"], "space", lazy.layout.flip(), desc="Flip the position of the master and stack area (e.g from master on the left to master on the right)"),
 
-    # Toggle between different layouts
-    Key([mod], "Tab", lazy.next_layout()),
+    Key([mod], "Tab", lazy.next_layout(), desc="Cycle between layouts"),
 
-    #Floating Layout Keybinds
-    Key([mod], "t", lazy.window.enable_floating()),
-    Key([mod, "shift"], "t", lazy.window.disable_floating()),
+    # Floating Layout Keybinds
+    Key([mod], "t", lazy.window.enable_floating(), desc="Enable floating mode"),
+    Key([mod, "shift"], "t", lazy.window.disable_floating(), desc="Disable floating mode"),
 
-    #Window controls (layout agnostic)
-    Key([mod], "w", lazy.window.kill()),
-    Key([mod, "control"], "r", lazy.restart()),
-    Key([mod, "control"], "q", lazy.shutdown()),
-    Key([mod], "r", lazy.run_extension(extension.DmenuRun(dmenu_height=24))), # Use dmenu wrapper
+    # Window controls (layout agnostic)
+    Key([mod], "w", lazy.window.kill(), desc="Close focused window"),
+    Key([mod, "control"], "r", lazy.restart(), desc="Restat Qtile (reloads configuration)"),
+    Key([mod, "control"], "q", lazy.shutdown(), desc="Quit Qtile (log out)"),
+
+    # Programs
+    Key([mod], "Return", lazy.spawn("urxvt"), desc="Open Terminal"),
+    Key([mod], "b", lazy.spawn("firefox"), desc="Open Web browser"),
+    Key([mod], "f", lazy.spawn("thunar"), desc="Open File manager"),
+    Key([mod], "m", lazy.spawn("urxvt -e cmus"), desc="Open Music player"),
+    Key([mod], "c", lazy.spawn("urxvt -e calcurse"), desc="Open Calendar"),
+    Key([mod], "p", lazy.spawn("keepassxc"), desc="Open Password manager"),
+    Key([mod], "e", lazy.spawn("thunderbird"), desc="Open Email client"),
+    Key([mod, "shift"], "c", lazy.spawn("gnome-calculator"), desc="Open Calculator"),
+
+    Key([mod], "r", lazy.run_extension(extension.DmenuRun(dmenu_height=24)), desc="Open Run launcher (Dmenu)"), # Use dmenu wrapper
     # Key([mod], "r", lazy.spawn("dmenu_run -p 'Run:' -fn 'Monospace:size=12' -nb '#000000' -nf '#fefefe'")),
-    Key([mod, "shift"], 'r', lazy.spawn("xfce4-appfinder")),
-    Key([mod, "control"], "l", lazy.spawn(os.path.expanduser("~/bin/lock_screen.sh"))),   #lock the screen
-    Key([mod, "control"], "x", lazy.spawn(os.path.expanduser("~/bin/dmenu_session_manager"))),
+    Key([mod, "shift"], 'r', lazy.spawn("xfce4-appfinder"), desc="Open graphical app finder"),
+    Key([mod, "control"], "l", lazy.spawn(os.path.expanduser("~/bin/lock_screen.sh")), desc="Lock the screen"),
+    Key([mod, "control"], "x", lazy.spawn(os.path.expanduser("~/bin/dmenu_session_manager")), desc="Open session manager (log out, restart, shutdown...)"),
+    Key([mod, "control"], "space", lazy.widget["keyboardlayout"].next_keyboard(), desc="Next keyboard layout."),
 
-    #Programs
-    Key([mod], "Return", lazy.spawn("urxvt")),
-    Key([mod], "b", lazy.spawn("firefox")),
-    Key([mod], "f", lazy.spawn("thunar")),
-    Key([mod], "m", lazy.spawn("urxvt -e cmus")),
-    Key([mod], "c", lazy.spawn("urxvt -e calcurse")),
-    Key([mod], "p", lazy.spawn("keepassxc")),
-    Key([mod], "e", lazy.spawn("thunderbird")),
-    Key([mod, "shift"], "c", lazy.spawn("gnome-calculator")),
+    # Audio Controls
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -c 0 -q set Master 2dB+"), desc="Increase volume on default audio device (ALSA)"),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -c 0 -q set Master 2dB-"), desc="Decrease volume on default audio device (ALSA)"),
+    Key([], "XF86AudioMute", lazy.spawn("amixer -D pulse sset Master toggle -q"), desc="Mute default audio device (ALSA)"),
 
-    #Audio Controls
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -c 0 -q set Master 2dB+")),
-    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -c 0 -q set Master 2dB-")),
-    Key([], "XF86AudioMute", lazy.spawn("amixer -D pulse sset Master toggle -q")),
+    # Screen brightness
+    Key([], 'XF86MonBrightnessUp',   lazy.spawn("urxvt -e light -A 10"), desc="Increase brightness"),
+    Key([], 'XF86MonBrightnessDown', lazy.spawn("urxvt -e light -U 10"), desc="Decrease brightness"),
 
-    #Screen brightness
-    Key([], 'XF86MonBrightnessUp',   lazy.spawn("urxvt -e light -A 10")),
-    Key([], 'XF86MonBrightnessDown', lazy.spawn("urxvt -e light -U 10")),
-
-    #Screenshots
-    Key([], 'Print', lazy.spawn(os.path.expanduser("~/bin/screenshot.sh"))),
-    Key([mod], 'Print', lazy.spawn(os.path.expanduser("~/bin/screenshot_select.sh")))
+    # Screenshots
+    Key([], 'Print', lazy.spawn(os.path.expanduser("~/bin/screenshot.sh")), desc="Take a full-screen screenshot. On multi-monitor systems, this will screenshot all monitors at once"),
+    Key([mod], 'Print', lazy.spawn(os.path.expanduser("~/bin/screenshot_select.sh")), desc="Select an area to be screenshot using mouse")
 
 ]
 
@@ -113,29 +116,30 @@ groups = [Group(i) for i in "12345678"]
 
 for i in groups:
     keys.extend([
-        # mod1 + letter of group = switch to group
-        Key([mod], i.name, lazy.group[i.name].toscreen()),
+        # mod + number for group = switch to group
+        Key([mod], i.name, lazy.group[i.name].toscreen(), desc="Switch to worspace x"),
 
-        # mod1 + shift + letter of group = switch to & move focused window to group
-        Key([mod, "shift"], i.name, lazy.window.togroup(i.name)),
+        # mod + shift + number for group = switch to & move focused window to group
+        Key([mod, "shift"], i.name, lazy.window.togroup(i.name), desc="Move currently focused window to workspace x"),
     ])
 
 layouts = [
     layout.MonadTall(align=0, border_width=0, border_focus='#ff0000', margin=10),
     layout.Max(),
-    # layout.TreeTab(margin=10),
 ]
 floating_layout = layout.Floating()
 
 @hook.subscribe.startup_once
 def autostart():
-    autoStartFile = os.path.expanduser('~/.config/qtile/autostart.sh')
-    if (os.path.isfile(autoStartFile) and os.access(autoStartFile, os.X_OK)):
-        subprocess.Popen([autoStartFile])
-    else:
-        logger.warning("autostart file is not executable, or does not exist")
+    """Hook to load stuff when qtile starts, reads the config file below"""
 
-# Default settings for bar widgets.
+    auto_start_file = os.path.expanduser('~/.config/qtile/autostart.sh')
+    if (os.path.isfile(auto_start_file) and os.access(auto_start_file, os.X_OK)):
+        subprocess.Popen([auto_start_file])
+    else:
+        log.warning("autostart file is not executable, or does not exist")
+
+# Default font/settings for bar widgets.
 widget_defaults = dict(
     font='Noto Sans',
     fontsize=12,
@@ -144,12 +148,12 @@ widget_defaults = dict(
 # Default settings for extensions.
 extension_defaults = widget_defaults.copy()
 
-if (num_screens[hostname] == 2):  #If on desktop pc with dueal screens
+if (num_screens[hostname] == 2):  #If on desktop pc with dual monitors
     screens = [
         Screen(
             top=bar.Bar(
                 [
-widget.GroupBox(inactive="#a9a9a9", active="#f3f4f5"),
+                    widget.GroupBox(inactive="#a9a9a9", active="#f3f4f5"),
                     # widget.Prompt(foreground='#00d2ff', prompt="Run: "),
                     widget.WindowName(font="Noto Sans Bold"),
                     widget.TextBox(font="FontAwesome", text=" ", foreground="#44c419", padding=0, fontsize=20),
@@ -167,20 +171,21 @@ widget.GroupBox(inactive="#a9a9a9", active="#f3f4f5"),
                     widget.TextBox(font="FontAwesome", text="", foreground='#3384d0', padding=0, fontsize=20),
                     widget.Memory(format = '{MemUsed: .0f}{mm}/{MemTotal: .0f}{mm}', update_interval=5, foreground='#f3f4f5'),
                     widget.sep.Sep(padding=10),
-                    widget.CurrentLayoutIcon(custom_icon_paths=['usr/lib/python3.11/site-packages/libqtile/resources/layout-icons']),
+                    # widget.CurrentLayoutIcon(custom_icon_paths=['usr/lib/python3.11/site-packages/libqtile/resources/layout-icons']),
+                    widget.CurrentLayoutIcon(),
                     widget.sep.Sep(padding=10),
                     widget.Systray(),
                     widget.sep.Sep(padding=10),
                     widget.TextBox(font="Font Awesome", text="", foreground="#fba922", padding=2, fontsize=20),
                     widget.Clock(format='%A %d-%m-%Y -- %I:%M %p'),
                 ],
-                24, background="#2F343F"  # Old background="#151515"
+                24, background="#2F343F"  # Old background="#151515" # 24 is the height of the bar, followed by its color.
             ),
         ),
         Screen(
             top=bar.Bar(
                 [
-                 widget.GroupBox(inactive="#a9a9a9", active="#f3f4f5"),
+                    widget.GroupBox(inactive="#a9a9a9", active="#f3f4f5"),
                     # widget.Prompt(foreground='#00d2ff', prompt="Run: "),
                     widget.WindowName(font="Noto Sans Bold"),
                     widget.TextBox(font="FontAwesome", text=" ", foreground="#44c419", padding=0, fontsize=20),
@@ -198,7 +203,8 @@ widget.GroupBox(inactive="#a9a9a9", active="#f3f4f5"),
                     widget.TextBox(font="FontAwesome", text="", foreground='#3384d0', padding=0, fontsize=20),
                     widget.Memory(format = '{MemUsed: .0f}{mm}/{MemTotal: .0f}{mm}', update_interval=5, foreground='#f3f4f5'),
                     widget.sep.Sep(padding=10),
-                    widget.CurrentLayoutIcon(custom_icon_paths=['usr/lib/python3.11/site-packages/libqtile/resources/layout-icons']),
+                    #widget.CurrentLayoutIcon(custom_icon_paths=['usr/lib/python3.11/site-packages/libqtile/resources/layout-icons']),
+                    widget.CurrentLayoutIcon(),
                     widget.sep.Sep(padding=10),
                     widget.TextBox(font="Font Awesome", text="", foreground="#fba922", padding=2, fontsize=20),
                     widget.Clock(format='%A %d-%m-%Y -- %I:%M %p'),
@@ -217,7 +223,7 @@ else:
                     widget.WindowName(font="Noto Sans Bold"),
                     widget.TextBox(font="FontAwesome", text=" ", foreground="#44c419", padding=0, fontsize=30),
                     widget.TextBox(font="FontAwesome", text="", foreground="#44c419", padding=0, fontsize=30),
-                    widget.Net(interface='wlp5s0'),
+                    widget.Net(interface=None, format='{down} ↓↑ {up}'), # None = it will show traffic on all interfaces combined
                     widget.Sep(padding=10),
                     widget.KeyboardLayout(configured_keyboards=['it', 'dk', 'us'], font="Noto Sans Bold"),
                     widget.sep.Sep(padding=10),
@@ -227,10 +233,11 @@ else:
                     widget.TextBox(font="FontAwesome", text="", foreground="#bc5a03", padding=0, fontsize=20),
                     widget.ThermalSensor(foreground_alert="#cd1f3f", metric=True, padding=3, threshold=80),
                     widget.Sep(padding=10),
-                    widget.TextBox(font="FontAwesome", text="", foreground='#3384d0', padding=0, fontsize=32),
+                    widget.TextBox(font="FontAwesome", text="", foreground='#3384d0', padding=0, fontsize=32),
                     widget.Memory(format = '{MemUsed: .0f}{mm}/{MemTotal: .0f}{mm}', update_interval=5, foreground='#f3f4f5'),
                     widget.sep.Sep(padding=10),
-                    widget.CurrentLayoutIcon(custom_icon_paths=['usr/lib/python3.11/site-packages/libqtile/resources/layout-icons']),
+                    # widget.CurrentLayoutIcon(custom_icon_paths=['usr/lib/python3.11/site-packages/libqtile/resources/layout-icons']),
+                    widget.CurrentLayoutIcon(),
                     widget.sep.Sep(padding=10),
                     widget.Systray(),
                     widget.sep.Sep(padding=10),
@@ -242,8 +249,10 @@ else:
         ),
         Screen(),
    ]
-
-# Drag floating layouts.
+# Mouse controls for floating windows:
+# - mod + left click: move window around by dragging
+# - mod + right click: resize window by dragging
+# - mod + middle mouse click: bring selected floating window to front.
 mouse = [
     Drag([mod], "Button1", lazy.window.set_position_floating(),
          start=lazy.window.get_position()),
@@ -257,25 +266,15 @@ floating_layout = layout.Floating(
     float_rules=[
          # Run the utility of `xprop` to see the wm class and name of an X client.
         *layout.Floating.default_float_rules,
-        Match(wm_class= "confirm"),
-        Match(wm_class= "dialog"),
-        Match(wm_class= "download"),
-        Match(wm_class= "error"),
-        Match(wm_class= "file_progress"),
-        Match(wm_class= "notification"),
-        Match(wm_class= "splash"),
-        Match(wm_class= "toolbar"),
         Match(wm_class="confirmreset"),  # gitk
         Match(wm_class="makebranch"),  # gitk
         Match(wm_class="maketag"),  # gitk
         Match(wm_class="ssh-askpass"),  # ssh-askpass
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
-        Match(title="main-eu.kdbx [Locked] - KeePassXC"), #Keepassxc database unlock window
-        Match(title="GitKraken"),
-        Match(title="Steam"),
-        Match(title="gnome-calculator"),
-        Match(title="Discord Updater"),
+        # Match(title="GitKraken"),
+        Match(wm_class="gnome-calculator"),
+        # Match(title="Discord Updater"),
     ]
 )
 
