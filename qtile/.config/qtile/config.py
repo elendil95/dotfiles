@@ -27,7 +27,7 @@
 import os
 import subprocess
 import platform
-from libqtile import layout, bar, widget, hook, extension
+from libqtile import layout, bar, widget, hook, qtile
 from libqtile.config import Key, Screen, Group, Drag, Click, Match
 from libqtile.command import lazy
 from libqtile.log_utils import logger as log
@@ -50,6 +50,43 @@ if (hostname not in num_screens):
 scriptDir = os.path.expanduser("~/bin")
 if (not os.path.isdir(scriptDir)):
     log.warning("$HOME/bin is not configured, some commands will not work correctly")
+
+if qtile.core.name == "wayland":
+    programs = {
+        "terminal": "alacritty",
+        "browser": "firefox",
+        "file-manager": "thunar",
+        "music-player": "alacritty -e cmus",
+        "calendar": "alacritty -e calcurse",
+        "password-manager": "keepassxc",
+        "email-client": "thunderbird",
+        "calculator": "gnome-calculator",
+        "gui-app-finder": "xfce4-appfinder",
+        "lock-script": "???", #might still work w wayland, if lightdm is supported
+        "session-script": "???", #Will not work bc dmenu
+        "brightness-up": "alacritty -e light -A 10",
+        "brightness-down": "alacritty -e light -U 10",
+        "screenshot": "???", # Dunno if it works in wayland
+        "screenshot-select": "????" 
+    }
+elif qtile.core.name == "x11":
+    programs = {
+        "terminal": "urxvt",
+        "file-manager": "thunar",
+        "browser": "firefox",
+        "music-player": "urxvt -e cmus",
+        "calendar": "urxvt -e calcurse",
+        "password-manager": "keepassxc",
+        "email-client": "thunderbird",
+        "calculator": "gnome-calculator",
+        "gui-app-finder": "xfce4-appfinder",
+        "lock-script": "???", #might still work w wayland, if lightdm is supported
+        "session-script": "???", #Will not work bc dmenu
+        "brightness-up": "urxvt -e light -A 10",
+        "brightness-down": "urxvt -e light -U 10",
+        "screenshot": "???", # Dunno if it works in wayland
+        "screenshot-select": "????"
+    }
 
 ##-----KEYBINDS------
 keys = [
@@ -81,18 +118,18 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Quit Qtile (log out)"),
 
     # Programs
-    Key([mod], "Return", lazy.spawn("urxvt"), desc="Open Terminal"),
-    Key([mod], "b", lazy.spawn("firefox"), desc="Open Web browser"),
-    Key([mod], "f", lazy.spawn("thunar"), desc="Open File manager"),
-    Key([mod], "m", lazy.spawn("urxvt -e cmus"), desc="Open Music player"),
-    Key([mod], "c", lazy.spawn("urxvt -e calcurse"), desc="Open Calendar"),
-    Key([mod], "p", lazy.spawn("keepassxc"), desc="Open Password manager"),
-    Key([mod], "e", lazy.spawn("thunderbird"), desc="Open Email client"),
-    Key([mod, "shift"], "c", lazy.spawn("gnome-calculator"), desc="Open Calculator"),
-
-    Key([mod], "r", lazy.run_extension(extension.DmenuRun(dmenu_height=24)), desc="Open Run launcher (Dmenu)"), # Use dmenu wrapper
+    Key([mod], "Return", lazy.spawn(programs["terminal"]), desc="Open Terminal"),
+    Key([mod], "b", lazy.spawn(programs["browser"]), desc="Open Web browser"),
+    Key([mod], "f", lazy.spawn(programs["file-manager"]), desc="Open File manager"),
+    Key([mod], "m", lazy.spawn(programs["music-player"]), desc="Open Music player"),
+    Key([mod], "c", lazy.spawn(programs["calendar"]), desc="Open Calendar"),
+    Key([mod], "p", lazy.spawn(programs["password-manager"]), desc="Open Password manager"),
+    Key([mod], "e", lazy.spawn(programs["email-client"]), desc="Open Email client"),
+    Key([mod, "shift"], "c", lazy.spawn(programs["calculator"]), desc="Open Calculator"),
+    Key([mod, "shift"], 'r', lazy.spawn(programs["gui-app-finder"]), desc="Open graphical app finder"),
+    Key([mod], "r", lazy.spawncmd(), desc="Open Run launcher (Built-in)"),
+    # Key([mod], "r", lazy.run_extension(extension.DmenuRun(dmenu_height=24)), desc="Open Run launcher (Dmenu)"), # Use dmenu wrapper
     # Key([mod], "r", lazy.spawn("dmenu_run -p 'Run:' -fn 'Monospace:size=12' -nb '#000000' -nf '#fefefe'")),
-    Key([mod, "shift"], 'r', lazy.spawn("xfce4-appfinder"), desc="Open graphical app finder"),
     Key([mod, "control"], "l", lazy.spawn(os.path.expanduser("~/bin/lock_screen.sh")), desc="Lock the screen"),
     Key([mod, "control"], "x", lazy.spawn(os.path.expanduser("~/bin/dmenu_session_manager")), desc="Open session manager (log out, restart, shutdown...)"),
     Key([mod, "control"], "space", lazy.widget["keyboardlayout"].next_keyboard(), desc="Next keyboard layout."),
