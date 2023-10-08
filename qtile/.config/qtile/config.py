@@ -26,27 +26,34 @@
 
 import os
 import subprocess
-import platform
-from libqtile import layout, bar, widget, hook, qtile
-from libqtile.config import Key, Screen, Group, Drag, Click, Match
-from libqtile.command import lazy
-from libqtile.log_utils import logger as log
 
+from libqtile import bar, hook, layout, qtile, widget
+from libqtile.backend.wayland import InputConfig
+from libqtile.command import lazy
+from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.log_utils import logger as log
+from modules import x11_display as x11d
+from qtile_extras.widget import PulseVolumeExtra, StatusNotifier
+from Xlib import display
 
 # Mod Key is Windows key
 # pylint: disable=invalid-name
 mod = "mod4"
 
-home=os.environ.get('HOME')
-hostname = platform.node()
-num_screens = {
-    'arch-gaming': 2,
-    'ThinkPad-E480': 1,
-    'ThinkPad-T495': 2
-}
-# Log some common mistakes that can happen when first setting up qtile
-if (hostname not in num_screens):
-    log.warning("Current hostname is not in num_screen dictionary! Screen/bar layout for this machine cannot be configured")
+# Set up screens
+if qtile.core.name == 'x11':
+    disp = display.Display()
+    x11_display = x11d.X11Display(disp, disp.screen(), disp.screen().root)
+    resources = x11_display.get_screen_resources()
+    num_screens = 0
+    for output in resources['outputs']:
+        mon = x11_display.get_monitor_info(output, resources)
+        if mon['num_preferred']:
+            num_screens += 1
+else: # If on wayland
+    num_screens = len(qtile.core.outputs)
+    wl_input_rules = {'type:keyboard': InputConfig(kb_layout='it')}
+
 scriptDir = os.path.expanduser("~/bin")
 if (not os.path.isdir(scriptDir)):
     log.warning("$HOME/bin is not configured, some commands will not work correctly")
