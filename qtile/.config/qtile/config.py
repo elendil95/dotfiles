@@ -51,42 +51,39 @@ scriptDir = os.path.expanduser("~/bin")
 if (not os.path.isdir(scriptDir)):
     log.warning("$HOME/bin is not configured, some commands will not work correctly")
 
+programs = {
+    "browser": "firefox",
+    "file-manager": "thunar",
+    "password-manager": "keepassxc",
+    "email-client": "thunderbird",
+    "calculator": "gnome-calculator",
+    "gui-app-finder": "xfce4-appfinder"
+}
+
 if qtile.core.name == "wayland":
-    programs = {
+    programs.update({
         "terminal": "alacritty",
-        "browser": "firefox",
-        "file-manager": "thunar",
         "music-player": "alacritty -e cmus",
         "calendar": "alacritty -e calcurse",
-        "password-manager": "keepassxc",
-        "email-client": "thunderbird",
-        "calculator": "gnome-calculator",
-        "gui-app-finder": "xfce4-appfinder",
         "lock-script": "???", #might still work w wayland, if lightdm is supported
         "session-script": "???", #Will not work bc dmenu
         "brightness-up": "alacritty -e light -A 10",
         "brightness-down": "alacritty -e light -U 10",
         "screenshot": "???", # Dunno if it works in wayland
-        "screenshot-select": "????" 
-    }
-elif qtile.core.name == "x11":
-    programs = {
+        "screenshot-select": "????"
+    })
+else:
+    programs.update({
         "terminal": "urxvt",
-        "file-manager": "thunar",
-        "browser": "firefox",
         "music-player": "urxvt -e cmus",
         "calendar": "urxvt -e calcurse",
-        "password-manager": "keepassxc",
-        "email-client": "thunderbird",
-        "calculator": "gnome-calculator",
-        "gui-app-finder": "xfce4-appfinder",
         "lock-script": "???", #might still work w wayland, if lightdm is supported
         "session-script": "???", #Will not work bc dmenu
         "brightness-up": "urxvt -e light -A 10",
         "brightness-down": "urxvt -e light -U 10",
         "screenshot": "???", # Dunno if it works in wayland
         "screenshot-select": "????"
-    }
+    })
 
 ##-----KEYBINDS------
 keys = [
