@@ -335,37 +335,37 @@ floating_layout = layout.Floating(
 
 # If a window requests to be fullscreen, it is automatically fullscreened.
 # Set this to false if you only want windows to be fullscreen if you ask them to be.
-AUTO_FULLSCREEN = True
+auto_fullscreen = True
 
 # If things like steam games want to auto-minimize themselves when losing focus, should we respect this or not?
-AUTO_MINIMIZE = True
+auto_minimize = True
 
 # When clicked, should the window be brought to the front or not.
-BRING_FRONT_CLICK = False
+bring_front_click = False
 
 # If true, the cursor follows the focus as directed by the keyboard, warping to the center of the focused window.
 # When switching focus between screens, If there are no windows in the screen, the cursor will warp to the center of the screen.
-CURSOR_WARP = False
+cursor_warp = False
 
 # A function which generates group binding hotkeys.
 # It takes a single argument, the DGroups object, and can use that to set up dynamic key bindings.
-DGROUPS_KEY_BINDER = None
+dgroups_key_binder = None
 
 # A list of Rule objects which can send windows to various groups based on matching criteria.
-DGROUPS_APP_RULES = []
+dgroups_app_rules = []
 
 # Behavior of the _NET_ACTIVATE_WINDOW message sent by applications
 #     - urgent: urgent flag is set for the window
 #     - focus: automatically focus the window
 #     - smart: automatically focus if the window is in the current group
 #     - never: never automatically focus any window that requests it
-FOCUS_ON_WINDOW_ACTIVATION = "smart"
+focus_on_window_activation = "smart"
 
 # Controls whether or not focus follows the mouse around as it moves across windows in a layout.
-FOLLOW_MOUSE_FOCUS = True
+follow_mouse_focus = True
 
 # Controls whether or not to automatically reconfigure screens when there are changes in randr output configuration.
-RECONFIGURE_SCREENS = True
+reconfigure_screens = True
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
@@ -375,5 +375,4 @@ RECONFIGURE_SCREENS = True
 #
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
-#wmname = "LG3D"
-WMNAME = "Qtile"
+wmname = "Qtile"
