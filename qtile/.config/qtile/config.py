@@ -190,14 +190,15 @@ widget_defaults = dict(
 )
 # Default settings for extensions.
 extension_defaults = widget_defaults.copy()
+prompt = widget.Prompt(foreground='#00d2ff', prompt="Run: ")
 
-if (num_screens[hostname] == 2):  #If on desktop pc with dual monitors
+if (num_screens == 2):  #If on desktop pc with dual monitors
     screens = [
         Screen(
             top=bar.Bar(
                 [
                     widget.GroupBox(inactive="#a9a9a9", active="#f3f4f5"),
-                    # widget.Prompt(foreground='#00d2ff', prompt="Run: "),
+                    prompt,
                     widget.WindowName(font="Noto Sans Bold"),
                     widget.TextBox(font="FontAwesome", text=" ", foreground="#44c419", padding=0, fontsize=20),
                     widget.TextBox(font="FontAwesome", text="", foreground="#44c419", padding=0, fontsize=20),
@@ -217,10 +218,11 @@ if (num_screens[hostname] == 2):  #If on desktop pc with dual monitors
                     # widget.CurrentLayoutIcon(custom_icon_paths=['usr/lib/python3.11/site-packages/libqtile/resources/layout-icons']),
                     widget.CurrentLayoutIcon(),
                     widget.sep.Sep(padding=10),
-                    widget.Systray(),
+                    StatusNotifier(),
+                    PulseVolumeExtra(bar_width=40, limit_max_volume=True, step=5),
                     widget.sep.Sep(padding=10),
                     widget.TextBox(font="Font Awesome", text="", foreground="#fba922", padding=2, fontsize=20),
-                    widget.Clock(format='%A %d-%m-%Y -- %I:%M %p'),
+                    widget.Clock(format='%A %d-%m-%Y -- %H:%M'),
                 ],
                 24, background="#2F343F"  # Old background="#151515" # 24 is the height of the bar, followed by its color.
             ),
@@ -229,7 +231,7 @@ if (num_screens[hostname] == 2):  #If on desktop pc with dual monitors
             top=bar.Bar(
                 [
                     widget.GroupBox(inactive="#a9a9a9", active="#f3f4f5"),
-                    # widget.Prompt(foreground='#00d2ff', prompt="Run: "),
+                    prompt,
                     widget.WindowName(font="Noto Sans Bold"),
                     widget.TextBox(font="FontAwesome", text=" ", foreground="#44c419", padding=0, fontsize=20),
                     widget.TextBox(font="FontAwesome", text="", foreground="#44c419", padding=0, fontsize=20),
@@ -249,10 +251,13 @@ if (num_screens[hostname] == 2):  #If on desktop pc with dual monitors
                     #widget.CurrentLayoutIcon(custom_icon_paths=['usr/lib/python3.11/site-packages/libqtile/resources/layout-icons']),
                     widget.CurrentLayoutIcon(),
                     widget.sep.Sep(padding=10),
+                    StatusNotifier(),
+                    PulseVolumeExtra(bar_width=40, limit_max_volume=True, step=5),
+                    widget.sep.Sep(padding=10),
                     widget.TextBox(font="Font Awesome", text="", foreground="#fba922", padding=2, fontsize=20),
-                    widget.Clock(format='%A %d-%m-%Y -- %I:%M %p'),
+                    widget.Clock(format='%A %d-%m-%Y -- %H:%M'),
                 ],
-                24, background="#2F343F"  #Old background="#151515"
+                24, background="2F343F"  #Old background="#151515"
             )
         )
     ]
@@ -262,7 +267,7 @@ else:
             top=bar.Bar(
                 [
                     widget.GroupBox(inactive="#a9a9a9", active="#f3f4f5"),
-                    widget.Prompt(foreground='#00d2ff', prompt="Run: "),
+                    prompt,
                     widget.WindowName(font="Noto Sans Bold"),
                     widget.TextBox(font="FontAwesome", text=" ", foreground="#44c419", padding=0, fontsize=30),
                     widget.TextBox(font="FontAwesome", text="", foreground="#44c419", padding=0, fontsize=30),
@@ -279,10 +284,10 @@ else:
                     widget.TextBox(font="FontAwesome", text="", foreground='#3384d0', padding=0, fontsize=32),
                     widget.Memory(format = '{MemUsed: .0f}{mm}/{MemTotal: .0f}{mm}', update_interval=5, foreground='#f3f4f5'),
                     widget.sep.Sep(padding=10),
-                    # widget.CurrentLayoutIcon(custom_icon_paths=['usr/lib/python3.11/site-packages/libqtile/resources/layout-icons']),
                     widget.CurrentLayoutIcon(),
                     widget.sep.Sep(padding=10),
-                    widget.Systray(),
+                    StatusNotifier(),
+                    PulseVolumeExtra(bar_width=40, limit_max_volume=True, step=5),
                     widget.sep.Sep(padding=10),
                     widget.TextBox(font="Font Awesome", text="", foreground="#fba922", padding=2, fontsize=32),
                     widget.Clock(format='%A %d-%m-%Y -- %I:%M %p'),
