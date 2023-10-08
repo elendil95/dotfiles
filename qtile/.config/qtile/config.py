@@ -171,10 +171,19 @@ def autostart():
     """Hook to load stuff when qtile starts, reads the config file below"""
 
     auto_start_file = os.path.expanduser('~/.config/qtile/autostart.sh')
-    if (os.path.isfile(auto_start_file) and os.access(auto_start_file, os.X_OK)):
-        subprocess.Popen([auto_start_file])
+    auto_start_file_wayland = os.path.expanduser('~/.config/qtile/autostart_wayland.sh')
+    if (qtile.core.name == "x11"):
+        if (os.path.isfile(auto_start_file) and os.access(auto_start_file, os.X_OK)):
+            subprocess.Popen([auto_start_file])
+        else:
+            log.warning("X11 autostart file is not executable, or does not exist")
+    elif (qtile.core.name == "wayland"):
+        if (qtile.core.name == "wayland" and os.path.isfile(auto_start_file_wayland) and os.access(auto_start_file_wayland, os.X_OK)):
+            subprocess.Popen([auto_start_file_wayland])
+        else:
+            log.warning("Wayland autostart file is not executable, or does not exist")
     else:
-        log.warning("autostart file is not executable, or does not exist")
+        log.error("Current backend cannot be established")
 
 # Default font/settings for bar widgets.
 widget_defaults = dict(
