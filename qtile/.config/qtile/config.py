@@ -40,6 +40,9 @@ from Xlib import display
 # pylint: disable=invalid-name
 mod = "mod4"
 
+# Default log location
+# ~/.local/share/qtile/qtile.log
+
 # Set up screens
 if qtile.core.name == 'x11':
     disp = display.Display()
