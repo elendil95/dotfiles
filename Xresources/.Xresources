@@ -1,7 +1,10 @@
 !Install fonts-hack and the powerline fonts (from the repo) before using this config
 !URxvt.font: xft:Hack:pixelsize=16
 !Transparency requires the Compton compositor
-URxvt.font: xft:Hack\ Nerd\ Font\ Mono:pixelsize=16
+URxvt.font:           xft:Hack Nerd Font:size=13:style=Regular
+URxvt.boldFont:       xft:Hack Nerd Font:size=13:style=Bold
+URxvt.italicFont:     xft:Hack Nerd Font:size=13:style=Italic
+URxvt.boldItalicFont: xft:Hack Nerd Font:size=13:style=BoldItalic
 URxvt.scrollBar: false
 URxvt.perl-ext.common: default,matcher,url-select,resize-font,selection-to clipboard
 URxvt.keysym.Shift-Control-V: eval:paste_clipboard
