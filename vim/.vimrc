@@ -48,7 +48,7 @@ nmap <silent> <Up> gk
 "compile latex documents, bibtex and toggle spell cheking
 autocmd Filetype tex nnoremap <F2> :up \| :silent !pdflatex -synctex=1 -interaction=nonstopmode --shell-escape main.tex<CR>:redr!<CR>
 autocmd Filetype tex nnoremap <F8> :silent !bibtex main.aux<CR>:redr!<CR>
-autocmd Filetype tex nnoremap <F4> :setlocal spell! spelllang=en<CR>
+autocmd Filetype tex,text,markdown nnoremap <F4> :setlocal spell! spelllang=en<CR>
 
 "run Python files
 " autocmd Filetype python noremap <F2> :silent :write! !python %<CR>:redr!<CR>
@@ -72,6 +72,7 @@ Plug 'tpope/vim-surround'   "The word you need to remeber is *surrounding*: dele
 Plug 'sheerun/vim-polyglot' "Expand vim language support
 Plug 'gioele/vim-autoswap' "When a file is open in a vim buffer, and you try to open it again from another terminal, switch to it instead of prompting the user.
 Plug 'vim-airline/vim-airline'  "vim-powerline but in pure vimscript, so it does not require Python at all.
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 filetype plugin on
@@ -86,4 +87,5 @@ command! MakeTags !ctags -R . "Type :MakeTags in command mode to generate tags f
 
 "Vim-airline configuration
 let g:airline_powerline_fonts = 1
-let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
+let g:airline_theme='powerlineish'
+let g:airline#extensions#whitespace#enabled = 0
