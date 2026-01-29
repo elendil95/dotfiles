@@ -20,6 +20,7 @@ alias gpl='git pull'
 alias gps='git push'
 alias gcl='git clone'
 alias gd='git diff'
+alias yay='yay -a'
 
 binary(){
 echo "obase=2; $1"|bc
