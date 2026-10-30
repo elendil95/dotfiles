@@ -1,0 +1,45 @@
+{
+  "lastChangelogVersion": "1.4.0",
+  "hideThinkingBlock": true,
+  "defaultTools": [
+    "+grep",
+    "+find",
+    "+ls"
+  ],
+  "shellPath": "/bin/bash",
+  "subagents": {
+    "defaultModel": "lemonade/Qwen3.8-27B-GGUF",
+    "agentOverrides": {
+      "reviewer": {
+        "model": "claude-bridge/claude-opus-5-5",
+        "thinking": "high"
+      },
+      "planner": {
+        "model": "claude-bridge/claude-opus-5-5",
+        "thinking": "high"
+      }
+    }
+  },
+  "packages": [
+    "npm:@narumitw/pi-plan-mode",
+    "npm:pi-subagents",
+    "npm:pi-web-access",
+    "npm:pi-claude-bridge"
+  ],
+  "terminal": {
+    "showTerminalProgress": true
+  },
+  "transport": "auto",
+  "markdown": {
+    "mermaid": "final"
+  },
+  "enableInstallTelemetry": false,
+  "tuiMode": "fullscreen",
+  "theme": "dark",
+  "modelThinkingLevels": {
+    "lemonade/Qwen3.8-27B-GGUF": "medium",
+    "claude-bridge/claude-opus-5-5": "high",
+    "claude-bridge/claude-fable-5": "high",
+    "claude-bridge/claude-fable-5-1": "high"
+  }
+}

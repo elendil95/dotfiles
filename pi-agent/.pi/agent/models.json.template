@@ -1,0 +1,26 @@
+{
+  "$schema": "https://pi.dev/schemas/models.schema.json",
+  "providers": {
+    "lemonade": {
+      "baseUrl": "https://llm.homuhomelab.it/v1",
+      "api": "openai-completions",
+      "apiKey": "<YOUR-API-KEY-HERE>",
+      "models": [
+        {
+          "id": "Qwen3.8-27B-GGUF",
+          "contextWindow": 98304,
+          "maxTokens": 32768,
+          "reasoning": true,
+          "samplingParams": { "temperature": 1.0, "top_p": 0.95, "top_k": 20 },
+          "samplingParamsByThinkingLevel": {
+            "off": { "temperature": 0.7, "top_p": 0.8 }
+          },
+          "compat": {
+            "thinkingFormat": "qwen-chat-template"
+          }
+        }
+      ]
+    }
+  }
+}
+
