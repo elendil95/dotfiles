@@ -4,3 +4,15 @@ FAKE_LARBS.sh
 README.old
 ranger/.config/ranger/plugins
 *.un~
+
+# pi agent (stow package: pi-agent) — runtime state is pi-managed or secret
+pi-agent/.pi/agent/sessions/
+pi-agent/.pi/agent/missions/
+pi-agent/.pi/agent/web-search-cache/
+pi-agent/.pi/agent/install/
+pi-agent/.pi/agent/bin/
+pi-agent/.pi/agent/npm/
+pi-agent/.pi/agent/auth.json
+pi-agent/.pi/agent/models.json
+pi-agent/.pi/agent/models-store.json
+pi-agent/.pi/agent/claude-bridge.json
